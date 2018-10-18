@@ -43,6 +43,17 @@ dependencies {
 
 kotlin.experimental.coroutines = 'enable'
 
+processResources {
+    doLast {
+        println "copy dist to resources/public"
+        copy {
+            from "../dist"
+            into "build/resources/main/public"
+        }
+    }
+}
+
+
 shadowJar {
     baseName = 'play.data2viz.io'
     classifier = null
