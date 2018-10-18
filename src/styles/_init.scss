@@ -1,0 +1,14 @@
+@import "_params";
+@import "_params-fonts";
+
+html,
+body {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  @include font-init;
+}
+
+p {
+  @include font-reg
+}

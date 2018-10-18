@@ -1,0 +1,18 @@
+@import "_grid";
+
+#d2v-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  .wrap {
+    @include site-max-width;
+    @include column-container;
+    @include container-content-justified;
+  }
+
+  .logo {
+
+  }
+}

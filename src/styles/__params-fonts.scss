@@ -1,0 +1,16 @@
+@import "_params";
+
+@mixin font-init {
+  font-family: $font-family;
+  line-height: 1.25em;
+  font-weight: 500;
+  font-size: $font-size;
+}
+
+@mixin font-reg {
+  font-size: 1em;
+  line-height: 1.25em;
+  margin-top: 1.25em;
+  margin-bottom: 1.75em;
+  font-weight: 500;
+}
