@@ -1,0 +1,9 @@
+rootProject.name = 'data2viz.io'
+
+enableFeaturePreview('GRADLE_METADATA')
+
+
+// ---------------------------
+
+include(":back")
+include(":front")
