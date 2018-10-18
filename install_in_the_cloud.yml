@@ -2,13 +2,13 @@
 - hosts: sys1
   become: yes
   vars:
-      name: data2viz.io
+      name: play.data2viz.io
 
   tasks:
 
     - name: Deploy git sources from bitbucket project {{ name }}
       git:
-        repo: git@bitbucket.org:d3k/data2viz.io.git
+        repo: git@bitbucket.org:d3k/{{ name }}.git
         dest: /home/d2v/{{ name }}
         accept_hostkey: yes
         force: yes
