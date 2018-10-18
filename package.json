@@ -1,0 +1,17 @@
+{
+  "name": "play.data2viz.io",
+  "version": "1.0.0",
+  "description": "data2viz playground pages (documentation, examples, …)",
+  "main": "public/index.html",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://azertypow@bitbucket.org/d3k/play.data2viz.io.git"
+  },
+  "author": "data2viz",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/d3k/play.data2viz.io#readme",
+  "devDependencies": {
+    "typescript": "^3.1.3"
+  }
+}
