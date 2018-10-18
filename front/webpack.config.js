@@ -1,4 +1,5 @@
 const path = require('path');
+const distFolder = "../dist";
 
 module.exports = {
     entry: './src/index.ts',
@@ -44,11 +45,11 @@ module.exports = {
     },
     output: {
         filename: 'main.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, distFolder)
     },
     devtool: 'inline-source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'dist'),
+        contentBase: path.join(__dirname, distFolder),
         compress: false,
         port: 9000
     },
