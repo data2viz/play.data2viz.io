@@ -13,5 +13,10 @@ class GenerationTest {
         }
     }
 
+    @Test
+    fun renderHtml() {
+        println(Documentation().html("getting-started.md"))
+    }
+
 
 }

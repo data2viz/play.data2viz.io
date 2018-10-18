@@ -5,15 +5,18 @@ import io.ktor.application.call
 import io.ktor.application.install
 import io.ktor.application.log
 import io.ktor.features.Compression
+import io.ktor.html.respondHtml
 import io.ktor.http.content.resolveResource
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
 import io.ktor.response.respond
+import io.ktor.response.respondText
 import io.ktor.routing.Routing
 import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
+import kotlinx.html.*
 import org.slf4j.LoggerFactory
 
 val logger = LoggerFactory.getLogger("io.data2viz.play")!!
@@ -26,7 +29,7 @@ fun main(args: Array<String>) {
 
 val documentation = Documentation()
 
-fun Application.mainModule(){
+fun Application.mainModule() {
     install(Compression)
     routing {
         trace { application.log.trace(it.buildText()) }
@@ -34,7 +37,16 @@ fun Application.mainModule(){
         get("/") { call.respond(call.resolveResource("public/index.html")!!) }
         documentation.mdFiles.forEach { docFile ->
             get(docFile) {
-                call.respond(documentation.html(docFile))
+                call.respondHtml {
+                    head {
+                        title { +"Async World" }
+                    }
+                    body {
+                       unsafe {
+                           +documentation.html(docFile)
+                       }
+                    }
+                }
             }
         }
         static("/") {
