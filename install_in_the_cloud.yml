@@ -1,0 +1,27 @@
+
+- hosts: sys1
+  become: yes
+  vars:
+      name: data2viz.io
+
+  tasks:
+
+    - name: Deploy git sources from bitbucket project {{ name }}
+      git:
+        repo: git@bitbucket.org:d3k/data2viz.io.git
+        dest: /home/d2v/{{ name }}
+        accept_hostkey: yes
+        force: yes
+
+    - name: build {{ name }}
+      command: chdir=/home/d2v/{{ name }}
+        ./build.sh
+
+    - name: stop {{ name }}
+      ignore_errors: yes
+      command: chdir=/home/d2v/{{ name }}
+        ./stop.sh
+
+    - name: start {{ name }}
+      command: chdir=/home/d2v/{{ name }}
+        ./start.sh

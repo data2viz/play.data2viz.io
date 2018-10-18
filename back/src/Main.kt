@@ -8,6 +8,7 @@ import io.ktor.http.content.resolveResource
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
 import io.ktor.response.respond
+import io.ktor.routing.Routing
 import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
@@ -26,11 +27,16 @@ fun main(args: Array<String>) {
 fun Application.mainModule(){
     install(Compression)
     routing {
+        installContent()
         get("/") { call.respond(call.resolveResource("public/index.html")!!) }
         static("/") {
             resources("public")
         }
     }
+}
+
+private fun Routing.installContent() {
+
 }
 
 

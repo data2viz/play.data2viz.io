@@ -23,7 +23,8 @@ mainClassName = "io.ktor.server.netty.DevelopmentEngine"
 
 sourceSets {
     main.kotlin.srcDirs = [ 'src' ]
-    main.resources.srcDirs = [ 'resources', 'static']
+    test.kotlin.srcDirs = [ 'test' ]
+    main.resources.srcDirs = [ 'resources', 'static', 'content']
 }
 
 repositories {
@@ -37,8 +38,7 @@ dependencies {
     compile "io.ktor:ktor-html-builder:$ktor_version"
     testCompile "io.ktor:ktor-server-test-host:$ktor_version"
     compile "ch.qos.logback:logback-classic:$logback_version"
-    compile "org.codemonkey.simplejavamail:simple-java-mail:2.1"
-    compile "com.stripe:stripe-java:7.1.0"
+    compile 'com.atlassian.commonmark:commonmark:0.11.0'
 }
 
 kotlin.experimental.coroutines = 'enable'
