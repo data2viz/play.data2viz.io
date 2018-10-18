@@ -1,5 +1,7 @@
 const path = require('path');
 const distFolder = "../dist";
+const webpack = require('webpack');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
     entry: './src/index.ts',
@@ -11,7 +13,8 @@ module.exports = {
             {
                 test: /\.scss$/,
                 use: [
-                    "style-loader", // creates style nodes from JS strings
+                    // "style-loader", // creates style nodes from JS strings
+                    MiniCssExtractPlugin.loader,
                     "css-loader", // translates CSS into CommonJS
                     "sass-loader" // compiles Sass to CSS, using Node Sass by default
                 ]
@@ -53,4 +56,13 @@ module.exports = {
         compress: false,
         port: 9000
     },
+    plugins: [
+        new webpack.optimize.ModuleConcatenationPlugin(),
+        new MiniCssExtractPlugin({
+            // Options similar to the same options in webpackOptions.output
+            // both options are optional
+            filename: "[name].css",
+            chunkFilename: "[id].css"
+        })
+    ]
 };
