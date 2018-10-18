@@ -22,8 +22,8 @@ apply plugin: 'application'
 mainClassName = "io.ktor.server.netty.DevelopmentEngine"
 
 sourceSets {
-    main.kotlin.srcDirs = [ 'src/main/kotlin' ]
-    main.resources.srcDirs = [ 'src/main/resources', 'src/main/public' ]
+    main.kotlin.srcDirs = [ 'src' ]
+    main.resources.srcDirs = [ 'resources', 'static']
 }
 
 repositories {
