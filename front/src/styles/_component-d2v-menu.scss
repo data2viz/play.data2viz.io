@@ -1,0 +1,24 @@
+@import "_grid";
+
+#d2v-menu {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  .wrap {
+    @include site-max-width;
+    @include column-container;
+    @include container-content-justified;
+    overflow: visible;
+  }
+
+  #site-navigation {
+    @include column(2, 12);
+    @include gutter;
+    position: absolute;
+    top: $content-top-padding;
+    left: 0;
+  }
+}

@@ -7,8 +7,40 @@ body {
   margin: 0;
   padding: 0;
   @include font-init;
+  color: $color-main-dark;
 }
 
 p {
-  @include font-reg
+  @include font-reg;
+}
+
+h1 {
+  @include font-xxl;
+  color: $color-main;
+}
+
+h2 {
+  @include font-xl;
+  border-bottom: solid 1px;
+}
+
+h3 {
+  @include font-l;
+}
+
+h4 {
+  @include font-m;
+}
+
+h5 {
+
+}
+
+h6 {
+
+}
+
+a {
+  color: $color-main;
+  text-decoration: none;
 }

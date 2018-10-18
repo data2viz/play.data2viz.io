@@ -1,0 +1,27 @@
+@import "_params";
+
+button,
+.d2v-button,
+[class*=d2v-button] {
+  line-height: 1ex;
+  display: inline-block;
+  padding: 1.5em;
+  color: white;
+  background-color: $color-main;
+  border-radius: 0.1em;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.d2v-button-transparent {
+  color: $color-main-dark;
+  background-color: transparent;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
+.d2v-button-small {
+  font-size: 0.75em;
+}

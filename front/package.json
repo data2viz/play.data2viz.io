@@ -4,7 +4,7 @@
   "description": "data2viz playground pages (documentation, examples, …)",
   "main": "public/index.html",
   "scripts": {
-    "dev": "webpack-dev-server --open --mode='production'",
+    "dev": "webpack-dev-server --open --mode='development'",
     "build": "webpack --mode='production'"
   },
   "repository": {
@@ -17,6 +17,7 @@
   "devDependencies": {
     "css-loader": "^1.0.0",
     "file-loader": "^2.0.0",
+    "mini-css-extract-plugin": "^0.4.4",
     "node-sass": "^4.9.4",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",

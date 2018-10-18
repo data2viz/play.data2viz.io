@@ -1,0 +1,5 @@
+$blue-extra-dark: hsl(242, 89%, 28%);//hsl(242, 89%, 28%)
+$blue-dark: lighten(desaturate($blue-extra-dark, 20%), 12%);
+$blue: lighten(desaturate($blue-extra-dark, 17%), 28%);
+$blue-light: lighten(desaturate($blue, 2%), 14%);
+$blue-extra-light: lighten(saturate($blue, 28%), 39%);
