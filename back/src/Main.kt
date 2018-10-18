@@ -3,6 +3,7 @@ package io.data2viz.play
 import io.ktor.application.Application
 import io.ktor.application.call
 import io.ktor.application.install
+import io.ktor.application.log
 import io.ktor.features.Compression
 import io.ktor.http.content.resolveResource
 import io.ktor.http.content.resources
@@ -15,7 +16,6 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import org.slf4j.LoggerFactory
 
-
 val logger = LoggerFactory.getLogger("io.data2viz.play")!!
 
 fun main(args: Array<String>) {
@@ -24,11 +24,19 @@ fun main(args: Array<String>) {
     }.start(wait = true)
 }
 
+val documentation = Documentation()
+
 fun Application.mainModule(){
     install(Compression)
     routing {
+        trace { application.log.trace(it.buildText()) }
         installContent()
         get("/") { call.respond(call.resolveResource("public/index.html")!!) }
+        documentation.mdFiles.forEach { docFile ->
+            get(docFile) {
+                call.respond(documentation.html(docFile))
+            }
+        }
         static("/") {
             resources("public")
         }
