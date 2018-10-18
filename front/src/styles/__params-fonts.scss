@@ -7,9 +7,39 @@
   font-size: $font-size;
 }
 
+@mixin font-xxl {
+  font-size: 4em;
+  line-height: 1.25em;
+  margin-top: 1.25em;
+  margin-bottom: 1em;
+  font-weight: 700;
+};
+@mixin font-xl {
+  font-size: 3em;
+  line-height: 1.25em;
+  margin-top: 1.25em;
+  margin-bottom: 0.8em;
+  padding-bottom: 0.5em;
+  font-weight: 700;
+};
+@mixin font-l {
+  font-size: 2em;
+  line-height: 1.25em;
+  margin-top: 1.25em;
+  margin-bottom: 1em;
+  font-weight: 700;
+};
+@mixin font-m {
+  font-size: 1em;
+  line-height: 1.75em;
+  margin-top: 1.25em;
+  margin-bottom: 1.75em;
+  font-weight: 700;
+};
+
 @mixin font-reg {
   font-size: 1em;
-  line-height: 1.25em;
+  line-height: 1.75em;
   margin-top: 1.25em;
   margin-bottom: 1.75em;
   font-weight: 500;

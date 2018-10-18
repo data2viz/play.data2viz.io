@@ -1,0 +1,20 @@
+@import "_grid";
+
+#d2v-content {
+  padding-top: $content-top-padding;
+
+  #site-text {
+    @include site-max-width;
+
+    > * {
+      @include column( 7, 12);
+      @include column-skip( 2, 12);
+    }
+
+    .d2v-code {
+      z-index: 75;
+      position: relative;
+      overflow: hidden;
+    }
+  }
+}

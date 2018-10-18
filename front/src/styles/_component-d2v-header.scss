@@ -2,21 +2,32 @@
 
 #d2v-header {
   position: fixed;
+  z-index: 100;
   top: 0;
   left: 0;
   width: 100%;
+  box-sizing: border-box;
+  border-top: solid 1px $color-main;
+  border-bottom: solid 1px $color-main;
+  background-color: white;
 
   .wrap {
     @include site-max-width;
     @include column-container;
     @include container-content-justified;
 
-    .left {
+    .left,
+    .right {
+      @include column-container;
+      align-items: center;
 
+      > * {
+        display: block;
+      }
     }
 
     .right {
-
+      @include gutter;
     }
   }
 

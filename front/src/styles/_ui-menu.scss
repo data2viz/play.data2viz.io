@@ -1,0 +1,32 @@
+@import "_grid";
+
+menu,
+[class*="d2v-menu"] {
+  @include column-container;
+  margin: 0;
+  padding: 0;
+
+  > * {
+    text-decoration: none;
+  }
+}
+
+.d2v-menu-horizontal {
+  > * {
+    display: inline-block;
+  }
+
+  > * + *:not(.no-marge) {
+    margin-left: $gutter-width;
+  }
+}
+
+.d2v-menu-vertical {
+  > * {
+    display: block;
+  }
+
+  > * + *:not(.no-marge) {
+    margin-top: $gutter-width;
+  }
+}
