@@ -10,9 +10,19 @@
     @include site-max-width;
     @include column-container;
     @include container-content-justified;
+
+    .left {
+
+    }
+
+    .right {
+
+    }
   }
 
   .logo {
-
+    display: block;
+    height: 50px;
+    width: auto;
   }
 }
