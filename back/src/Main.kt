@@ -10,6 +10,7 @@ import io.ktor.http.content.resolveResource
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
 import io.ktor.response.respond
+import io.ktor.response.respondRedirect
 import io.ktor.response.respondText
 import io.ktor.routing.Routing
 import io.ktor.routing.get
@@ -34,21 +35,16 @@ fun Application.mainModule() {
     routing {
         trace { application.log.trace(it.buildText()) }
         installContent()
-        get("/") { call.respond(call.resolveResource("public/index.html")!!) }
         documentation.mdFiles.forEach { docFile ->
-            get(docFile) {
+            get(docFile.name) {
                 call.respondHtml {
-                    head {
-                        title { +"Async World" }
-                    }
-                    body {
-                       unsafe {
-                           +documentation.html(docFile)
-                       }
+                    unsafe {
+                        +docFile.htmlContent
                     }
                 }
             }
         }
+        get("/") { call.respondRedirect(documentation.mdFiles.first().name)}
         static("/") {
             resources("public")
         }
