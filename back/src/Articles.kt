@@ -32,6 +32,7 @@ class Articles(private val path: String) {
 
 	@Throws(IOException::class)
 	private fun getResourceFiles(path: String): List<String> {
+		logger.info("looking into path:: $path")
 		val filenames = ArrayList<String>()
 		getResourceAsStream(path).use {
 			BufferedReader(InputStreamReader(it)).use { br ->
