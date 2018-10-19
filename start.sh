@@ -2,9 +2,9 @@
 
 SERVER=$(basename `pwd`)
 
-docker run -d \
+docker run -d -m512M --cpus 2 \
   --name $SERVER \
-  -P \
+  --net front \
   -e "VIRTUAL_HOST=$SERVER" \
   -e "VIRTUAL_PORT=8080" \
   -e "LETSENCRYPT_HOST=$SERVER" \
