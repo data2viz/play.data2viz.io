@@ -9,12 +9,15 @@ import io.ktor.html.respondHtml
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
 import io.ktor.response.respondRedirect
+import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import kotlinx.html.*
 import org.slf4j.LoggerFactory
+import java.io.File
+
 
 val logger = LoggerFactory.getLogger("io.data2viz.play")!!
 
@@ -23,6 +26,7 @@ fun main(args: Array<String>) {
         mainModule()
     }.start(wait = true)
 }
+
 
 val documentation = Articles("documentation")
 
@@ -38,6 +42,7 @@ fun Application.mainModule() {
             }
         }
         get("/") { call.respondRedirect(documentation.mdFiles.first().name)}
+
         static("/") {
             resources("public")
         }
@@ -45,10 +50,10 @@ fun Application.mainModule() {
 }
 
 private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
-        head {
-            unsafe {
-                //language=HTML
-                +"""
+    head {
+        unsafe {
+            //language=HTML
+            +"""
 			    <meta charset="UTF-8">
 				<meta name="viewport"
 				content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -56,15 +61,15 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
 				<title>play:documentation</title>
   				<script src="https://unpkg.com/@data2viz/kotlin-playground@1" data-selector=".kotlin-code"></script>
 				<link rel="stylesheet" href="main.css">""".trimIndent()
-            }
         }
-        body {
-            main {
-                header {
-                    id = "d2v-header"
-                    unsafe {
-                        //language=HTML
-                        +"""
+    }
+    body {
+        main {
+            header {
+                id = "d2v-header"
+                unsafe {
+                    //language=HTML
+                    +"""
 							<div class="wrap">
 								<div class="left">
 									<img src="images/logo.png" class="logo">
@@ -80,33 +85,33 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
 									</menu>
 								</div>
 							</div>""".trimIndent()
-                    }
                 }
-                div {
-                    id = "d2v-menu"
-                    div("wrap"){
-                        unsafe {
-                            + """<menu id="site-navigation" class="d2v-menu-vertical">"""
+            }
+            div {
+                id = "d2v-menu"
+                div("wrap") {
+                    unsafe {
+                        +"""<menu id="site-navigation" class="d2v-menu-vertical">"""
                             documentation.mdFiles.forEach {
                                 +it.name
                             }
-                            +"</menu>"
-                        }
+                        +"</menu>"
                     }
-
                 }
-                section {
-                    id = "d2v-content"
-                    div {
-                        id = "site-text"
-                        unsafe {
-                            +docFile.htmlContent
-                        }
+
+            }
+            section {
+                id = "d2v-content"
+                div {
+                    id = "site-text"
+                    unsafe {
+                        +docFile.htmlContent
                     }
                 }
             }
         }
     }
+}
 
 
 

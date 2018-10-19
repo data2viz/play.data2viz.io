@@ -18,6 +18,7 @@ USER $APPLICATION_USER
 
 # We copy the FAT Jar we built into the /app folder and sets that folder as the working directory.
 COPY build/libs/play.data2viz.io.jar /app/my-application.jar
+COPY content /app/content
 WORKDIR /app
 
 # We launch java to execute the jar, with good defauls intended for containers.
