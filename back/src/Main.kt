@@ -34,7 +34,6 @@ fun Application.mainModule() {
     install(Compression)
     routing {
         trace { application.log.trace(it.buildText()) }
-        installContent()
         documentation.mdFiles.forEach { docFile ->
             get(docFile.name) {
                 call.respondHtml {
@@ -49,10 +48,6 @@ fun Application.mainModule() {
             resources("public")
         }
     }
-}
-
-private fun Routing.installContent() {
-
 }
 
 

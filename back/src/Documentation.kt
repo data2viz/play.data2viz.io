@@ -2,23 +2,12 @@ package io.data2viz.play
 
 import kotlinx.html.*
 import kotlinx.html.stream.appendHTML
-import org.commonmark.node.IndentedCodeBlock
-import org.commonmark.node.Node
-import org.commonmark.parser.Parser
-import org.commonmark.renderer.NodeRenderer
-import org.commonmark.renderer.html.HtmlNodeRendererContext
-import org.commonmark.renderer.html.HtmlRenderer
-import org.commonmark.renderer.html.HtmlWriter
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
 import java.io.InputStreamReader
 import java.util.*
 
-val parser = Parser.builder().build()
-val renderer = HtmlRenderer.builder()
-	.nodeRendererFactory { context -> IndentedCodeBlockNodeRenderer(context) }
-	.build()
 
 class Documentation {
 
@@ -125,37 +114,6 @@ class Documentation {
 
 }
 
-internal class IndentedCodeBlockNodeRenderer(context: HtmlNodeRendererContext) : NodeRenderer {
-
-	private val html: HtmlWriter = context.writer
-
-	override fun getNodeTypes(): Set<Class<out Node>> {
-		// Return the node types we want to use this renderer for.
-		return Collections.singleton(IndentedCodeBlock::class.java)
-	}
-
-	override fun render(node: Node) {
-		// We only handle one type as per getNodeTypes, so we can just cast it here.
-		val codeBlock = node as IndentedCodeBlock
-		html.line()
-//		html.tag("pre")
-		//language=HTML
-		html.text(
-			"""
-			<div class="kotlin-code d2v-large" data-target-platform="canvas"
-			  lines="true"
-			  highlight-on-fly="true"
-			  data-js-libs="https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/kotlin.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-core-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-color-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-path-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timer-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-viz-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-interpolate-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-time-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-scale-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-format-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timeFormat-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-axis-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-shape-js.js"
-			  data-output-height="200">""".trimIndent()
-		)
-		html.text(codeBlock.literal)
-		html.text("</div>")
-//		html.tag("/pre")
-		html.line()
-	}
-}
 
 
 data class MdFileDescriptor(val name: String, val htmlContent: String)
-
-
