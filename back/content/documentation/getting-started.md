@@ -5,7 +5,7 @@ This is the simplest viz you can make. 14 lines with imports to draw a rectangle
 But you'll see that we can go far beyond that first example.
 
 
-```height=300
+```height=150
 import io.data2viz.viz.*
 import io.data2viz.color.*
 

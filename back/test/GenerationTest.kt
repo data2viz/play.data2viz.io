@@ -2,9 +2,8 @@ package io.data2viz.play
 
 import org.commonmark.parser.Parser
 import org.junit.Test
-import kotlin.test.assertTrue
-import org.commonmark.renderer.html.HtmlRenderer
 import kotlin.test.assertEquals
+import kotlin.test.assertTrue
 
 
 class GenerationTest {
@@ -12,13 +11,13 @@ class GenerationTest {
     @Test
     fun loadFiles() {
         assertTrue {
-            Documentation().mdFiles.map { it.name }.contains("getting-started.md")
+            Articles("documentation").mdFiles.map { it.name }.contains("getting-started.md")
         }
     }
 
     @Test
     fun renderHtml() {
-        println(Documentation().html("getting-started.md"))
+        println(Articles("documentation").html("getting-started.md"))
     }
 
     @Test
