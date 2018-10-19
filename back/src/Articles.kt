@@ -7,13 +7,19 @@ import java.io.InputStreamReader
 import java.util.*
 
 
-class Articles(val path: String) {
+class Articles(private val path: String) {
 
-	val mdFiles = getResourceFiles(path).map { it.toDescriptor() }
+	val mdFiles: List<MdFileDescriptor>
 
-	fun String.toDescriptor(): MdFileDescriptor {
-		return MdFileDescriptor(this, html(this))
+	init {
+	    mdFiles = getResourceFiles(path).map {
+			it.toDescriptor()
+				.also { logger.info("${it.name} loaded") }
+		}
+
 	}
+
+	private fun String.toDescriptor() = MdFileDescriptor(this, html(this))
 
 	fun html(docFile: String): String {
 		val content = getResourceAsStream("$path/$docFile")
@@ -43,7 +49,5 @@ class Articles(val path: String) {
 	private fun getContextClassLoader(): ClassLoader = Thread.currentThread().contextClassLoader
 
 }
-
-
 
 data class MdFileDescriptor(val name: String, val htmlContent: String)
