@@ -5,8 +5,7 @@ This is the simplest viz you can make. 14 lines with imports to draw a rectangle
 But you'll see that we can go far beyond that first example.
 
 
-```kotlin
-
+```height=300
 import io.data2viz.viz.*
 import io.data2viz.color.*
 
@@ -21,5 +20,4 @@ fun main(args:Array<String>){
         }                
     }.bindRendererOnNewCanvas()
 }
-
 ```

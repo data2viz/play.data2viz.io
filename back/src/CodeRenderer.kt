@@ -46,7 +46,7 @@ class Data2vizCodeBlockNodeRenderer(context: HtmlNodeRendererContext) : NodeRend
             }
             is FencedCodeBlock -> {
                 html.line()
-                html.tag("div", d2vAttributes)
+                html.tag("div", attributesWithHeight(node.info))
                 html.text(node.literal)
                 html.tag("/div")
                 html.line()
@@ -56,6 +56,20 @@ class Data2vizCodeBlockNodeRenderer(context: HtmlNodeRendererContext) : NodeRend
         }
 
     }
+}
+
+fun attributesWithHeight(info:String): Map<String, String> {
+    val parseHeight = parseHeight(info)
+    return if (parseHeight != null)
+        d2vAttributes + ("data-output-height" to "$parseHeight")
+    else
+        d2vAttributes
+}
+
+val regex = "height=(\\d+)".toRegex()
+
+fun parseHeight(info: String):Int? {
+    return regex.find(info)?.groupValues?.get(1)?.toInt()
 }
 
 val d2vAttributes = mapOf(
