@@ -1,27 +1,19 @@
 package io.data2viz.play
 
-import org.commonmark.node.Code
 import org.commonmark.node.FencedCodeBlock
 import org.commonmark.node.IndentedCodeBlock
 import org.commonmark.node.Node
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.NodeRenderer
 import org.commonmark.renderer.html.HtmlNodeRendererContext
-import org.commonmark.renderer.html.HtmlNodeRendererFactory
 import org.commonmark.renderer.html.HtmlRenderer
 import org.commonmark.renderer.html.HtmlWriter
 
 
-val codeNodeFactory: HtmlNodeRendererFactory = (object: HtmlNodeRendererFactory {
-    override fun create(context: HtmlNodeRendererContext?): NodeRenderer {
-        return Data2vizCodeBlockNodeRenderer(context!!)
-    }
-})
-
-val parser = Parser.builder().build()
+val parser = Parser.builder().build()!!
 val renderer = HtmlRenderer.builder()
-    .nodeRendererFactory(codeNodeFactory)
-    .build()
+    .nodeRendererFactory { Data2vizCodeBlockNodeRenderer(it!!) }
+    .build()!!
 
 
 class Data2vizCodeBlockNodeRenderer(context: HtmlNodeRendererContext) : NodeRenderer {
@@ -30,8 +22,7 @@ class Data2vizCodeBlockNodeRenderer(context: HtmlNodeRendererContext) : NodeRend
 
     override fun getNodeTypes(): Set<Class<out Node>> = setOf(
         FencedCodeBlock::class.java,
-        IndentedCodeBlock::class.java,
-        Code::class.java
+        IndentedCodeBlock::class.java
     )
 
     override fun render(node: Node) {
@@ -66,11 +57,8 @@ fun attributesWithHeight(info:String): Map<String, String> {
         d2vAttributes
 }
 
-val regex = "height=(\\d+)".toRegex()
-
-fun parseHeight(info: String):Int? {
-    return regex.find(info)?.groupValues?.get(1)?.toInt()
-}
+private val regex = "height=(\\d+)".toRegex()
+fun parseHeight(info: String):Int? = regex.find(info)?.groupValues?.get(1)?.toInt()
 
 val d2vAttributes = mapOf(
     "data-output-height" to "200",

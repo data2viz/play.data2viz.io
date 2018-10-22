@@ -2,6 +2,10 @@ package io.data2viz.play
 
 import java.io.File
 
+
+/**
+ * Parse MD files to render them as HTML
+ */
 class Articles(private val path: String) {
 
 	val mdFiles: List<MdFileDescriptor>
