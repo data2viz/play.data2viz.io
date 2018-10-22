@@ -14,7 +14,7 @@ class Articles(path: String) {
 	    mdFiles = File("content/$path").listFiles().map {
 			it.toDescriptor()
 				.also { logger.info("${it.title} loaded") }
-		}
+		}.sortedBy { it.url }
 	}
 
 	private fun File.toDescriptor(): MdFileDescriptor {
