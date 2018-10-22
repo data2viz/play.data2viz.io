@@ -54,3 +54,32 @@ fun main(args:Array<String>){
     }.bindRendererOnNewCanvas()
 }
 ```
+
+## RGBA colors
+
+You can also define you color from 0 to 255 Int value for red, green and blue lights.
+The factory function has an additional float alpha parameter (not required) to define
+the transparency. It is set by default to 1f (opaque).   
+
+```height=50 from=8 to=18
+import io.data2viz.viz.*
+import io.data2viz.color.*
+
+fun main(args:Array<String>){
+    viz {
+        width = 500.0
+        height = 50.0
+        rect {
+            width = 50.0
+            height = 50.0
+            fill = rgba(255,0,0)
+        }                
+        rect {
+            x = 50.0
+            width = 50.0
+            height = 50.0
+            fill = rgba(255,0,0, .5f)
+        }                   
+    }.bindRendererOnNewCanvas()
+}
+```
