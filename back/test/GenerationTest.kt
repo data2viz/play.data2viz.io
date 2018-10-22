@@ -12,8 +12,8 @@ class GenerationTest {
     @Test
     fun loadFiles() {
         assertTrue {
-            val articleNames = Articles("documentation").mdFiles.map { it.name }
-            articleNames.contains("getting-started.md")
+            val articleTitles = Articles("documentation").mdFiles.map { it.title }
+            articleTitles.contains("Let's start")
         }
     }
 
@@ -31,9 +31,33 @@ class GenerationTest {
     }
 
     @Test
-    fun parseHeight(){
+    fun parseAttributes(){
         assertEquals(300, io.data2viz.play.parseHeight("height=300"))
+        assertEquals(30, io.data2viz.play.parseFrom("from=30"))
+        assertEquals(42, io.data2viz.play.parseTo("to=42"))
     }
 
+    @Test
+    fun grabTitle(){
+        val parser = Parser.builder().build()
+        val document = parser.parse(
+            """
+                |# data2viz is great
+                |## reason one
+                |First... ....
+                |
+                |## reason two
+                |anrusiten aursiten uasit nauirst e
+                |"""
+                .trimMargin())
+
+        val visitor = TitleVisitor()
+        document.accept(visitor)
+
+        assertTrue { visitor.titles.size == 1 }
+        assertTrue { visitor.titles[0] == "data2viz is great" }
+
+    }
 
 }
+

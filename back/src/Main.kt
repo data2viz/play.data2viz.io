@@ -9,14 +9,12 @@ import io.ktor.html.respondHtml
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
 import io.ktor.response.respondRedirect
-import io.ktor.response.respondText
 import io.ktor.routing.get
 import io.ktor.routing.routing
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import kotlinx.html.*
 import org.slf4j.LoggerFactory
-import java.io.File
 
 
 val logger = LoggerFactory.getLogger("io.data2viz.play")!!
@@ -35,13 +33,13 @@ fun Application.mainModule() {
     routing {
         trace { application.log.trace(it.buildText()) }
         documentation.mdFiles.forEach { docFile ->
-            get(docFile.name) {
+            get(docFile.url) {
                 call.respondHtml {
                     generateDocumentationPage(docFile)
                 }
             }
         }
-        get("/") { call.respondRedirect(documentation.mdFiles.first().name)}
+        get("/") { call.respondRedirect(documentation.mdFiles.first().url)}
 
         static("/") {
             resources("public")
@@ -93,7 +91,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                     unsafe {
                         +"""<menu id="site-navigation" class="d2v-menu-vertical">"""
                             documentation.mdFiles.forEach {
-                                +it.name
+                                +"""<li><a href="${it.url}">${it.title}</a></li>"""
                             }
                         +"</menu>"
                     }

@@ -1,14 +1,14 @@
 package io.data2viz.play
 
-import org.commonmark.node.FencedCodeBlock
-import org.commonmark.node.IndentedCodeBlock
-import org.commonmark.node.Node
+import org.commonmark.node.*
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.NodeRenderer
 import org.commonmark.renderer.html.HtmlNodeRendererContext
 import org.commonmark.renderer.html.HtmlRenderer
 import org.commonmark.renderer.html.HtmlWriter
 
+
+const val data2vizVersion = "0.7.1-RC2"
 
 val parser = Parser.builder().build()!!
 val renderer = HtmlRenderer.builder()
@@ -37,7 +37,7 @@ class Data2vizCodeBlockNodeRenderer(context: HtmlNodeRendererContext) : NodeRend
             }
             is FencedCodeBlock -> {
                 html.line()
-                html.tag("div", attributesWithHeight(node.info))
+                html.tag("div", playGroundSpecificAttributes(node.info))
                 html.text(node.literal)
                 html.tag("/div")
                 html.line()
@@ -49,21 +49,42 @@ class Data2vizCodeBlockNodeRenderer(context: HtmlNodeRendererContext) : NodeRend
     }
 }
 
-fun attributesWithHeight(info:String): Map<String, String> {
-    val parseHeight = parseHeight(info)
-    return if (parseHeight != null)
-        d2vAttributes + ("data-output-height" to "$parseHeight")
-    else
-        d2vAttributes
+fun playGroundSpecificAttributes(info:String): Map<String, String> {
+    var allAttributes = d2vAttributes
+
+    parseHeight(info).let { allAttributes += ("data-output-height" to "$it") }
+    parseFrom(info).let { allAttributes += ("from" to "$it") }
+    parseTo(info).let { allAttributes += ("to" to "$it") }
+
+    return allAttributes
 }
 
-private val regex = "height=(\\d+)".toRegex()
-fun parseHeight(info: String):Int? = regex.find(info)?.groupValues?.get(1)?.toInt()
+private val heightRegex = "height=(\\d+)".toRegex()
+fun parseHeight(info: String):Int? = heightRegex.find(info)?.groupValues?.get(1)?.toInt()
+
+private val fromRegex = "from=(\\d+)".toRegex()
+fun parseFrom(info: String):Int? = fromRegex.find(info)?.groupValues?.get(1)?.toInt()
+
+private val toRegex = "to=(\\d+)".toRegex()
+fun parseTo(info: String):Int? = toRegex.find(info)?.groupValues?.get(1)?.toInt()
+
 
 val d2vAttributes = mapOf(
     "data-output-height" to "200",
     "class" to "kotlin-code d2v-large",
     "data-target-platform" to "canvas",
     "lines" to "true",
-    "data-js-libs" to "https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/kotlin.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-core-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-color-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-path-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timer-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-viz-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-interpolate-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-time-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-scale-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-format-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timeFormat-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-axis-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-shape-js.js"
+    "data-js-libs" to "https://unpkg.com/@data2viz/data2viz@$data2vizVersion/kotlin.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-core-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-color-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-path-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-timer-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-viz-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-interpolate-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-time-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-scale-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-format-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-timeFormat-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-axis-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-shape-js.js"
 )
+
+
+class TitleVisitor: AbstractVisitor() {
+
+    val titles = mutableListOf<String>()
+
+    override fun visit(heading: Heading?) {
+        if(heading?.level == 1) {
+            titles += (heading.firstChild as Text).literal
+        }
+    }
+}
