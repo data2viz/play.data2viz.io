@@ -21,8 +21,6 @@ import io.data2viz.color.*
 
 fun main(args:Array<String>){
     viz {
-        width = 200.0
-        height = 200.0
         rect {
             width = 50.0
             height = 50.0
@@ -38,18 +36,16 @@ If you want to create a color from its precise hexadecimal value, you can do it 
 Int extension value `color`. Using it in conjunction with hexadecimal kotlin literal 
 gives a handy syntax.
 
-```height=50 from=8 to=12
+```height=50 from=4 to=12
 import io.data2viz.viz.*
 import io.data2viz.color.*
 
 fun main(args:Array<String>){
     viz {
-        width = 200.0
-        height = 200.0
         rect {
             width = 50.0
             height = 50.0
-            fill = 0x8B008B.color
+            fill = 0x87ceeb.color                       // skyblue
         }                
     }.bindRendererOnNewCanvas()
 }
@@ -61,25 +57,114 @@ You can also define you color from 0 to 255 Int value for red, green and blue li
 The factory function has an additional float alpha parameter (not required) to define
 the transparency. It is set by default to 1f (opaque).   
 
-```height=50 from=8 to=18
+```height=50 from=4 to=18
 import io.data2viz.viz.*
 import io.data2viz.color.*
 
 fun main(args:Array<String>){
     viz {
-        width = 500.0
-        height = 50.0
         rect {
             width = 50.0
             height = 50.0
-            fill = rgba(255,0,0)
+            fill = rgba(255,0,0)                        // red
         }                
         rect {
             x = 50.0
             width = 50.0
             height = 50.0
-            fill = rgba(255,0,0, .5f)
+            fill = rgba(255,0,0, .5f)                   // red (alpha 50%)
         }                   
+    }.bindRendererOnNewCanvas()
+}
+```
+
+## HSLA colors
+
+You can create a color using alternative representations of the RGB color model.
+To create a color using the HSL model, use the `hsla` function.
+
+```height=50 from=4 to=18
+import io.data2viz.viz.*
+import io.data2viz.color.*
+
+fun main(args:Array<String>){
+    viz {
+        rect {
+            width = 50.0
+            height = 50.0
+            fill = hsla(38.82.deg, 1.0, 0.5)            // orange
+        }                   
+    }.bindRendererOnNewCanvas()
+}
+```
+
+
+## HCL colors
+
+To create a color in the HCL color space (Hue-Chroma-Luminance) use the `hcl` function.
+
+```height=50 from=4 to=18
+import io.data2viz.viz.*
+import io.data2viz.color.*
+
+fun main(args:Array<String>){
+    viz {
+        rect {
+            width = 50.0
+            height = 50.0
+            fill = hcl(167.95, 46.55, 92.03)              // aquamarine
+        }
+    }.bindRendererOnNewCanvas()
+}
+```
+
+
+## LAB colors
+
+To create a color in the LAB color space (also known as CIE Lab) use the `lab` function.
+
+```height=50 from=4 to=18
+import io.data2viz.viz.*
+import io.data2viz.color.*
+
+fun main(args:Array<String>){
+    viz {
+        rect {
+            width = 50.0
+            height = 50.0
+            fill = lab(30.83, 26.05, -42.08)            // darkslateblue
+        }
+    }.bindRendererOnNewCanvas()
+}
+```
+
+## Color manipulation
+
+Several operations can be applied to your colors: `lighten`, `darken`, `saturate` and `desaturate`.
+Each of these functions take a single `strength` parameter (defaults to 1.0) to adjust the effect.
+
+```height=50 from=4
+import io.data2viz.viz.*
+import io.data2viz.color.*
+
+fun main(args:Array<String>){
+    viz {
+        var pink = colors.hotpink
+        (0..3).forEach {
+            rect {
+                x = it * 25.0
+                width = 25.0
+                height = 25.0
+                fill = pink.brighten(it.toDouble())
+            }
+            rect {
+                x = it * 25.0
+                y = 25.0
+                width = 25.0
+                height = 25.0
+                fill = pink.darken(it.toDouble())
+            }
+        }
     }.bindRendererOnNewCanvas()
 }
 ```
