@@ -24,15 +24,21 @@ class Articles(path: String) {
 		document.accept(titleVisitor)
 
 		val url = fileNameToUrl(name)
-		val title = if(titleVisitor.titles.isNotEmpty()) titleVisitor.titles[0] else url
+		val mainTitles = titleVisitor.titles.filter { it.level == 1 }
+		val title = if(mainTitles.isNotEmpty()) mainTitles[0].content else url
+
+		val chapters = titleVisitor.titles.filter { it.level == 2 }
+		val mdChapters = chapters.map { MdChapterDescriptor(it.content, it.content) }
+
 		val html = renderer.render(document)
 
-		return MdFileDescriptor(url, title, html)
+		return MdFileDescriptor(url, title, html, mdChapters)
 	}
 
 }
 
-data class MdFileDescriptor(val url: String, val title: String, val htmlContent: String)
+data class MdFileDescriptor(val url: String, val title: String, val htmlContent: String, val chapters:List<MdChapterDescriptor>)
+data class MdChapterDescriptor(val anchor: String, val title: String)
 
 internal fun fileNameToUrl(name:String):String {
 	return name

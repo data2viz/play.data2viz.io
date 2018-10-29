@@ -77,14 +77,16 @@ val d2vAttributes = mapOf(
     "data-js-libs" to "https://unpkg.com/@data2viz/data2viz@$data2vizVersion/kotlin.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-core-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-color-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-path-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-timer-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-viz-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-interpolate-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-time-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-scale-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-format-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-timeFormat-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-axis-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-shape-js.js"
 )
 
+data class Title(val level:Int, val content:String)
+
 
 class TitleVisitor: AbstractVisitor() {
 
-    val titles = mutableListOf<String>()
+    val titles = mutableListOf<Title>()
 
     override fun visit(heading: Heading?) {
-        if(heading?.level == 1) {
-            titles += (heading.firstChild as Text).literal
+        heading?.let {
+            titles += Title(heading.level, (heading.firstChild as Text).literal)
         }
     }
 }

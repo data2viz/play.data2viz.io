@@ -92,6 +92,13 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                         +"""<menu id="site-navigation" class="d2v-menu-vertical">"""
                             documentation.mdFiles.forEach {
                                 +"""<li><a href="${it.url}">${it.title}</a></li>"""
+                                if (it.chapters.isNotEmpty()) {
+                                    +"""<ul>"""
+                                    it.chapters.forEach { chapter ->
+                                        +"""<li><a href="#${chapter.anchor}">${chapter.title}</a></li>"""
+                                    }
+                                    +"""</ul>"""
+                                }
                             }
                         +"</menu>"
                     }
