@@ -10,10 +10,9 @@ inside your project (`io.data2viz.color`) and in the import directive in your co
 
 Data2viz provides an easy access to html colors through the `colors` companion 
 object. All you have to do is calling `colors.darkturquoise` to have a reference 
-on the dark turquoise html color. 
+on the dark turquoise html color.
 
-(should we rename the companion object to something more specific like `HtmlColors`)  
-
+(should we rename the companion object to something more specific like `HtmlColors`)
 
 ```height=50
 import io.data2viz.viz.*
@@ -53,9 +52,12 @@ fun main(args:Array<String>){
 
 ## RGBA colors
 
-You can also define you color from 0 to 255 Int value for red, green and blue lights.
-The factory function has an additional float alpha parameter (not required) to define
-the transparency. It is set by default to 1f (opaque).   
+You can define your color using Integer values from 0 to 255 Int for red, green and blue channels.
+
+ * `r`: Int, the Red channel [0..255]
+ * `g`: Int, the Green channel [0..255]
+ * `b`: Int, the Blue channel [0..255]
+ * `alpha`: Float [0..1] (default 1)
 
 ```height=50 from=4 to=18
 import io.data2viz.viz.*
@@ -66,13 +68,13 @@ fun main(args:Array<String>){
         rect {
             width = 50.0
             height = 50.0
-            fill = rgba(255,0,0)                        // red
+            fill = rgba(255, 0, 0)                        // red
         }                
         rect {
             x = 50.0
             width = 50.0
             height = 50.0
-            fill = rgba(255,0,0, .5f)                   // red (alpha 50%)
+            fill = rgba(255, 0, 0, .5f)                   // red (alpha 50%)
         }                   
     }.bindRendererOnNewCanvas()
 }
@@ -82,6 +84,11 @@ fun main(args:Array<String>){
 
 You can create a color using alternative representations of the RGB color model.
 To create a color using the HSL model, use the `hsla` function.
+
+ * `h`: Angle, the Hue
+ * `s`: Float, the Saturation [0..1]
+ * `l`: Float, the Lightness [0..1]
+ * `alpha`: Float [0..1] (default 1)
 
 ```height=50 from=4 to=18
 import io.data2viz.viz.*
@@ -103,6 +110,11 @@ fun main(args:Array<String>){
 
 To create a color in the HCL color space (Hue-Chroma-Luminance) use the `hcl` function.
 
+ * `h`: Angle, the Hue
+ * `c`: Float, the Chroma
+ * `l`: Float, the Luminance [0..100]
+ * `alpha`: Float [0..1] (default 1)
+ 
 ```height=50 from=4 to=18
 import io.data2viz.viz.*
 import io.data2viz.color.*
@@ -123,6 +135,11 @@ fun main(args:Array<String>){
 
 To create a color in the LAB color space (also known as CIE Lab) use the `lab` function.
 
+ * `l`: Float, the Lightness [0..100]
+ * `a`: Float, the "a"-component for green-red [-128..128]
+ * `b`: Float, the "b"-component for blue-yellow [-128..128]
+ * `alpha`: Float [0..1] (default 1)
+ 
 ```height=50 from=4 to=18
 import io.data2viz.viz.*
 import io.data2viz.color.*
