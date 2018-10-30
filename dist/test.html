@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/kotlin-playground@1"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            const element = KotlinPlayground('.code-blocks-selector', {
+                onChange: ()=> {console.log("mlskdfzp")},
+                callback: ()=> {console.log("callback")},
+            });
+
+            element.then((t) => {
+                console.log(t[0]);
+
+                t[0].view.onRender = () => {console.log("renderrer")};
+
+                document.body.addEventListener("click", () => {
+                    t[0].view.execute();
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <code class="code-blocks-selector">
+        fun main() {
+            println("hello")
+        }
+    </code>
+
+</body>
+</html>
