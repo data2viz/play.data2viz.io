@@ -1,7 +1,15 @@
-console.log("hello")
+declare function KotlinPlayground(selector: string): Promise<IKotlinPlaygroundEditor[]>
 
-declare function KotlinPlayground(selector: string): any
+interface IKotlinPlaygroundEditor {
+    config: {},
+    node: HTMLElement,
+    targetNode: HTMLElement,
+}
 
 document.addEventListener('DOMContentLoaded', function() {
-    KotlinPlayground('.kotlin-code');
+    const editors = KotlinPlayground('.kotlin-code').then((editors) => {
+        for(const editor of editors) {
+            console.log(editor.node)
+        }
+    });
 });
