@@ -22,6 +22,7 @@ on the dark turquoise html color.
 import io.data2viz.viz.*
 import io.data2viz.color.*
 
+//sampleStart
 fun main(args:Array<String>){
     viz {
         rect {
@@ -31,28 +32,37 @@ fun main(args:Array<String>){
         }                
     }.bindRendererOnNewCanvas()
 }
+ //sampleEnd
 ```
 
 ### Hex (RGB)
 
-If you want to create a color from its precise hexadecimal value, you can do it by using 
-Int extension value `color`. 
+If you want to create a color from its hexadecimal value, you can do it by using the 
+Integer extension value `color`. 
 
-Using it in conjunction with hexadecimal kotlin literal gives a handy syntax.
+There is also a String extension value `color` which allows you to create a new color based on 
+a String beginning the character `#`. 
 
-```height=50 from=4 to=12
+```height=50
 import io.data2viz.viz.*
 import io.data2viz.color.*
 
+//sampleStart
 fun main(args:Array<String>){
     viz {
         rect {
             width = 50.0
             height = 50.0
             fill = 0x87ceeb.color                       // skyblue
-        }                
+        }       
+        rect {
+            width = 50.0
+            height = 50.0
+            fill = "#800080".color                      // purple
+        }               
     }.bindRendererOnNewCanvas()
 }
+//sampleEnd
 ```
 
 ### RGB
@@ -65,10 +75,11 @@ using the `Colors.rgb` function
  * `blue`: Int [0..255]
  * `alpha`: Double [0..1] (default 1)
 
-```height=50 from=4 to=18
+```height=50
 import io.data2viz.viz.*
 import io.data2viz.color.*
 
+//sampleStart
 fun main(args:Array<String>){
     viz {
         rect {
@@ -84,6 +95,7 @@ fun main(args:Array<String>){
         }                   
     }.bindRendererOnNewCanvas()
 }
+//sampleEnd
 ```
 
 ### HSL
@@ -95,10 +107,11 @@ To create a color using the HSL model, use the `Colors.hsl` function.
  * `lightness`: Double [0..1]
  * `alpha`: Double [0..1] (default 1)
 
-```height=50 from=4 to=18
+```height=50
 import io.data2viz.viz.*
 import io.data2viz.color.*
 
+//sampleStart
 fun main(args:Array<String>){
     viz {
         rect {
@@ -108,6 +121,7 @@ fun main(args:Array<String>){
         }                   
     }.bindRendererOnNewCanvas()
 }
+//sampleEnd
 ```
 
 
@@ -120,10 +134,11 @@ To create a color in the HCL color space (Hue-Chroma-Luminance) use the `Colors.
  * `luminance`: Double [0..100]
  * `alpha`: Double [0..1] (default 1)
  
-```height=50 from=4 to=18
+```height=50
 import io.data2viz.viz.*
 import io.data2viz.color.*
 
+//sampleStart
 fun main(args:Array<String>){
     viz {
         rect {
@@ -133,6 +148,7 @@ fun main(args:Array<String>){
         }
     }.bindRendererOnNewCanvas()
 }
+//sampleEnd
 ```
 
 
@@ -145,10 +161,11 @@ To create a color in the LAB color space (also known as CIE Lab) use the `Colors
  * `bComponent`: Double, the "b"-component for blue-yellow [-128..128]
  * `alpha`: Double [0..1] (default 1)
  
-```height=50 from=4 to=18
+```height=50
 import io.data2viz.viz.*
 import io.data2viz.color.*
 
+//sampleStart
 fun main(args:Array<String>){
     viz {
         rect {
@@ -158,6 +175,7 @@ fun main(args:Array<String>){
         }
     }.bindRendererOnNewCanvas()
 }
+//sampleEnd
 ```
 
 ## Color manipulation
@@ -167,10 +185,11 @@ fun main(args:Array<String>){
 The `brighten` function take a single `strength` parameter (defaults to 1.0) and return a new color 
 with changed lightness.
 
-```height=50 from=4
+```height=50
 import io.data2viz.viz.*
 import io.data2viz.color.*
 
+//sampleStart
 fun main(args:Array<String>){
     viz {
         (0..3).forEach {
@@ -183,6 +202,7 @@ fun main(args:Array<String>){
         }
     }.bindRendererOnNewCanvas()
 }
+//sampleEnd
 ```
 
 ### Darken
@@ -190,10 +210,11 @@ fun main(args:Array<String>){
 The `darken` function take a single `strength` parameter (defaults to 1.0) and return a new color 
 with changed lightness.
 
-```height=50 from=4
+```height=50
 import io.data2viz.viz.*
 import io.data2viz.color.*
 
+//sampleStart
 fun main(args:Array<String>){
     viz {
         (0..3).forEach {
@@ -207,4 +228,72 @@ fun main(args:Array<String>){
         }
     }.bindRendererOnNewCanvas()
 }
+//sampleEnd
 ```
+
+## Color gradients
+
+Most of the data2viz visual elements accepts a `ColorOrGradient` object for defining its fill color.
+
+Each gradient is defined by giving several `ColorStop`, each corresponding to a position in percentage 
+in the gradient.
+
+### Linear gradient
+
+A Linear gradient can be easily created using the `Colors.Gradient.linear` function.
+
+ * `x1, y1`: Double, starting point of the gradient (defaults 0,0)
+ * `x2, y2`: Double, ending point of the gradient (defaults 0,0)
+ * `colorStops`: List&lt;ColorStop&gt;, the list of colors in the gradient (defaults empty)
+ 
+ ```height=50
+ import io.data2viz.viz.*
+ import io.data2viz.color.*
+ 
+//sampleStart
+ fun main(args:Array<String>){
+     val myGradient = Colors.Gradient.linear(.0, .0, 100.0, .0)
+     myGradient.addColor(.0, Colors.Web.hotpink)
+     myGradient.addColor(0.5, Colors.Web.blueviolet)
+     myGradient.addColor(1.0, Colors.Web.skyblue)
+     
+     viz {
+         rect {
+             width = 100.0
+             height = 50.0
+             fill = myGradient
+         }
+     }.bindRendererOnNewCanvas()
+ }
+//sampleEnd
+ ```
+ 
+### Radial gradient
+ 
+If you want to paint a shape using a radial gradient, use the `Colors.Gradient.radial` function.
+ 
+  * `x, y`: Double, starting point of the gradient (defaults 0,0)
+  * `radius`: Double, radius of the gradient (defaults 0)
+  * `colorStops`: List&lt;ColorStop&gt;, the list of colors in the gradient (defaults empty)
+  
+  ```height=50
+  import io.data2viz.viz.*
+  import io.data2viz.color.*
+  
+// sampleStart
+  fun main(args:Array<String>){
+      val myGradient = Colors.Gradient.radial(50.0, 25.0, 50.0)
+      myGradient.addColor(.0, Colors.Web.hotpink)
+      myGradient.addColor(0.5, Colors.Web.blueviolet)
+      myGradient.addColor(1.0, Colors.Web.skyblue)
+      
+      viz {
+          rect {
+              width = 100.0
+              height = 50.0
+              fill = myGradient
+          }
+      }.bindRendererOnNewCanvas()
+  }
+//sampleEnd
+  ```
