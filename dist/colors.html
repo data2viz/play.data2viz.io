@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>play:documentation</title>
-    <script src="https://unpkg.com/@data2viz/kotlin-playground@1" data-selector=".kotlin-code"></script>
+    <script src="https://unpkg.com/@data2viz/kotlin-playground@1"></script>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
@@ -63,20 +63,21 @@
                 object.</p>
             <p>All you have to do is calling <code>Colors.Web.darkturquoise</code> to have a reference
                 on the dark turquoise html color.</p>
-            <div data-output-height="50" class="kotlin-code d2v-large" data-target-platform="canvas" lines="true"
+            <div data-output-height="50" class="kotlin-code d2v-large" data-target-platform="canvas" lines="true" auto-indent="false"
                  data-js-libs="https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/kotlin.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-core-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-color-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-path-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timer-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-viz-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-interpolate-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-time-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-scale-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-format-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timeFormat-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-axis-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-shape-js.js"
-                 from="null" to="null">import io.data2viz.viz.*
-                import io.data2viz.color.*
+                 from="null" to="null">
+                import io.data2viz.viz.*
+import io.data2viz.color.*
 
-                fun main(args:Array&lt;String&gt;){
-                viz {
-                rect {
-                width = 50.0
-                height = 50.0
-                fill = Colors.Web.blueviolet
-                }
-                }.bindRendererOnNewCanvas()
-                }
+fun main(args:Array&lt;String&gt;){
+    viz {
+        rect {
+            width = 50.0
+            height = 50.0
+            fill = Colors.Web.blueviolet
+        }
+    }.bindRendererOnNewCanvas()
+}
             </div>
             <h3>Hex (RGB)</h3>
             <p>If you want to create a color from its precise hexadecimal value, you can do it by using
@@ -179,8 +180,8 @@
                 function.</p>
             <ul>
                 <li><code>lightness</code>: Double [0..100]</li>
-                <li><code>aComponent</code>: Double, the &quot;a&quot;-component for green-red [-128..128]</li>
-                <li><code>bComponent</code>: Double, the &quot;b&quot;-component for blue-yellow [-128..128]</li>
+                <li><code>aComponent</code>: Double, the "a"-component for green-red [-128..128]</li>
+                <li><code>bComponent</code>: Double, the "b"-component for blue-yellow [-128..128]</li>
                 <li><code>alpha</code>: Double [0..1] (default 1)</li>
             </ul>
             <div data-output-height="50" class="kotlin-code d2v-large" data-target-platform="canvas" lines="true"
@@ -247,6 +248,6 @@
         </div>
     </section>
 </main>
-</body>
 <script type="text/javascript" src="main.js"></script>
+</body>
 </html>
