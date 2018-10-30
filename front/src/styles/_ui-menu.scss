@@ -22,11 +22,36 @@ menu,
 }
 
 .d2v-menu-vertical {
-  > * {
+
+  & ul,
+  & ol,
+  & &,
+  ul ul,
+  ul ol,
+  ul &,
+  ol ul,
+  ol ol,
+  ol & {
+    margin: 0;
+  }
+
+  ul,
+  ol {
+    padding: 0 0 0 1em;
+    list-style: none;
+    border-left: solid 1px rgba($color-main, 0.25);
+  }
+
+  > *,
+  ul > *,
+  li > * {
     display: block;
   }
 
-  > * + *:not(.no-marge) {
-    margin-top: $gutter-width;
+  > * + *:not(.no-marge),
+  ul > * + *:not(.no-marge),
+  ol > * + *:not(.no-marge),
+  li > * + *:not(.no-marge) {
+    padding-top: $gutter-width / 2;
   }
 }
