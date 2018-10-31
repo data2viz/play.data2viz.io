@@ -21,9 +21,9 @@
   #site-navigation {
     @include column(2, 12);
     @include gutter;
-    padding-top: 1em;
+    padding-top: 1.25em;
     position: absolute;
-    top: $content-position-top;
+    top: $content-position-top + .75em;
     left: 0;
 
     .read & {

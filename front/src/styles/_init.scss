@@ -17,10 +17,14 @@ p {
 h1 {
   @include font-xxl;
   color: $color-main;
+  //color: black;
+  padding-bottom: 0.25em;
+  border-bottom: solid 1px;
 }
 
 h2 {
   @include font-xl;
+  padding-bottom: 0.25em;
   border-bottom: solid 1px;
 }
 
@@ -43,4 +47,9 @@ h6 {
 a {
   color: $color-main;
   text-decoration: none;
+}
+
+.kotlin-code + * { //editor generated with kotlin playground library
+  margin-top: 1em;
+  margin-bottom: 6em;
 }

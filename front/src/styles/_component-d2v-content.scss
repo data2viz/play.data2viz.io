@@ -2,24 +2,28 @@
 
 #d2v-content {
   padding-top: $content-position-top;
+}
 
-  .site-text {
+#d2v-main {
     @include site-max-width;
     @include column-container;
 
-    > * {
+    > .site-text {
       @include column( 7, 12);
       @include column-skip( 2, 12);
-
-      &:first-child {
-        margin-top: 0;
-      }
     }
+}
 
-    .d2v-code {
-      z-index: 75;
-      position: relative;
-      overflow: hidden;
+.site-text {
+  > * {
+    &:first-child {
+      margin-top: 0;
     }
   }
+}
+
+.d2v-code {
+  z-index: 75;
+  position: relative;
+  overflow: hidden;
 }
