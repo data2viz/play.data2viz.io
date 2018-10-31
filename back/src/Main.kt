@@ -58,11 +58,6 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
 				<meta http-equiv="X-UA-Compatible" content="ie=edge">
 				<title>play:documentation</title>
   				<script src="https://unpkg.com/@data2viz/kotlin-playground@1"></script>
-  <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            KotlinPlayground('.kotlin-code');
-        });
-    </script>
 				<link rel="stylesheet" href="main.css">""".trimIndent()
         }
     }
