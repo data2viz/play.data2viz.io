@@ -14,3 +14,19 @@ menuPositionObserver(
     document.querySelector(HTML_SELECTORS.CONTENT) as HTMLElement,
     document.querySelector(HTML_SELECTORS.TOP_HEADER) as HTMLElement,
 )
+
+
+function getCurrentSectionName(): string {
+    const pageTitleElement = document.querySelector("h1")
+    if(pageTitleElement !== null ) {
+        return pageTitleElement.innerHTML
+    } else {
+        return ""
+    }
+}
+
+function setCurrentSectionName() {
+    (document.querySelector(HTML_SELECTORS.CURRENT_SECTION_NAME) as HTMLElement).innerHTML = getCurrentSectionName()
+}
+
+setCurrentSectionName()
