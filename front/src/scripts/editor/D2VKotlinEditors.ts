@@ -1,6 +1,7 @@
 import {IKotlinPlaygroundEditor} from "./IKotlinPlaygroundEditor"
 import {Editor} from "./Editor"
 import {addScrollEventListener} from "../addScrollEventListener"
+import {HTML_SELECTORS} from "../HTML_SELECTORS"
 
 export class D2VKotlinEditors {
     constructor(kotlinEditors: IKotlinPlaygroundEditor[]) {
@@ -15,7 +16,7 @@ export class D2VKotlinEditors {
     private setEditors(kotlinEditors: IKotlinPlaygroundEditor[]) {
         for(const i in kotlinEditors) {
             const editor = kotlinEditors[i]
-            const codeArea = editor.node.querySelector(".code-area")
+            const codeArea = editor.node.querySelector(HTML_SELECTORS.CODE_AREA)
 
             if(codeArea !== null) {
                 this.editors.push(new Editor(codeArea as HTMLDivElement, editor))
