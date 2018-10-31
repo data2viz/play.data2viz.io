@@ -19,7 +19,7 @@
   }
 
   #site-navigation {
-    @include column(2, 12);
+    @include column(3, 12);
     @include gutter;
     padding-top: 1.25em;
     position: absolute;

@@ -10,7 +10,7 @@
 
     > .site-text {
       @include column( 7, 12);
-      @include column-skip( 2, 12);
+      @include column-skip( 3, 12);
     }
 }
 
