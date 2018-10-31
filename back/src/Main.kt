@@ -62,7 +62,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
         }
     }
     body {
-        main {
+        div {
             header {
                 id = "d2v-header"
                 unsafe {
