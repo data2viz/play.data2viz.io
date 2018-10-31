@@ -109,10 +109,13 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
             }
             section {
                 id = "d2v-content"
-                div {
-                    id = "site-text"
-                    unsafe {
-                        +docFile.htmlContent
+                main {
+                    id = "d2v-main"
+                    div {
+                        classes += "site-text"
+                        unsafe {
+                            +docFile.htmlContent
+                        }
                     }
                 }
             }

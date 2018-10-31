@@ -3,7 +3,7 @@
 #d2v-content {
   padding-top: $content-position-top;
 
-  #site-text {
+  .site-text {
     @include site-max-width;
     @include column-container;
 
