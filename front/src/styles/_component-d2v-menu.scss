@@ -7,7 +7,7 @@
   left: 0;
   width: 100%;
 
-  .read & {
+  .menu-fixed & {
     position: fixed;
   }
 
@@ -26,7 +26,7 @@
     top: $content-position-top + .75em;
     left: 0;
 
-    .read & {
+    .menu-fixed & {
       top: 4em;
     }
   }

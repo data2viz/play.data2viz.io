@@ -1,6 +1,6 @@
 import {IKotlinPlaygroundEditor} from "./editor/IKotlinPlaygroundEditor"
 import {D2VKotlinEditors} from "./editor/D2VKotlinEditors"
-import {contentReadingObserver} from "./contentReadingObserver"
+import {menuPositionObserver} from "./menuPositionObserver"
 import {HTML_SELECTORS} from "./HTML_SELECTORS"
 
 // init editors
@@ -10,4 +10,7 @@ KotlinPlayground('.kotlin-code').then((editors) => {
     new D2VKotlinEditors(editors)
 });
 
-contentReadingObserver(document.querySelector(HTML_SELECTORS.CONTENT) as HTMLElement)
+menuPositionObserver(
+    document.querySelector(HTML_SELECTORS.CONTENT) as HTMLElement,
+    document.querySelector(HTML_SELECTORS.TOP_HEADER) as HTMLElement,
+)
