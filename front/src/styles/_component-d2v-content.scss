@@ -2,6 +2,7 @@
 
 #d2v-content {
   padding-top: $content-position-top;
+  min-width: $min-width;
 }
 
 #d2v-main {
@@ -11,6 +12,7 @@
     > .site-text {
       @include column( 7, 12);
       @include column-skip( 3, 12);
+      min-width: 50em;
     }
 }
 

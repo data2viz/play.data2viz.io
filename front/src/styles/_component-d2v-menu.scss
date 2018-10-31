@@ -6,6 +6,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  min-width: $min-width;
 
   .menu-fixed & {
     position: fixed;
