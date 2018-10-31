@@ -235,16 +235,19 @@ fun main(args:Array<String>){
 
 Most of the data2viz visual elements accepts a `ColorOrGradient` object for defining its fill color.
 
-Each gradient is defined by giving several `ColorStop`, each corresponding to a position in percentage 
+Each gradient is defined by giving at least 2 `ColorStop`, each corresponding to a position in percentage 
 in the gradient.
+
 
 ### Linear gradient
 
-A Linear gradient can be easily created using the `Colors.Gradient.linear` function.
+A Linear gradient can be easily created using the `Colors.Gradient.linear` builder.
 
- * `x1, y1`: Double, starting point of the gradient (defaults 0,0)
- * `x2, y2`: Double, ending point of the gradient (defaults 0,0)
- * `colorStops`: List&lt;ColorStop&gt;, the list of colors in the gradient (defaults empty)
+ * `start`: Point, starting point of the gradient
+ * `end`: Point, ending point of the gradient
+ 
+ Next you call `withColor()` given a Color and a percentage to set the base color then add any number of colors 
+ using `andColor()`.
  
  ```height=50
  import io.data2viz.viz.*
@@ -252,10 +255,10 @@ A Linear gradient can be easily created using the `Colors.Gradient.linear` funct
  
 //sampleStart
  fun main(args:Array<String>){
-     val myGradient = Colors.Gradient.linear(.0, .0, 100.0, .0)
-     myGradient.addColor(.0, Colors.Web.hotpink)
-     myGradient.addColor(0.5, Colors.Web.blueviolet)
-     myGradient.addColor(1.0, Colors.Web.skyblue)
+     val myGradient = Colors.Gradient.linear(Point(.0, .0), Point(100.0, .0))
+         .withColor(Colors.Web.hotpink, .0)
+         .andColor(Colors.Web.blueviolet, .5)
+         .andColor(Colors.Web.skyblue, 1.0)
      
      viz {
          rect {
@@ -270,11 +273,13 @@ A Linear gradient can be easily created using the `Colors.Gradient.linear` funct
  
 ### Radial gradient
  
-If you want to paint a shape using a radial gradient, use the `Colors.Gradient.radial` function.
+If you want to paint a shape using a radial gradient, use the `Colors.Gradient.radial` builder.
  
-  * `x, y`: Double, starting point of the gradient (defaults 0,0)
-  * `radius`: Double, radius of the gradient (defaults 0)
-  * `colorStops`: List&lt;ColorStop&gt;, the list of colors in the gradient (defaults empty)
+ * `center`: Point, starting point of the gradient
+ * `radius`: Double, radius of the gradient
+ 
+Next you call `withColor()` given a Color and a percentage to set the base color then add any number of colors 
+using `andColor()`.
   
   ```height=50
   import io.data2viz.viz.*
@@ -282,10 +287,10 @@ If you want to paint a shape using a radial gradient, use the `Colors.Gradient.r
   
 // sampleStart
   fun main(args:Array<String>){
-      val myGradient = Colors.Gradient.radial(50.0, 25.0, 50.0)
-      myGradient.addColor(.0, Colors.Web.hotpink)
-      myGradient.addColor(0.5, Colors.Web.blueviolet)
-      myGradient.addColor(1.0, Colors.Web.skyblue)
+      val myGradient = Colors.Gradient.radial(Point(50.0, 25.0), 50.0)
+               .withColor(Colors.Web.hotpink, .0)
+               .andColor(Colors.Web.blueviolet, .5)
+               .andColor(Colors.Web.skyblue, 1.0)
       
       viz {
           rect {
