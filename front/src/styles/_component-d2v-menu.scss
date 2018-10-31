@@ -1,11 +1,15 @@
 @import "_grid";
 
 #d2v-menu {
-  position: fixed;
+  position: absolute;
   z-index: 50;
   top: 0;
   left: 0;
   width: 100%;
+
+  .read & {
+    position: fixed;
+  }
 
   .wrap {
     @include site-max-width;
@@ -17,8 +21,13 @@
   #site-navigation {
     @include column(2, 12);
     @include gutter;
+    padding-top: 1em;
     position: absolute;
-    top: $content-top-padding;
+    top: $content-position-top;
     left: 0;
+
+    .read & {
+      top: 4em;
+    }
   }
 }

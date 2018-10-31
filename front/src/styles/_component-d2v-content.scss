@@ -1,14 +1,19 @@
 @import "_grid";
 
 #d2v-content {
-  padding-top: $content-top-padding;
+  padding-top: $content-position-top;
 
   #site-text {
     @include site-max-width;
+    @include column-container;
 
     > * {
       @include column( 7, 12);
       @include column-skip( 2, 12);
+
+      &:first-child {
+        margin-top: 0;
+      }
     }
 
     .d2v-code {
