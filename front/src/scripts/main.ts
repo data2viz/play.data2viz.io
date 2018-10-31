@@ -1,15 +1,9 @@
+import {IKotlinPlaygroundEditor} from "./editor/IKotlinPlaygroundEditor"
+import {D2VKotlinEditors} from "./editor/D2VKotlinEditors"
+
+// init editors
 declare function KotlinPlayground(selector: string): Promise<IKotlinPlaygroundEditor[]>
 
-interface IKotlinPlaygroundEditor {
-    config: {},
-    node: HTMLElement,
-    targetNode: HTMLElement,
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    const editors = KotlinPlayground('.kotlin-code').then((editors) => {
-        for(const editor of editors) {
-            console.log(editor.node)
-        }
-    });
+KotlinPlayground('.kotlin-code').then((editors) => {
+    new D2VKotlinEditors(editors)
 });
