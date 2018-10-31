@@ -1,8 +1,9 @@
 package io.data2viz.play
 
+import org.commonmark.ext.heading.anchor.HeadingAnchorExtension
 import org.commonmark.node.*
 import org.commonmark.parser.Parser
-import org.commonmark.renderer.NodeRenderer
+import org.commonmark.renderer.html.CoreHtmlNodeRenderer
 import org.commonmark.renderer.html.HtmlNodeRendererContext
 import org.commonmark.renderer.html.HtmlRenderer
 import org.commonmark.renderer.html.HtmlWriter
@@ -10,13 +11,19 @@ import org.commonmark.renderer.html.HtmlWriter
 
 const val data2vizVersion = "0.7.1-RC2"
 
-val parser = Parser.builder().build()!!
+val extensions = listOf(HeadingAnchorExtension.create())
+
+val parser = Parser.builder()
+    .extensions(extensions)
+    .build()!!
+
 val renderer = HtmlRenderer.builder()
+    .extensions(extensions)
     .nodeRendererFactory { Data2vizCodeBlockNodeRenderer(it!!) }
     .build()!!
 
 
-class Data2vizCodeBlockNodeRenderer(context: HtmlNodeRendererContext) : NodeRenderer {
+class Data2vizCodeBlockNodeRenderer(context: HtmlNodeRendererContext) : CoreHtmlNodeRenderer(context) {
 
     private val html: HtmlWriter = context.writer
 

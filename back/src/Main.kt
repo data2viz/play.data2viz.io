@@ -15,6 +15,9 @@ import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import kotlinx.html.*
 import org.slf4j.LoggerFactory
+import java.util.Locale
+import java.text.Normalizer
+import java.util.regex.Pattern
 
 
 val logger = LoggerFactory.getLogger("io.data2viz.play")!!
@@ -123,5 +126,20 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
     }
 }
 
+private val MdChapterDescriptor.anchor: String
+    get() = title.slug
 
+private val NONLATIN = Pattern.compile("[^\\w-]")
+private val WHITESPACE = Pattern.compile("[\\s]")
+
+
+
+
+val String.slug: String
+    get() {
+        val nowhitespace = WHITESPACE.matcher(this).replaceAll("-")
+        val normalized = Normalizer.normalize(nowhitespace, Normalizer.Form.NFD)
+        val slug = NONLATIN.matcher(normalized).replaceAll("")
+        return slug.toLowerCase(Locale.ENGLISH)
+    }
 

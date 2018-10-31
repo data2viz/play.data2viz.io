@@ -38,6 +38,12 @@ class GenerationTest {
     }
 
     @Test
+    fun slurp(){
+        assertEquals( "color-manipulation", "Color manipulation".slug)
+        assertEquals( "color-manipulation", "Côlor manipulation".slug)
+    }
+
+    @Test
     fun grabTitle(){
         val parser = Parser.builder().build()
         val document = parser.parse(
@@ -55,9 +61,11 @@ class GenerationTest {
         document.accept(visitor)
 
         assertTrue { visitor.titles.size == 1 }
-        assertTrue { visitor.titles[0] == "data2viz is great" }
+        assertTrue { visitor.titles[0].content == "data2viz is great" }
 
     }
+
+
 
 }
 
