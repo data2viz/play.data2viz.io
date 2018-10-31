@@ -3,3 +3,6 @@
 
 #node
 front/node_modules/
+
+#logs
+logs/
