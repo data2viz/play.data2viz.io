@@ -1,5 +1,6 @@
 import {IKotlinPlaygroundEditor} from "./IKotlinPlaygroundEditor"
 import {Editor} from "./Editor"
+import {addScrollEventListener} from "../addScrollEventListener"
 
 export class D2VKotlinEditors {
     constructor(kotlinEditors: IKotlinPlaygroundEditor[]) {
@@ -25,19 +26,12 @@ export class D2VKotlinEditors {
     }
 
     private setListenerForEditorsAutoExecution() {
-        let ticking = false
-        window.addEventListener("scroll", (ev) => {
-            if(!ticking) {
-                window.requestAnimationFrame(() => {
-                    for(const editor of this.editors) {
-                        if(editor.isOnScreen && editor.hasNotBeenExecuted) {
-                            editor.execute()
-                        }
-                    }
-                    ticking = false
-                })
+        addScrollEventListener(() => {
+            for(const editor of this.editors) {
+                if(editor.isOnScreen && editor.hasNotBeenExecuted) {
+                    editor.execute()
+                }
             }
-            ticking = true
         })
     }
 }
