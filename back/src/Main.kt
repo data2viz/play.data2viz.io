@@ -97,7 +97,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                 +"""<li>"""
                                     +"""<a href="${it.url}">${it.title}</a>"""
                                     if (it.chapters.isNotEmpty()) {
-                                        +"""<ul class='nav-level-one'>"""
+                                        +"""<ul>"""
                                         it.chapters.forEach { chapter ->
                                             +"""<li><a href="#${chapter.anchor}">${chapter.title}</a></li>"""
                                         }
