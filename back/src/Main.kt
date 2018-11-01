@@ -123,6 +123,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                 }
             }
         }
+        script("text/javascript", "main.js"){}
     }
 }
 
