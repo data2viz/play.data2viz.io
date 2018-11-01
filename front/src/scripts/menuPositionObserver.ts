@@ -5,7 +5,7 @@ import {HTML_SELECTORS} from "./HTML_SELECTORS"
 
 export function menuPositionObserver(referenceElementForFixedMenu: HTMLElement, topElementFixedOverMenu?: HTMLElement) {
 
-    const MENU_MUST_BE_FIXED = "menu-fixed"
+    const FIXED_MENU_CLASS_NAME = "menu-fixed"
 
     const body = document.body
 
@@ -17,10 +17,10 @@ export function menuPositionObserver(referenceElementForFixedMenu: HTMLElement, 
 
         const refPositionForFixedMenu = positionTopOfRefElement - heightOfFixedElementThatHidesMenu
 
-        if(getPageScrollPositionTop() >= refPositionForFixedMenu && !body.classList.contains(MENU_MUST_BE_FIXED)){
-            body.classList.add(MENU_MUST_BE_FIXED)
-        } else if (getPageScrollPositionTop() <= refPositionForFixedMenu && body.classList.contains(MENU_MUST_BE_FIXED)) {
-            body.classList.remove(MENU_MUST_BE_FIXED)
+        if(getPageScrollPositionTop() >= refPositionForFixedMenu && !body.classList.contains(FIXED_MENU_CLASS_NAME)){
+            body.classList.add(FIXED_MENU_CLASS_NAME)
+        } else if (getPageScrollPositionTop() <= refPositionForFixedMenu && body.classList.contains(FIXED_MENU_CLASS_NAME)) {
+            body.classList.remove(FIXED_MENU_CLASS_NAME)
         }
 
     })
