@@ -1,4 +1,7 @@
 @import "_colors";
+@import "__functions";
+
+$browser-s-default-font-size: 16;  //px unit
 
 /* fonts */
 $font-size: 15px;
@@ -8,6 +11,9 @@ $font-family: "Poppins", sans-serif;
 $gutter-width: 2em;
 $max-width: 85em;
 $min-width: 68em;
+
+/* break points */
+$break-point-md: ( $min-width * strip-units($font-size) ) / $browser-s-default-font-size;
 
 /* colors */
 $color-main: $blue;

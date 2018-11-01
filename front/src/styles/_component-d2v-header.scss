@@ -23,6 +23,10 @@
     transition: transform 500ms ease-in-out, opacity 500ms ease-in-out;
     transform: translateY(-150%);
 
+    @media (max-width: $break-point-md) {
+      margin-left: calc(#{$min-width} / 12 * 3);
+    }
+
     .menu-fixed & {
       opacity: 1;
       transform: translateY(-50%);
