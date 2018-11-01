@@ -16,7 +16,7 @@ export class Editor {
     public execute(): Promise<any> {
         return new Promise((resolve, reject) => {
             this._hasBeenExecuted = true
-            this.kotlinEditor.view.execute()
+            this.kotlinEditor.execute()
             resolve()
             reject(new Error("can't execute kotlin playground editor"))
         });

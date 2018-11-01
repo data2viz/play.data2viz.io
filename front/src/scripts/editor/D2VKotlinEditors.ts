@@ -16,7 +16,7 @@ export class D2VKotlinEditors {
     private setEditors(kotlinEditors: IKotlinPlaygroundEditor[]) {
         for(const i in kotlinEditors) {
             const editor = kotlinEditors[i]
-            const codeArea = editor.node.querySelector(HTML_SELECTORS.CODE_AREA)
+            const codeArea = editor.nodes[0].querySelector(HTML_SELECTORS.CODE_AREA)
 
             if(codeArea !== null) {
                 this.editors.push(new Editor(codeArea as HTMLDivElement, editor))
