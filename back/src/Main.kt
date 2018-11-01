@@ -72,6 +72,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                     //language=HTML
                     +"""
 							<div class="wrap">
+                                <div id="current-section-name"></div>
 								<div class="left">
                                     <a href='/'>
 									    <img src="images/logo.png" class="logo">
@@ -86,12 +87,13 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                     unsafe {
                         +"""<menu id="site-navigation" class="d2v-menu-vertical">"""
                             documentation.mdFiles.forEach {
-                                +"""<li>"""
+                                val currentPage = (docFile.title == it.title)
+                                +"""<li class="page ${if(currentPage) "active" else "unactive"}">"""
                                     +"""<a href="${it.url}">${it.title}</a>"""
-                                    if (it.chapters.isNotEmpty()) {
-                                        +"""<ul>"""
+                                    if (it.chapters.isNotEmpty() && currentPage) {
+                                        +"""<ul class="chapters">"""
                                         it.chapters.forEach { chapter ->
-                                            +"""<li><a href="#${chapter.anchor}">${chapter.title}</a></li>"""
+                                            +"""<li class="chapter"><a href="#${chapter.anchor}">${chapter.title}</a></li>"""
                                         }
                                         +"""</ul>"""
                                     }
