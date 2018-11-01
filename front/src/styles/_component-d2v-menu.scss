@@ -1,4 +1,5 @@
 @import "_grid";
+@import "ui-menu";
 
 #d2v-menu {
   position: absolute;
@@ -47,5 +48,19 @@
     > li > a {
       font-weight: 700;
     }
+
+    // level two in navigation menu
+    //@todo create animation with js (remove max-height and get height of level two elements with js)
+    ul a + ul {
+      overflow: hidden;
+      max-height: 1000em;
+      padding-top: $menu-padding;
+    }
+
+    ul a:not(.active) + ul {
+      max-height: 0;
+      padding-top: 0;
+    }
+    //
   }
 }

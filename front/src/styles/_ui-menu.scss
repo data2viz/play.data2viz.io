@@ -1,5 +1,7 @@
 @import "_grid";
 
+$menu-padding: $gutter-width / 2;
+
 menu,
 [class*="d2v-menu"] {
   @include column-container;
@@ -37,7 +39,7 @@ menu,
 
   ul,
   ol {
-    padding: 0 0 0 $gutter-width / 2;
+    padding: 0 0 0 $menu-padding;
     list-style: none;
   }
 
@@ -51,6 +53,6 @@ menu,
   ul > * + *:not(.no-marge),
   ol > * + *:not(.no-marge),
   li > * + *:not(.no-marge) {
-    padding-top: $gutter-width / 2;
+    padding-top: $menu-padding;
   }
 }
