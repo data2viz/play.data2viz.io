@@ -73,17 +73,9 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                     +"""
 							<div class="wrap">
 								<div class="left">
-									<img src="images/logo.png" class="logo">
-								</div>
-								<div class="right">
-									<menu class="d2v-menu-horizontal">
-										<li class="no-marge">
-											<a href="https://data2viz.io" class="d2v-button-small d2v-button-transparent">main page</a>
-										</li>
-										<li class="no-marge">
-											<a href="https://data2viz.io" class="d2v-button-small d2v-button-transparent">github</a>
-										</li>
-									</menu>
+                                    <a href='/'>
+									    <img src="images/logo.png" class="logo">
+                                    </a>
 								</div>
 							</div>""".trimIndent()
                 }
