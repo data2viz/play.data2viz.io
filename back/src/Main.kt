@@ -75,7 +75,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                 <div id="current-section-name"></div>
 								<div class="left">
                                     <a href='/'>
-									    <img src="images/logo.png" class="logo">
+									    <img src="images/logo-play.png" class="logo">
                                     </a>
 								</div>
 							</div>""".trimIndent()
