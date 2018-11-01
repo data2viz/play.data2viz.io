@@ -8,6 +8,19 @@
   width: 100%;
   min-width: $min-width;
 
+  ul,
+  ol {
+    border-left: solid 1px rgba($color-main, 0.25);
+  }
+
+  .active {
+    color: $color-main;
+  }
+
+  a {
+    color: $color-main-dark;
+  }
+
   .menu-fixed & {
     position: fixed;
   }
@@ -29,6 +42,10 @@
 
     .menu-fixed & {
       top: 4em;
+    }
+
+    > li > a {
+      font-weight: 700;
     }
   }
 }
