@@ -37,14 +37,14 @@
                     <a href="02-colors.md">Colors</a>
                     <ul>
                         <li>
-                            <a href="#Color creation">Color creation</a>
+                            <a href="#color-creation">Color creation</a>
                             <ul>
                                 <a href="#">HTML name</a>
                                 <a href="#">Hex (RGB)</a>
                                 <a href="#">RGB</a>
                             </ul>
                         </li>
-                        <li><a href="#Color manipulation">Color manipulation</a></li>
+                        <li><a href="#color-manipulation">Color manipulation</a></li>
                     </ul>
                 </li>
             </menu>
@@ -57,7 +57,7 @@
                     inside data2viz.</p>
                 <p>Colors are managed in there own module. You have to import the dependency
                     inside your project (<code>io.data2viz.color</code>) and in the import directive in your code.</p>
-                <h2>Color creation</h2>
+                <h2 id="color-creation">Color creation</h2>
                 <p>The companion object <code>Colors</code> will give you access to several constructors for your
                     colors.</p>
                 <h3>HTML name</h3>
@@ -201,7 +201,7 @@ fun main(args:Array&lt;String&gt;){
                     }.bindRendererOnNewCanvas()
                     }
                 </div>
-                <h2>Color manipulation</h2>
+                <h2 id="color-manipulation">Color manipulation</h2>
                 <h3>Brighten</h3>
                 <p>The <code>brighten</code> function take a single <code>strength</code> parameter (defaults to 1.0)
                     and return a new color

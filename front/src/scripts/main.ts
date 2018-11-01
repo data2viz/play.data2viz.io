@@ -2,8 +2,8 @@ import {IKotlinPlaygroundEditor} from "./editor/IKotlinPlaygroundEditor"
 import {D2VKotlinEditors} from "./editor/D2VKotlinEditors"
 import {menuPositionObserver} from "./menuPositionObserver"
 import {HTML_SELECTORS} from "./HTML_SELECTORS"
-import {setCurrentSectionName} from "./navigation/setCurrentSectionName"
-import {setNavigationMenuStyle} from "./navigation/setNavigationMenuStyle"
+import {setCurrentSectionName} from "./navigationMenu/setCurrentSectionName"
+import {setNavigationMenu} from "./navigationMenu/setNavigationMenu"
 
 // init editors
 declare function KotlinPlayground(selector: string): Promise<IKotlinPlaygroundEditor[]>
@@ -20,4 +20,4 @@ menuPositionObserver(
 
 setCurrentSectionName()
 
-setNavigationMenuStyle()
+setNavigationMenu()
