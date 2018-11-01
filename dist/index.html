@@ -1,79 +1,256 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>play:documentation</title>
+    <script src="https://unpkg.com/@data2viz/kotlin-playground@1"></script>
     <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <div>
-        <header id="d2v-header">
-            <div class="wrap">
-                <div class="left">
-                    <img src="images/logo.png" class="logo">
-                </div>
-                <div class="right">
-                    <menu class="d2v-menu-horizontal">
-                        <li class="no-marge">
-                            <a href="https://data2viz.io" class="d2v-button-small d2v-button-transparent">back to main</a>
-                        </li>
-                        <li class="no-marge">
-                            <a href="https://data2viz.io" class="d2v-button-small d2v-button-transparent">github</a>
-                        </li>
-                    </menu>
-                </div>
+<div>
+    <header id="d2v-header">
+        <div class="wrap">
+            <div id="current-section-name"></div>
+            <div class="left">
+                <img src="images/logo-play.png" class="logo">
             </div>
-        </header>
-
-
-        <div id="d2v-menu" >
-            <div class="wrap">
-                <menu id="site-navigation" class="d2v-menu-vertical">
-                    <li>how use chores</li>
-                    <li>import color package</li>
-                    <li>init simple JS project</li>
-                    <li>init simple Android project</li>
-                    <li>init simple JFX project</li>
+            <div class="right">
+                <menu class="d2v-menu-horizontal">
+                    <li class="no-marge">
+                        <a href="https://data2viz.io" class="d2v-button-small d2v-button-transparent">main page</a>
+                    </li>
+                    <li class="no-marge">
+                        <a href="https://data2viz.io" class="d2v-button-small d2v-button-transparent">github</a>
+                    </li>
                 </menu>
             </div>
         </div>
-
-        <section id="d2v-content">
-            <main class="d2v-main">
-                <div class="site-text">
-                    <h1>how use chores</h1>
-                    <h2>what is chores?</h2>
-                    <p>Lorem ipsum dolor sit amet, <a href="/">consectetur adipiscing elit</a>. Nam finibus, metus ultricies pretium efficitur, urna elit egestas justo, fermentum rhoncus erat purus ac purus. In hac habitasse platea dictumst. Sed sapien neque, cursus ut mollis aliquet, aliquet ut odio. Morbi est metus, luctus ac elit quis, bibendum ultrices tellus. Sed pretium est ipsum, in interdum metus ultrices a. Quisque volutpat placerat efficitur. Sed rutrum consectetur justo, id dapibus purus facilisis id. Praesent ac ligula blandit, ultricies velit id, viverra ipsum. Praesent sit amet justo justo.</p>
-                    <p>Aliquam volutpat risus quam, quis laoreet elit faucibus sit amet. Donec in sapien odio. Etiam fermentum dictum dui. Cras vel nibh tellus. Pellentesque elit lectus, hendrerit accumsan porta nec, blandit ac ex. Cras eget mi non elit varius fringilla. Vivamus vel porta velit, in blandit metus. Ut commodo porta nisi, nec tincidunt mi maximus vel. Pellentesque magna elit, molestie eget bibendum vitae, rutrum vel tellus. Cras ex lacus, sagittis quis cursus vitae, hendrerit in mi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus pellentesque pulvinar dui non ullamcorper. Vestibulum turpis nibh, viverra eget purus a, fringilla hendrerit nulla. Ut egestas, est ut mollis porta, lectus dolor sagittis tortor, sed rutrum risus risus sit amet nibh. Proin urna massa, commodo sit amet lectus a, molestie luctus tortor.</p>
-                    <h2>Getting Started</h2>
-                    <div class="d2v-code">
-                        <div style="height: 30em; background-color: lightgrey; width: 100%"></div>
-                    </div>
-                    <p>Aliquam volutpat risus quam, quis laoreet elit faucibus sit amet. Donec in sapien odio. Etiam fermentum dictum dui. Cras vel nibh tellus. Pellentesque elit lectus, hendrerit accumsan porta nec, blandit ac ex. Cras eget mi non elit varius fringilla. Vivamus vel porta velit, in blandit metus. Ut commodo porta nisi, nec tincidunt mi maximus vel. Pellentesque magna elit, molestie eget bibendum vitae, rutrum vel tellus. Cras ex lacus, sagittis quis cursus vitae, hendrerit in mi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus pellentesque pulvinar dui non ullamcorper. Vestibulum turpis nibh, viverra eget purus a, fringilla hendrerit nulla. Ut egestas, est ut mollis porta, lectus dolor sagittis tortor, sed rutrum risus risus sit amet nibh. Proin urna massa, commodo sit amet lectus a, molestie luctus tortor.</p>
-                    <p>Proin vulputate blandit dolor, et suscipit odio ultricies in. Nulla eget suscipit leo, sed consectetur justo. Suspendisse aliquam blandit lectus nec accumsan. Donec dapibus massa massa, eu pellentesque tortor molestie sit amet. Aliquam bibendum id est id tempus. Nulla mattis tristique libero sit amet consectetur. Aliquam ornare tempus felis, sit amet laoreet neque posuere in. Sed elementum enim at ipsum sollicitudin, non porta tortor porta.</p>
-                    <p>Nullam bibendum odio purus, vitae fringilla neque pellentesque at. Vestibulum luctus condimentum faucibus. Cras eu urna nec leo malesuada tincidunt. Pellentesque sed pretium dui, ut vehicula dui. Duis dignissim hendrerit ipsum, in pulvinar lorem. Suspendisse accumsan nisl sit amet aliquet mollis. Mauris non quam ultricies, vehicula ligula id, feugiat est. Integer laoreet, dui non aliquet sodales, odio ex bibendum enim, ac placerat tortor dolor non neque. Fusce ut posuere augue.</p>
-                    <p>Duis rutrum nisl eros, vel mattis mi gravida eu. Pellentesque rutrum tortor iaculis turpis tempus, auctor suscipit libero maximus. Phasellus luctus cursus imperdiet. Etiam ut elementum lectus. Aliquam purus velit, facilisis ut pretium nec, viverra sit amet ex. Phasellus aliquam leo a ex feugiat, sed mattis mauris tempor. Vestibulum non est tempus, sodales erat vel, sollicitudin odio. Sed scelerisque commodo interdum. Suspendisse placerat varius dui, eu dignissim quam eleifend nec. Nam fermentum tortor in mauris tristique fringilla. Aenean sed cursus lorem, eu dictum massa. In ut sollicitudin sem, sit amet elementum risus.</p>
-                    <div class="d2v-code">
-                        <div style="height: 30em; background-color: lightgrey; width: 100%"></div>
-                    </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus, metus ultricies pretium efficitur, urna elit egestas justo, fermentum rhoncus erat purus ac purus. In hac habitasse platea dictumst. Sed sapien neque, cursus ut mollis aliquet, aliquet ut odio. Morbi est metus, luctus ac elit quis, bibendum ultrices tellus. Sed pretium est ipsum, in interdum metus ultrices a. Quisque volutpat placerat efficitur. Sed rutrum consectetur justo, id dapibus purus facilisis id. Praesent ac ligula blandit, ultricies velit id, viverra ipsum. Praesent sit amet justo justo.</p>
-                    <p>Aliquam volutpat risus quam, quis laoreet elit faucibus sit amet. Donec in sapien odio. Etiam fermentum dictum dui. Cras vel nibh tellus. Pellentesque elit lectus, hendrerit accumsan porta nec, blandit ac ex. Cras eget mi non elit varius fringilla. Vivamus vel porta velit, in blandit metus. Ut commodo porta nisi, nec tincidunt mi maximus vel. Pellentesque magna elit, molestie eget bibendum vitae, rutrum vel tellus. Cras ex lacus, sagittis quis cursus vitae, hendrerit in mi. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vivamus pellentesque pulvinar dui non ullamcorper. Vestibulum turpis nibh, viverra eget purus a, fringilla hendrerit nulla. Ut egestas, est ut mollis porta, lectus dolor sagittis tortor, sed rutrum risus risus sit amet nibh. Proin urna massa, commodo sit amet lectus a, molestie luctus tortor.</p>
-                    <p>Proin vulputate blandit dolor, et suscipit odio ultricies in. Nulla eget suscipit leo, sed consectetur justo. Suspendisse aliquam blandit lectus nec accumsan. Donec dapibus massa massa, eu pellentesque tortor molestie sit amet. Aliquam bibendum id est id tempus. Nulla mattis tristique libero sit amet consectetur. Aliquam ornare tempus felis, sit amet laoreet neque posuere in. Sed elementum enim at ipsum sollicitudin, non porta tortor porta.</p>
-                    <p>Nullam bibendum odio purus, vitae fringilla neque pellentesque at. Vestibulum luctus condimentum faucibus. Cras eu urna nec leo malesuada tincidunt. Pellentesque sed pretium dui, ut vehicula dui. Duis dignissim hendrerit ipsum, in pulvinar lorem. Suspendisse accumsan nisl sit amet aliquet mollis. Mauris non quam ultricies, vehicula ligula id, feugiat est. Integer laoreet, dui non aliquet sodales, odio ex bibendum enim, ac placerat tortor dolor non neque. Fusce ut posuere augue.</p>
-                    <p>Duis rutrum nisl eros, vel mattis mi gravida eu. Pellentesque rutrum tortor iaculis turpis tempus, auctor suscipit libero maximus. Phasellus luctus cursus imperdiet. Etiam ut elementum lectus. Aliquam purus velit, facilisis ut pretium nec, viverra sit amet ex. Phasellus aliquam leo a ex feugiat, sed mattis mauris tempor. Vestibulum non est tempus, sodales erat vel, sollicitudin odio. Sed scelerisque commodo interdum. Suspendisse placerat varius dui, eu dignissim quam eleifend nec. Nam fermentum tortor in mauris tristique fringilla. Aenean sed cursus lorem, eu dictum massa. In ut sollicitudin sem, sit amet elementum risus.</p>
-                    <h1>how use chores</h1>
-                    <h2>what is chores?</h2>
-                    <h3>section title</h3>
-                    <h4>content title</h4>
-                    <h5></h5>
-                    <h6>signature</h6>
-                </div>
-            </main>
-        </section>
+    </header>
+    <div id="d2v-menu">
+        <div class="wrap">
+            <menu id="site-navigation" class="d2v-menu-vertical">
+                <li><a href="01-getting-started.md">Let's start</a></li>
+                <li>
+                    <a href="02-colors.md">Colors</a>
+                    <ul>
+                        <li>
+                            <a href="#color-creation">Color creation</a>
+                            <ul>
+                                <a href="#">HTML name</a>
+                                <a href="#">Hex (RGB)</a>
+                                <a href="#">RGB</a>
+                            </ul>
+                        </li>
+                        <li><a href="#color-manipulation">Color manipulation</a></li>
+                    </ul>
+                </li>
+            </menu>
+        </div>
     </div>
-</body>
+    <section id="d2v-content">
+        <main id="d2v-main">
+            <div class="site-text"><h1>Colors</h1>
+                <p>Colors are used everywhere in dataviz. So let's have a look at how you can use them
+                    inside data2viz.</p>
+                <p>Colors are managed in there own module. You have to import the dependency
+                    inside your project (<code>io.data2viz.color</code>) and in the import directive in your code.</p>
+                <h2 id="color-creation">Color creation</h2>
+                <p>The companion object <code>Colors</code> will give you access to several constructors for your
+                    colors.</p>
+                <h3>HTML name</h3>
+                <p>Data2viz provides an easy access to web colors through the <code>Colors.Web</code> companion
+                    object.</p>
+                <p>All you have to do is calling <code>Colors.Web.darkturquoise</code> to have a reference
+                    on the dark turquoise html color.</p>
+                <div data-output-height="50" class="kotlin-code d2v-large" data-target-platform="canvas" lines="true"
+                     data-js-libs="https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/kotlin.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-core-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-color-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-path-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timer-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-viz-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-interpolate-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-time-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-scale-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-format-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timeFormat-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-axis-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-shape-js.js"
+                     from="null" to="null">
+                    import io.data2viz.viz.*
+                    import io.data2viz.color.*
+
+                    fun main(args:Array&lt;String&gt;){
+                    viz {
+                    rect {
+                    width = 50.0
+                    height = 50.0
+                    fill = Colors.Web.blueviolet
+                    }
+                    }.bindRendererOnNewCanvas()
+                    }
+                </div>
+                <h3>Hex (RGB)</h3>
+                <p>If you want to create a color from its precise hexadecimal value, you can do it by using
+                    Int extension value <code>color</code>.</p>
+                <p>Using it in conjunction with hexadecimal kotlin literal gives a handy syntax.</p>
+                <div data-output-height="50" class="kotlin-code d2v-large" data-target-platform="canvas" lines="true"
+                     data-js-libs="https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/kotlin.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-core-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-color-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-path-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timer-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-viz-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-interpolate-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-time-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-scale-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-format-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timeFormat-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-axis-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-shape-js.js"
+                     from="4" to="12">import io.data2viz.viz.*
+                    import io.data2viz.color.*
+
+                    fun main(args:Array&lt;String&gt;){
+                    viz {
+                    rect {
+                    width = 50.0
+                    height = 50.0
+                    fill = 0x87ceeb.color // skyblue
+                    }
+                    }.bindRendererOnNewCanvas()
+                    }
+                </div>
+                <h3>RGB</h3>
+                <p>You can define your color using Integer values from 0 to 255 Int for red, green and blue channels
+                    using the <code>Colors.rgb</code> function</p>
+                <ul>
+                    <li><code>red</code>: Int [0..255]</li>
+                    <li><code>green</code>: Int [0..255]</li>
+                    <li><code>blue</code>: Int [0..255]</li>
+                    <li><code>alpha</code>: Double [0..1] (default 1)</li>
+                </ul>
+                <div data-output-height="50" class="kotlin-code d2v-large" data-target-platform="canvas" lines="true"
+                     data-js-libs="https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/kotlin.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-core-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-color-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-path-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timer-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-viz-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-interpolate-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-time-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-scale-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-format-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timeFormat-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-axis-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-shape-js.js"
+                     from="4" to="18">import io.data2viz.viz.*
+                    import io.data2viz.color.*
+
+                    fun main(args:Array&lt;String&gt;){
+                    viz {
+                    rect {
+                    width = 50.0
+                    height = 50.0
+                    fill = Colors.rgb(255, 0, 0) // red
+                    }
+                    rect {
+                    x = 50.0
+                    width = 50.0
+                    height = 50.0
+                    fill = Colors.rgb(255, 0, 0, .5f) // red (alpha 50%)
+                    }
+                    }.bindRendererOnNewCanvas()
+                    }
+                </div>
+                <h3>HSL</h3>
+                <p>To create a color using the HSL model, use the <code>Colors.hsl</code> function.</p>
+                <ul>
+                    <li><code>hue</code>: Angle</li>
+                    <li><code>saturation</code>: Double [0..1]</li>
+                    <li><code>lightness</code>: Double [0..1]</li>
+                    <li><code>alpha</code>: Double [0..1] (default 1)</li>
+                </ul>
+                <div data-output-height="50" class="kotlin-code d2v-large" data-target-platform="canvas" lines="true"
+                     data-js-libs="https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/kotlin.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-core-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-color-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-path-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timer-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-viz-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-interpolate-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-time-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-scale-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-format-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timeFormat-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-axis-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-shape-js.js"
+                     from="4" to="18">import io.data2viz.viz.*
+                    import io.data2viz.color.*
+
+                    fun main(args:Array&lt;String&gt;){
+                    viz {
+                    rect {
+                    width = 50.0
+                    height = 50.0
+                    fill = Colors.hsl(38.82.deg, 1.0, 0.5) // orange
+                    }
+                    }.bindRendererOnNewCanvas()
+                    }
+                </div>
+                <h3>HCL</h3>
+                <p>To create a color in the HCL color space (Hue-Chroma-Luminance) use the <code>Colors.hcl</code>
+                    function.</p>
+                <ul>
+                    <li><code>hue</code>: Angle</li>
+                    <li><code>chroma</code>: Double</li>
+                    <li><code>luminance</code>: Double [0..100]</li>
+                    <li><code>alpha</code>: Double [0..1] (default 1)</li>
+                </ul>
+                <div data-output-height="50" class="kotlin-code d2v-large" data-target-platform="canvas" lines="true"
+                     data-js-libs="https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/kotlin.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-core-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-color-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-path-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timer-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-viz-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-interpolate-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-time-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-scale-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-format-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timeFormat-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-axis-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-shape-js.js"
+                     from="4" to="18">import io.data2viz.viz.*
+                    import io.data2viz.color.*
+
+                    fun main(args:Array&lt;String&gt;){
+                    viz {
+                    rect {
+                    width = 50.0
+                    height = 50.0
+                    fill = Colors.hcl(167.95, 46.55, 92.03) // aquamarine
+                    }
+                    }.bindRendererOnNewCanvas()
+                    }
+                </div>
+                <h3>LAB</h3>
+                <p>To create a color in the LAB color space (also known as CIE Lab) use the <code>Colors.lab</code>
+                    function.</p>
+                <ul>
+                    <li><code>lightness</code>: Double [0..100]</li>
+                    <li><code>aComponent</code>: Double, the "a"-component for green-red [-128..128]</li>
+                    <li><code>bComponent</code>: Double, the "b"-component for blue-yellow [-128..128]</li>
+                    <li><code>alpha</code>: Double [0..1] (default 1)</li>
+                </ul>
+                <div data-output-height="50" class="kotlin-code d2v-large" data-target-platform="canvas" lines="true"
+                     data-js-libs="https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/kotlin.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-core-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-color-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-path-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timer-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-viz-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-interpolate-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-time-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-scale-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-format-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timeFormat-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-axis-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-shape-js.js"
+                     from="4" to="18">import io.data2viz.viz.*
+                    import io.data2viz.color.*
+
+                    fun main(args:Array&lt;String&gt;){
+                    viz {
+                    rect {
+                    width = 50.0
+                    height = 50.0
+                    fill = Colors.lab(30.83, 26.05, -42.08) // darkslateblue
+                    }
+                    }.bindRendererOnNewCanvas()
+                    }
+                </div>
+                <h2 id="color-manipulation">Color manipulation</h2>
+                <h3>Brighten</h3>
+                <p>The <code>brighten</code> function take a single <code>strength</code> parameter (defaults to 1.0)
+                    and return a new color
+                    with changed lightness.</p>
+                <div data-output-height="50" class="kotlin-code d2v-large" data-target-platform="canvas" lines="true"
+                     data-js-libs="https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/kotlin.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-core-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-color-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-path-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timer-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-viz-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-interpolate-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-time-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-scale-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-format-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timeFormat-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-axis-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-shape-js.js"
+                     from="4" to="null">import io.data2viz.viz.*
+                    import io.data2viz.color.*
+
+                    fun main(args:Array&lt;String&gt;){
+                    viz {
+                    (0..3).forEach {
+                    rect {
+                    x = it * 25.0
+                    width = 25.0
+                    height = 25.0
+                    fill = Colors.Web.hotpink.brighten(it.toDouble())
+                    }
+                    }
+                    }.bindRendererOnNewCanvas()
+                    }
+                </div>
+                <h3>Darken</h3>
+                <p>The <code>darken</code> function take a single <code>strength</code> parameter (defaults to 1.0) and
+                    return a new color
+                    with changed lightness.</p>
+                <div data-output-height="50" class="kotlin-code d2v-large" data-target-platform="canvas" lines="true"
+                     data-js-libs="https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/kotlin.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-core-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-color-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-path-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timer-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-viz-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-interpolate-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-time-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-scale-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-format-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-timeFormat-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-axis-js.js,https://unpkg.com/@data2viz/data2viz@0.7.1-RC2/d2v-shape-js.js"
+                     from="4" to="null">import io.data2viz.viz.*
+                    import io.data2viz.color.*
+
+                    fun main(args:Array&lt;String&gt;){
+                    viz {
+                    (0..3).forEach {
+                    rect {
+                    x = it * 25.0
+                    y = 25.0
+                    width = 25.0
+                    height = 25.0
+                    fill = Colors.Web.hotpink.darken(it.toDouble())
+                    }
+                    }
+                    }.bindRendererOnNewCanvas()
+                    }
+                </div>
+            </div>
+        </main>
+    </section>
+</div>
 <script type="text/javascript" src="main.js"></script>
+</body>
 </html>
