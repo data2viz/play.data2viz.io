@@ -11,6 +11,10 @@
   border-bottom: solid 1px $color-main;
   background-color: white;
 
+  a.github-corner > svg {
+    fill: #433ee0 !important;
+  }
+
   #current-section-name {
     position: absolute;
     color: $color-main;
