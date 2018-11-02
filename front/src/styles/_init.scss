@@ -62,6 +62,9 @@ a {
   color: $color-main;
   text-decoration: none;
 }
+a:hover {
+  border-bottom: solid 1px;
+}
 
 .kotlin-code + * { //editor generated with kotlin playground library
   margin-top: 1em;
