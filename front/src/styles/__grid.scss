@@ -1,4 +1,5 @@
 @import "_params";
+@import "_params-fonts";
 
 @mixin site-max-width {
   max-width: $max-width;
@@ -8,6 +9,7 @@
 
 /* wrapper */
 @mixin column-container() {
+  @include font-init;
   overflow: hidden;
     display: -webkit-box;
     display: -webkit-flex;
@@ -41,6 +43,7 @@
 
 /* column */
 @mixin column($column-number, $column-division: 24) {
+  @include font-init;
   overflow: hidden;
   display: block;
   position: relative;

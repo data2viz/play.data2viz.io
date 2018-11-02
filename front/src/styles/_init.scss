@@ -8,6 +8,8 @@ body {
   padding: 0;
   @include font-init;
   color: $color-main-dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 p {
@@ -53,3 +55,4 @@ a {
   margin-top: 1em;
   margin-bottom: 6em;
 }
+
