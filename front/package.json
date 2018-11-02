@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "webpack-dev-server --open --mode='development'",
     "clean": "rm -rf ../dist/*/ && find ../dist -type f ! -name '*.html' -delete",
-    "build": "webpack --mode='production'"
+    "build": "npm run build:ico && npm run build:webpack",
+    "build:ico": "png-to-ico src/favicon.png > ../dist/favicon.ico && cp src/favicon.png ../dist/",
+    "build:webpack": "webpack --mode='production'"
   },
   "repository": {
     "type": "git",
@@ -27,5 +29,8 @@
     "webpack": "^4.21.0",
     "webpack-cli": "^3.1.2",
     "webpack-dev-server": "^3.1.9"
+  },
+  "dependencies": {
+    "png-to-ico": "^2.0.1"
   }
 }

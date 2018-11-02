@@ -61,7 +61,8 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
 				<meta http-equiv="X-UA-Compatible" content="ie=edge">
 				<title>play:documentation</title>
   				<script src="https://unpkg.com/@data2viz/kotlin-playground@1"></script>
-				<link rel="stylesheet" href="main.css">""".trimIndent()
+				<link rel="stylesheet" href="main.css">
+                <link rel="icon" type="image/png" href="favicon.png" />""".trimIndent()
         }
     }
     body {
