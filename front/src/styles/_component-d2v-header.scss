@@ -42,10 +42,6 @@
     .right {
       @include column-container;
       align-items: center;
-
-      > * {
-        display: block;
-      }
     }
 
     .right {

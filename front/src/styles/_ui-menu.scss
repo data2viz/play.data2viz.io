@@ -4,7 +4,8 @@ $menu-padding: $gutter-width / 2;
 
 menu,
 [class*="d2v-menu"] {
-  @include column-container;
+  display: block;
+  overflow: hidden;
   margin: 0;
   padding: 0;
 
@@ -14,8 +15,10 @@ menu,
 }
 
 .d2v-menu-horizontal {
+  @include column-container;
+
   > * {
-    display: inline-block;
+    display: block;
   }
 
   > * + *:not(.no-marge) {
