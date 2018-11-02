@@ -143,8 +143,9 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                                     +"""<ul>"""
                                                         it.subChapters.forEach { subChapter ->
                                                             +"""<li>
-                                                                |<a>${subChapter.title}</a>
-                                                            """.trimMargin()
+                                                                |   <a href="#${subChapter.anchor}">${subChapter.title}</a>
+                                                                </li>
+                                                            |""".trimMargin()
                                                         }
                                                     +"""</ul>"""
                                                 }
