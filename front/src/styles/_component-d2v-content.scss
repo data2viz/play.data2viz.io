@@ -3,6 +3,8 @@
 #d2v-content {
   padding-top: $content-position-top;
   min-width: $min-width;
+  box-sizing: border-box;
+  min-height: 100vh;
 }
 
 #d2v-main {
