@@ -5,6 +5,7 @@
   "main": "public/index.html",
   "scripts": {
     "dev": "webpack-dev-server --open --mode='development'",
+    "clean": "rm -rf ../dist/*/ && find ../dist -type f ! -name '*.html' -delete",
     "build": "webpack --mode='production'"
   },
   "repository": {
