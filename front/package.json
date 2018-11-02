@@ -7,7 +7,7 @@
     "dev": "webpack-dev-server --open --mode='development'",
     "clean": "rm -rf ../dist/*/ && find ../dist -type f ! -name '*.html' -delete",
     "build": "npm run build:ico && npm run build:webpack",
-    "build:ico": "png-to-ico src/favicon.png > ../dist/favicon.ico && cp src/favicon.png ../dist/",
+    "build:ico": "png-to-ico src/favicon.png > build/dist/favicon.ico && cp src/favicon.png build/dist/",
     "build:webpack": "webpack --mode='production'"
   },
   "repository": {
