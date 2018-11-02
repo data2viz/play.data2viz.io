@@ -11,7 +11,11 @@
 
 // @todo add js scroll
 // prevent anchor overflow with fixed top elements
-.site-text > h2, h3 {
+.site-text > h2 {
   padding-top: 5em;
-  margin-top: -5em;
+  margin-top: -3.4em;
+}
+.site-text > h3 {
+  padding-top: 5em;
+  margin-top: -3.8em;
 }
