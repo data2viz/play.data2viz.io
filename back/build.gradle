@@ -38,15 +38,21 @@ dependencies {
     compile 'com.atlassian.commonmark:commonmark-ext-heading-anchor:0.11.0'
 }
 
-processResources {
+
+
+processResources{
+
+
     doLast {
-        println "copy dist to resources/public"
         copy {
-            from "../dist"
-            into "build/resources/main/public"
+            from ('../front/build/dist')
+            into ('build/resources/main/public')
         }
     }
 }
+
+processResources.dependsOn(":front:prod")
+
 
 if (distJar.toBoolean()) {
 
