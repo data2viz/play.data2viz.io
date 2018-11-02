@@ -15,12 +15,17 @@ body {
 p,
 ul,
 ol,
-menu {
+menu,
+code {
   @include font-reg;
 
   & & {
     font-size: 1em;
   }
+}
+
+code {
+  font-family: SFMono-Regular,Consolas,Liberation Mono,Menlo,Courier,monospace;
 }
 
 h1 {
