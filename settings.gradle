@@ -1,6 +1,4 @@
-rootProject.name = 'data2viz.io'
-
-enableFeaturePreview('GRADLE_METADATA')
+rootProject.name = 'play.data2viz.io'
 
 
 // ---------------------------
