@@ -79,11 +79,6 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                         <img src="images/logo-play.png" class="logo">
                                     </a>
                                 </div>
-                                <div class="right">
-                                    <a href="https://data2viz.io" class="d2v-link-btn">
-                                        <img id="main-page-icon" src="./images/go-back-to-main-page.png" alt="data2viz main site" width="360" height="360">
-                                    </a>
-                                </div>
                             </div>
                             <div class="github-link-wrapper">
                                 <a href="https://github.com/data2viz/data2viz" class="github-corner" aria-label="View source on GitHub">
