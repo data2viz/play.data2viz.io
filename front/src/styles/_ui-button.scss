@@ -28,7 +28,7 @@ button,
 
 .d2v-link-btn {
   display: inline-block;
-  border-bottom: none;
+  border-bottom: none !important;
 
   :hover {
     background-color: rgba(0, 0, 0, 0.05);
