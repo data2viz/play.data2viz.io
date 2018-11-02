@@ -30,14 +30,17 @@ class Articles(path: String) {
 		val chapters = titleVisitor.titles.filter { it.level == 2 }
 		val mdChapters = chapters.map { MdChapterDescriptor(it.level, it.content) }
 
+		val subChapters   = titleVisitor.titles.filter { it.level == 3 }
+		val subMdChapters = subChapters.map { MdChapterDescriptor(it.level, it.content) }
+
 		val html = renderer.render(document)
 
-		return MdFileDescriptor(url, title, html, mdChapters)
+		return MdFileDescriptor(url, title, html, mdChapters, subMdChapters)
 	}
 
 }
 
-data class MdFileDescriptor(val url: String, val title: String, val htmlContent: String, val chapters:List<MdChapterDescriptor>)
+data class MdFileDescriptor(val url: String, val title: String, val htmlContent: String, val chapters:List<MdChapterDescriptor>, val subChapters: List<MdChapterDescriptor>)
 data class MdChapterDescriptor(val level: Int, val title: String)
 
 internal fun fileNameToUrl(name:String):String {

@@ -93,7 +93,18 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                     if (it.chapters.isNotEmpty() && currentPage) {
                                         +"""<ul class="chapters">"""
                                         it.chapters.forEach { chapter ->
-                                            +"""<li class="chapter"><a href="#${chapter.anchor}">${chapter.title}</a></li>"""
+                                            +"""<li class="chapter">
+                                                |<a href="#${chapter.anchor}">${chapter.title}</a>""".trimMargin()
+                                                if (it.subChapters.isNotEmpty()) {
+                                                    +"""<ul>"""
+                                                        it.subChapters.forEach { subChapter ->
+                                                            +"""<li>
+                                                                |<a>${subChapter.title}</a>
+                                                            """.trimMargin()
+                                                        }
+                                                    +"""</ul>"""
+                                                }
+                                            +"""</li>""".trimMargin()
                                         }
                                         +"""</ul>"""
                                     }
