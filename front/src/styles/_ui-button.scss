@@ -25,3 +25,11 @@ button,
 .d2v-button-small {
   font-size: 0.75em;
 }
+
+.d2v-link-btn {
+  display: inline-block;
+
+  :hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}

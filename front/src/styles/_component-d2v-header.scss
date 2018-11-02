@@ -50,10 +50,11 @@
 
     .right {
       @include gutter;
+      padding-right: 5em;
     }
   }
 
-  .logo {
+  .logo, #main-page-icon {
     display: block;
     height: 50px;
     width: auto;
