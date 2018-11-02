@@ -1,0 +1,29 @@
+@import "_grid";
+
+#d2v-footer {
+  position: relative;
+  z-index: 10000;
+  padding-top: $gutter-width;
+  padding-bottom: $gutter-width / 2;
+  border-top: solid 1px $color-main;
+  background-color: $color-main;
+  color: white;
+
+  .wrap {
+    @include column-container;
+    @include site-max-width;
+
+    > * {
+      @include column(4 ,12);
+      @include gutter;
+      font-size: .85em;
+    }
+
+    #logo-footer {
+      width: 15em;
+      max-width: 100%;
+      height: auto;
+      transform: translateX(-$gutter-width / 2);
+    }
+  }
+}

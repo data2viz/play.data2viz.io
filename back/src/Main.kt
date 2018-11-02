@@ -128,6 +128,27 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                 }
             }
         }
+        footer {
+            id = "d2v-footer"
+            //language=HTML
+            unsafe {
+                + """
+                    <div class="wrap">
+                        <ul class="d2v-menu-vertical">
+                            <li>
+                                <a href="https://data2viz.io/" target="_blank">
+                                    <img id="logo-footer" src="images/logo-negative.png" width="1110" height="360">
+                                </a>
+                            </li>
+                            <li class="no-marge">Data2viz sàrl</li>
+                            <li>Boulevard Georges-Favon 3</li>
+                            <li>1204 Genève</li>
+                            <li>Suisse</li>
+                        </ul>
+                    </div>
+                """.trimIndent()
+            }
+        }
         script("text/javascript", "main.js"){}
     }
 }
