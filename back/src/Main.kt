@@ -142,8 +142,13 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                                 if (it.subChapters.isNotEmpty()) {
                                                     +"""<ul>"""
                                                         it.subChapters.forEach { subChapter ->
+                                                            //@todo bug with "subChapter.anchor". anchor can be in several chapters
+//                                                          +"""<li>
+//                                                              |   <a href="#${subChapter.anchor}">${subChapter.title}</a>
+//                                                              </li>
+//                                                          |""".trimMargin()
                                                             +"""<li>
-                                                                |   <a href="#${subChapter.anchor}">${subChapter.title}</a>
+                                                                |   <a href="#null">${subChapter.title}</a>
                                                                 </li>
                                                             |""".trimMargin()
                                                         }
