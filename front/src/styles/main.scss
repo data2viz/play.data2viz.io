@@ -8,3 +8,10 @@
 @import "component-d2v-menu";
 @import "component-d2v-content";
 @import "component-d2v-footer";
+
+// @todo add js scroll
+// prevent anchor overflow with fixed top elements
+.site-text > h2, h3 {
+  padding-top: 5em;
+  margin-top: -5em;
+}
