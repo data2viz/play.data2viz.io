@@ -12,8 +12,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-p {
+p,
+ul,
+ol,
+menu {
   @include font-reg;
+
+  & & {
+    font-size: 1em;
+  }
 }
 
 h1 {
