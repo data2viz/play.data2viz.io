@@ -60,8 +60,8 @@ class GenerationTest {
         val visitor = TitleVisitor()
         document.accept(visitor)
 
-        assertTrue { visitor.titles.size == 1 }
-        assertTrue { visitor.titles[0].content == "data2viz is great" }
+        assertEquals(3, visitor.titles.size)
+        assertEquals("data2viz is great", visitor.titles[0].content)
 
     }
 
