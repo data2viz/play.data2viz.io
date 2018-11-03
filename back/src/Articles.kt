@@ -40,7 +40,9 @@ class Articles(path: String) {
 
 }
 
-data class MdFileDescriptor(val url: String, val title: String, val htmlContent: String, val chapters:List<MdChapterDescriptor>, val subChapters: List<MdChapterDescriptor>)
+data class MdFileDescriptor(val url: String, val title: String, val htmlContent: String,
+							val chapters:List<MdChapterDescriptor>, val subChapters: List<MdChapterDescriptor>)
+
 data class MdChapterDescriptor(val level: Int, val title: String)
 
 internal fun fileNameToUrl(name:String):String {

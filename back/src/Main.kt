@@ -123,42 +123,32 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
             div {
                 id = "d2v-menu"
                 div("wrap") {
-                    unsafe {
-                        +"""<menu id="site-navigation" class="d2v-menu-vertical">"""
-                            documentation.mdFiles.forEach {
-                                val currentPage = (docFile.title == it.title)
-                                +"""<li class="page ${if(currentPage) "active" else "unactive"}">"""
-                                    +"""<a href="${it.url}">${it.title}</a>"""
-                                    if (it.chapters.isNotEmpty() && currentPage) {
-                                        +"""<ul class="chapters">"""
-                                        it.chapters.forEach { chapter ->
-                                            +"""<li class="chapter">
-                                                |<a href="#${chapter.anchor}">${chapter.title}</a>""".trimMargin()
-                                                if (it.subChapters.isNotEmpty()) {
-                                                    +"""<ul>"""
-                                                        it.subChapters.forEach { subChapter ->
-                                                            //@todo bug with "subChapter.anchor". anchor can be in several chapters
-//                                                          +"""<li>
-//                                                              |   <a href="#${subChapter.anchor}">${subChapter.title}</a>
-//                                                              </li>
-//                                                          |""".trimMargin()
-                                                            +"""<li>
-                                                                |   <a href="#null">${subChapter.title}</a>
-                                                                </li>
-                                                            |""".trimMargin()
+                    ul("menu d2v-menu-vertical") {
+                        id = "site-navigation"
+                        documentation.mdFiles.forEach { page ->
+                            val currentPage = (docFile.title == page.title)
+                            li("page ${if (currentPage) "active" else "unactive"}") {
+                                a(page.url) { +page.title }
+                                if (page.chapters.isNotEmpty() && currentPage) {
+                                    ul("chapters") {
+                                        page.chapters.forEach { chapter ->
+                                            li("chapter") {
+                                                a(href = "#${chapter.anchor}") { +chapter.title }
+                                                if (page.subChapters.isNotEmpty()) {
+                                                    ul {
+                                                        page.subChapters.forEach { subChapter ->
+                                                            li { a { +subChapter.title } }
                                                         }
-                                                    +"""</ul>"""
+                                                    }
                                                 }
-                                            +"""</li>""".trimMargin()
+                                            }
                                         }
-                                        +"""</ul>"""
                                     }
-                                +"""</li>"""
+                                }
                             }
-                        +"</menu>"
+                        }
                     }
                 }
-
             }
             section {
                 id = "d2v-content"
