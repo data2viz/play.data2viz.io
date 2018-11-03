@@ -14,7 +14,7 @@ class Articles(path: String) {
 	    mdFiles = File("content/$path").listFiles().map {
 			it.toDescriptor()
 				.also { logger.info("${it.title} loaded") }
-		}.sortedBy { it.url }
+		}.sortedBy { it.name }
 	}
 
 	private fun File.toDescriptor(): MdFileDescriptor {
@@ -23,6 +23,7 @@ class Articles(path: String) {
 		val titleVisitor = TitleVisitor()
 		document.accept(titleVisitor)
 
+		val name = name
 		val url = fileNameToUrl(name)
 		val mainTitles = titleVisitor.titles.filter { it.level == 1 }
 		val title = if(mainTitles.isNotEmpty()) mainTitles[0].content else url
@@ -35,16 +36,23 @@ class Articles(path: String) {
 
 		val html = renderer.render(document)
 
-		return MdFileDescriptor(url, title, html, mdChapters, subMdChapters)
+		return MdFileDescriptor(url, title, html, mdChapters, subMdChapters, name)
 	}
 
 }
 
-data class MdFileDescriptor(val url: String, val title: String, val htmlContent: String,
-							val chapters:List<MdChapterDescriptor>, val subChapters: List<MdChapterDescriptor>)
+data class MdFileDescriptor(
+	val url: String,
+	val title: String,
+	val htmlContent: String,
+	val chapters: List<MdChapterDescriptor>,
+	val subChapters: List<MdChapterDescriptor>,
+	val name: String
+)
 
 data class MdChapterDescriptor(val level: Int, val title: String)
 
-internal fun fileNameToUrl(name:String):String {
-	return name
-}
+/**
+ * remove the numbers, and .md
+ */
+internal fun fileNameToUrl(name:String):String = "tutorials/${name.drop(3).dropLast(3)}/"

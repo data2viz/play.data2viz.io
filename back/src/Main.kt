@@ -61,8 +61,8 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
 				<meta http-equiv="X-UA-Compatible" content="ie=edge">
 				<title>play:documentation</title>
   				<script src="https://unpkg.com/@data2viz/kotlin-playground@1"></script>
-				<link rel="stylesheet" href="main.css">
-                <link rel="icon" type="image/png" href="favicon.png" />""".trimIndent()
+				<link rel="stylesheet" href="/main.css">
+                <link rel="icon" type="image/png" href="/favicon.png" />""".trimIndent()
         }
     }
     body {
@@ -76,7 +76,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                 <div id="current-section-name"></div>
                                 <div class="left">
                                     <a href='/' class="d2v-home-logo">
-                                        <img src="images/logo-play.png" class="logo">
+                                        <img src="/images/logo-play.png" class="logo">
                                     </a>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                         documentation.mdFiles.forEach { page ->
                             val currentPage = (docFile.title == page.title)
                             li("page ${if (currentPage) "active" else "unactive"}") {
-                                a(page.url) { +page.title }
+                                a("/${page.url}") { +page.title }
                                 if (page.chapters.isNotEmpty() && currentPage) {
                                     ul("chapters") {
                                         page.chapters.forEach { chapter ->
@@ -165,7 +165,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                         <ul class="d2v-menu-vertical">
                             <li>
                                 <a href="https://data2viz.io/" target="_blank">
-                                    <img id="logo-footer" src="images/logo-negative.png" width="1110" height="360">
+                                    <img id="logo-footer" src="/images/logo-negative.png" width="1110" height="360">
                                 </a>
                             </li>
                             <li class="no-marge">Data2viz sàrl</li>
@@ -177,7 +177,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                 """.trimIndent()
             }
         }
-        script("text/javascript", "main.js"){}
+        script("text/javascript", "/main.js"){}
     }
 }
 
