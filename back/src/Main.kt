@@ -134,13 +134,6 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                         page.chapters.forEach { chapter ->
                                             li("chapter") {
                                                 a(href = "#${chapter.anchor}") { +chapter.title }
-                                                if (page.subChapters.isNotEmpty()) {
-                                                    ul {
-                                                        page.subChapters.forEach { subChapter ->
-                                                            li { a { +subChapter.title } }
-                                                        }
-                                                    }
-                                                }
                                             }
                                         }
                                     }
