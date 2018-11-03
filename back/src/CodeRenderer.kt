@@ -9,7 +9,7 @@ import org.commonmark.renderer.html.HtmlRenderer
 import org.commonmark.renderer.html.HtmlWriter
 
 
-const val data2vizVersion = "0.7.1-RC2"
+const val data2vizVersion = "0.7.1-RC3"
 
 val extensions = listOf(HeadingAnchorExtension.create())
 
@@ -76,12 +76,18 @@ private val toRegex = "to=(\\d+)".toRegex()
 fun parseTo(info: String):Int? = toRegex.find(info)?.groupValues?.get(1)?.toInt()
 
 
+val d2vModules = listOf("core", "color", "timer", "viz",
+    "interpolate", "time", "scale",
+    "format", "timeFormat", "axis", "shape")
+    .map { "https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-$it-js.js" }
+    .joinToString()
+
 val d2vAttributes = mapOf(
-    "data-output-height" to "200",
+    "data-output-height" to "100",
     "class" to "kotlin-code d2v-large",
     "data-target-platform" to "canvas",
     "lines" to "true",
-    "data-js-libs" to "https://unpkg.com/@data2viz/data2viz@$data2vizVersion/kotlin.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-core-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-color-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-path-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-timer-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-viz-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-interpolate-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-time-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-scale-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-format-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-timeFormat-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-axis-js.js,https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-shape-js.js"
+    "data-js-libs" to d2vModules
 )
 
 data class Title(val level:Int, val content:String)
