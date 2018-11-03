@@ -1,179 +1,127 @@
-# Colors
+# Colors and gradients
 
 Colors are used everywhere in dataviz. So let's have a look at how you can use them inside data2viz.
 
 Colors are managed in there own module. You have to import the dependency inside your project 
 (`io.data2viz.color`) and in the import directive in your code.
 
+
 ## Color creation
 
-The companion object `Colors` will give you access to several constructors for your colors.
+The  `Colors` object will give you access to several way of having colors and gradients.
 
-### HTML name
+The first option is to use a named color. All the CSS colors are accessible through
+the `Colors.Web` object. 
 
-Data2viz provides an easy access to web colors through the `Colors.Web` companion object. 
-
-All you have to do is calling `Colors.Web.darkturquoise` to have a reference on the dark turquoise html color.
+All you have to do is calling `Colors.Web.darkturquoise` to have a reference 
+on the dark turquoise html color. As colors are immutable objects, you can
+reuse and pass references of these named colors.
 
 ```height=50
-import io.data2viz.viz.*
 import io.data2viz.color.*
+import io.data2viz.geom.*
+import io.data2viz.math.*
+import io.data2viz.viz.*
 
-//sampleStart
-fun main(args:Array<String>){
+fun main() {
+    //sampleStart
     viz {
         rect {
-            width = 50.0
-            height = 50.0
-            fill = Colors.Web.blueviolet
-        }                
+            size = Size(50.0, 50.0)
+            fill = (Colors.Web.blueviolet)                
+        }
+
     }.bindRendererOnNewCanvas()
+    //sampleEnd
 }
- //sampleEnd
 ```
 
-### Hex (RGB)
-
-If you want to create a color from its hexadecimal value, you can do it by using the Integer extension 
-value `.color`. 
-
-There is also a String extension value `.color` which allows you to create a new color based on a String 
-beginning the character "#". 
+Another usual option to create a color is through its **hexadecimal** code. You have
+2 extension vals to help you create a color from Int and String.
 
 ```height=50
-import io.data2viz.viz.*
 import io.data2viz.color.*
+import io.data2viz.geom.*
+import io.data2viz.math.*
+import io.data2viz.viz.*
 
-//sampleStart
-fun main(args:Array<String>){
+fun main() {
+    //sampleStart
     viz {
         rect {
-            width = 50.0
-            height = 50.0
-            fill = 0x87ceeb.color                       // skyblue
-        }       
-        rect {
-            width = 50.0
-            height = 50.0
-            fill = "#800080".color                      // purple
-        }               
-    }.bindRendererOnNewCanvas()
-}
-//sampleEnd
-```
-
-### RGB
-
-You can define your color using Integer values from 0 to 255 Int for red, green and blue channels
-using the `Colors.rgb()` function
-
- * `red`: Int [0..255]
- * `green`: Int [0..255]
- * `blue`: Int [0..255]
- * `alpha`: Double [0..1] (default 1)
-
-```height=50
-import io.data2viz.viz.*
-import io.data2viz.color.*
-
-//sampleStart
-fun main(args:Array<String>){
-    viz {
-        rect {
-            width = 50.0
-            height = 50.0
-            fill = Colors.rgb(255, 0, 0)                        // red
-        }                
+            size = Size(50.0, 50.0)
+            fill = 0x87ceeb.color      // <- Int extension val
+                
+        }
         rect {
             x = 50.0
-            width = 50.0
-            height = 50.0
-            fill = Colors.rgb(255, 0, 0, .5f)                   // red (alpha 50%)
-        }                   
-    }.bindRendererOnNewCanvas()
-}
-//sampleEnd
-```
-
-### HSL
-
-To create a color using the HSL model, use the `Colors.hsl()` function.
-
- * `hue`: Angle
- * `saturation`: Double [0..1]
- * `lightness`: Double [0..1]
- * `alpha`: Double [0..1] (default 1)
-
-```height=50
-import io.data2viz.viz.*
-import io.data2viz.color.*
-
-//sampleStart
-fun main(args:Array<String>){
-    viz {
-        rect {
-            width = 50.0
-            height = 50.0
-            fill = Colors.hsl(38.82.deg, 1.0, 0.5)            // orange
-        }                   
-    }.bindRendererOnNewCanvas()
-}
-//sampleEnd
-```
-
-
-### HCL
-
-To create a color in the HCL color space (Hue-Chroma-Luminance) use the `Colors.hcl()` function.
-
- * `hue`: Angle
- * `chroma`: Double
- * `luminance`: Double [0..100]
- * `alpha`: Double [0..1] (default 1)
- 
-```height=50
-import io.data2viz.viz.*
-import io.data2viz.color.*
-
-//sampleStart
-fun main(args:Array<String>){
-    viz {
-        rect {
-            width = 50.0
-            height = 50.0
-            fill = Colors.hcl(167.95, 46.55, 92.03)              // aquamarine
+            size = Size(50.0, 50.0)
+            fill = "#800080".color     // <- String extension val
         }
+
     }.bindRendererOnNewCanvas()
+    //sampleEnd
 }
-//sampleEnd
 ```
 
 
-### LAB
 
-To create a color in the LAB color space (also known as CIE Lab) use the `Colors.lab()` function.
+You can also use the values from 0 to 255 of the **RGB** channels to create a color calling 
+`Colors.rgb`. 
 
- * `lightness`: Double [0..100]
- * `aComponent`: Double, the "a"-component for green-red [-128..128]
- * `bComponent`: Double, the "b"-component for blue-yellow [-128..128]
- * `alpha`: Double [0..1] (default 1)
- 
+Beside **RGB**, *data2viz* allows you to use different colors spaces to create colors: 
+  - **HSL** (Hue, Saturation, Luminosity), 
+  - **HCL** (Hue, Chroma, Luminance) and
+  - **LAB** (also known as CIE Lab). 
+  
+For each of them a factory function is available in `Colors`, taking
+the transparency alpha as a last parameter with a default value of 1.0 (opaque).
+
+
 ```height=50
-import io.data2viz.viz.*
 import io.data2viz.color.*
+import io.data2viz.geom.*
+import io.data2viz.math.*
+import io.data2viz.viz.*
 
-//sampleStart
-fun main(args:Array<String>){
+fun main() {
+
+    //sampleStart
+
     viz {
+        size = Size(600.0, 50.0)
         rect {
-            width = 50.0
-            height = 50.0
-            fill = Colors.lab(30.83, 26.05, -42.08)            // darkslateblue
-        }
+            size = Size(50.0, 50.0)
+            fill = Colors.rgb(255, 0, 0)                     // <- pure red
+        }        
+        rect {
+            x = 50.0
+            size = Size(50.0, 50.0)
+            fill = Colors.rgb(255, 0, 0, .5)                 // <- add 50% transparency
+        }        
+        rect {
+            x = 100.0
+            size = Size(50.0, 50.0)
+            fill = Colors.hsl(38.82.deg, 1.0, 0.5)           // <- HSL color space
+        }        
+        rect {
+            x = 150.0
+            size = Size(50.0, 50.0)
+            fill = Colors.hcl(167.95.deg, 46.55, 92.03)      // <- HCL color space
+        }        
+        rect {
+            x = 200.0
+            size = Size(50.0, 50.0)
+            fill = Colors.lab(30.83, 26.05, -42.08)          // <- LAC (CIE) color space
+        }        
+
     }.bindRendererOnNewCanvas()
+    //sampleEnd
 }
-//sampleEnd
+ 
 ```
+
+
 
 ## Color manipulation
 
@@ -187,7 +135,7 @@ import io.data2viz.viz.*
 import io.data2viz.color.*
 
 //sampleStart
-fun main(args:Array<String>){
+fun main() {
     viz {
         (0..3).forEach {
             rect {
@@ -212,7 +160,7 @@ import io.data2viz.viz.*
 import io.data2viz.color.*
 
 //sampleStart
-fun main(args:Array<String>){
+fun main() {
     viz {
         (0..3).forEach {
             rect {
@@ -246,26 +194,36 @@ A Linear gradient can be easily created using the `Colors.Gradient.linear()` bui
  Next you call `withColor()` given a Color and a percentage to set the base color then add any number of `ColorStop` 
  using `andColor()`.
  
- ```height=50
- import io.data2viz.viz.*
+ ```height=100
  import io.data2viz.color.*
+ import io.data2viz.geom.*
+ import io.data2viz.math.*
+ import io.data2viz.viz.*
  
-//sampleStart
- fun main(args:Array<String>){
-     val myGradient = Colors.Gradient.linear(Point(.0, .0), Point(100.0, .0))
-        .withColor(Colors.Web.hotpink, .0)           // gradient start (0%) with "hot pink"
-        .andColor(Colors.Web.blueviolet, .5)         // middle of the gradient (50%) is "blue violet"
-        .andColor(Colors.Web.skyblue, 1.0)           // end of the gradient (100%) "is sky blue"
-     
-     viz {
-         rect {
-             width = 100.0
-             height = 50.0
-             fill = myGradient
-         }
-     }.bindRendererOnNewCanvas()
- }
+ fun main() {
+ 
+ //sampleStart
+    viz {
+        size = Size(800.0, 100.0)
+        rect {
+            width = 800.0
+            height = 50.0
+            fill = Colors.Gradient.linear(Point(.0, .0), Point(800.0, .0))
+                .withColor(Colors.Web.hotpink)
+                .andColor(Colors.Web.skyblue)
+        }
+        rect {
+            y = 50.0
+            width = 800.0
+            height = 50.0
+            fill = Colors.Gradient.linear(Point(.0, .0), Point(800.0, .0))
+                .withColor(Colors.Web.hotpink, .20)           // gradient start (0%) with "hot pink"
+                .andColor(Colors.Web.blueviolet, .5)         // middle of the gradient (50%) is "blue violet"
+                .andColor(Colors.Web.skyblue, .80)
+        }
+    }.bindRendererOnNewCanvas()    
 //sampleEnd
+ }
  ```
  
 ### Radial gradient
@@ -278,24 +236,26 @@ If you want to paint a shape using a radial gradient, use the `Colors.Gradient.r
 Next you call `withColor()` given a Color and a percentage to set the base color then add any number of `ColorStop` 
 using `andColor()`.
   
-  ```height=50
-  import io.data2viz.viz.*
-  import io.data2viz.color.*
+ ```height=400
+ import io.data2viz.color.*
+ import io.data2viz.geom.*
+ import io.data2viz.math.*
+ import io.data2viz.viz.*
   
-// sampleStart
-  fun main(args:Array<String>){
-      val myGradient = Colors.Gradient.radial(Point(50.0, 25.0), 50.0)
+fun main() {
+    //sampleStart
+    val myGradient = Colors.Gradient.radial(Point(400.0, 200.0), 200.0)
         .withColor(Colors.Web.hotpink, .0)           // gradient start (0%) with "hot pink"
         .andColor(Colors.Web.blueviolet, .5)         // middle of the gradient (50%) is "blue violet"
         .andColor(Colors.Web.skyblue, 1.0)           // end of the gradient (100%) "is sky blue"
-      
-      viz {
-          rect {
-              width = 100.0
-              height = 50.0
-              fill = myGradient
-          }
-      }.bindRendererOnNewCanvas()
-  }
-//sampleEnd
+    viz {
+        size = Size(800.0, 400.0)
+        rect {
+            width  = 800.0
+            height = 400.0
+            fill = myGradient
+        }
+    }.bindRendererOnNewCanvas()
+    //sampleEnd
+}
   ```
