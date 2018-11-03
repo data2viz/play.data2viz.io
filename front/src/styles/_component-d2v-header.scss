@@ -7,8 +7,7 @@
   left: 0;
   width: 100%;
   box-sizing: border-box;
-  border-top: solid 1px $color-main;
-  border-bottom: solid 1px $color-main;
+  border-bottom: solid 1px rgba($color-main, 0.25);
   background-color: white;
 
   a.github-corner > svg {
@@ -20,7 +19,7 @@
     color: $color-main;
     top: 50%;
     @include column-skip( 3, 12);
-    border-left: solid 1px $color-main;
+    border-left: solid 1px rgba($color-main, 0.25);
     padding-left: 1.5em;
     line-height: 2em;
     opacity: 0;

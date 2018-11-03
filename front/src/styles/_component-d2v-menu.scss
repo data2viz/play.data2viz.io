@@ -9,10 +9,6 @@
   width: 100%;
   min-width: $min-width;
 
-  ul,
-  ol {
-    border-left: solid 1px rgba($color-main, 0.25);
-  }
 
   .active {
     color: $color-main;
