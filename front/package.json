@@ -5,9 +5,9 @@
   "main": "public/index.html",
   "scripts": {
     "dev": "webpack-dev-server --open --mode='development'",
-    "clean": "rm -rf ../dist/*/ && find ../dist -type f ! -name '*.html' -delete",
+    "clean": "rm -rf ../resources/public/*/ && find ../resources/public -type f ! -name '*.html' -delete",
     "build": "npm run build:ico && npm run build:webpack",
-    "build:ico": "png-to-ico src/favicon.png > build/dist/favicon.ico && cp src/favicon.png build/dist/",
+    "build:ico": "png-to-ico src/favicon.png > ../resources/public/favicon.ico && cp src/favicon.png ../resources/public/",
     "build:webpack": "webpack --mode='production'"
   },
   "repository": {
