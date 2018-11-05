@@ -27,20 +27,15 @@ functions that are commonly used in *data2viz*.
 
 **(2).** As we use kotlin 1.3, the `main` function can avoid the args parameters.
 
-
-**(3).** All visualizations take place in a **`Viz`** object. To simplify its creation 
-and building, we provide a builder DSL.
-
-It's start with the `viz` call that takes a lambda (with receiver) to build
-it. 
+**(3).** All visualizations take place in an instance of **`Viz`**. You can create and
+configure it with a builder DSL.It starts with the `viz` call that takes a lambda (with receiver).
 
 **(4).** A visualization has width and a height properties. They can be accessed using the 
 property `size`.
 
 **(5).** The creation of visual nodes is done with their specific creation function, also taking
-a lambda with receiver to configure them. Here we're creating a rectangle, defining its size
-and its fill color.  
-
+a lambda with receiver, to configure them. Here we're creating a rectangle, defining its size
+and fill color.  
 
 **(6).** The last specific call to notice in this example is `bindRendererOnNewCanvas()`. It's an 
 extension function on a `Viz` object that is only existing on *JS* platform. 
