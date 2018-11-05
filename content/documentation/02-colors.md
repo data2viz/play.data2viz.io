@@ -28,7 +28,7 @@ fun main() {
     viz {
         rect {
             size = Size(50.0, 50.0)
-            fill = (Colors.Web.blueviolet)                
+            fill = (Colors.Web.blueviolet)    // (1)            
         }
 
     }.bindRendererOnNewCanvas()
