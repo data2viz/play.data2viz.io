@@ -1,6 +1,11 @@
 buildscript {
     ext.ktor_version = "1.0.0-beta-1"
     ext.logback_version = "1.2.3"
+    ext.distJar = "true"
+
+    dependencies {
+        classpath "com.github.jengelman.gradle.plugins:shadow:2.0.1"
+    }
 }
 
 plugins {
@@ -10,7 +15,6 @@ plugins {
 
 
 group 'io.data2viz'
-version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 
@@ -36,4 +40,18 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+if (distJar.toBoolean()) {
+
+    apply plugin: "com.github.johnrengelman.shadow"
+    apply plugin: 'application'
+    mainClassName = "io.ktor.server.netty.DevelopmentEngine"
+
+
+    shadowJar {
+        baseName = 'play.data2viz.io'
+        classifier = null
+        version = null
+    }
 }
