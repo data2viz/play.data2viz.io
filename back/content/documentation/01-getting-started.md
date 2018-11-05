@@ -21,23 +21,22 @@ fun main() {									// 2
 }
 ```
 
- 1. In *data2viz* projects, it is usually a good practise to do star **imports** even
-when there is less than 5 imported elements in the package. It allows to benefit from extension
-functions that are commonly used in *data2viz*.
+ 1. In ***data2viz*** projects, it is usually a good practise to do star **imports** even
+when there is less than 5 imported elements in the package. It gives easy access to extension
+functions, particularly during code completion.
 
- 2. As we use kotlin 1.3, the `main` function can avoid the args parameters.
+ 2. With kotlin 1.3, it's possible to omit args parameters in the `main` function.
 
- 3. All visualizations take place in an instance of **`Viz`**. You can create and
-configure it with a builder DSL.It starts with the `viz` call that takes a lambda (with receiver).
+ 3. The root of a visualization isan instance of **`Viz`**. A builder DSL facilitates 
+ its configuration. It starts with the `viz` call that takes a lambda (with receiver).
 
  4. A visualization has width and a height properties. They can be accessed using the 
 property `size`.
 
- 5. The creation of visual nodes is done with their specific creation function, also taking
-a lambda with receiver, to configure them. Here we're creating a rectangle, defining its size
+ 5. Visual nodes are created through dsl function  takinga lambda with receiver for 
+ the configuration. In this example, the code is creating a rectangle, defining its size
 and fill color.  
 
- 6. The last specific call to notice in this example is `bindRendererOnNewCanvas()`. It's an 
-extension function on a `Viz` object that is only existing on *JS* platform. 
-It is a shortcut to create a new canvas based on the visualization size and
-bind the renderer on it.
+ 6. `bindRendererOnNewCanvas()` is an extension function on a `Viz` class that 
+ is only available on *JS* platform. It's a shortcut to create a new canvas 
+ based on the visualization and bind the renderer on it.
