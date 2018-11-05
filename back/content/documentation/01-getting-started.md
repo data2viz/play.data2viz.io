@@ -27,15 +27,15 @@ functions, particularly during code completion.
 
  2. With kotlin 1.3, it's possible to omit args parameters in the `main` function.
 
- 3. The root of a visualization isan instance of **`Viz`**. A builder DSL facilitates 
+ 3. The root of a visualization is an instance of **`Viz`**. A builder DSL facilitates 
  its configuration. It starts with the `viz` call that takes a lambda (with receiver).
 
- 4. A visualization has width and a height properties. They can be accessed using the 
+ 4. A visualization has width and height properties. They can be accessed using the 
 property `size`.
 
- 5. Visual nodes are created through dsl function  takinga lambda with receiver for 
+ 5. Visual nodes are created through DSL functions  taking a lambdas with receiver for 
  the configuration. In this example, the code is creating a rectangle, defining its size
-and fill color.  
+and fill color.
 
  6. `bindRendererOnNewCanvas()` is an extension function on a `Viz` class that 
  is only available on *JS* platform. It's a shortcut to create a new canvas 
