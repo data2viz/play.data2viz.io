@@ -84,7 +84,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                     </a>
                                 </div>
                                 <div class="right">
-                                    <a href="https://data2viz.io" class="d2v-link">
+                                    <a href="https://data2viz.io" class="d2v-link" target="_blank" title='go to data2viz main site'>
                                     <svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class='link-icon' viewBox="0 0 360 360">
                                           <defs>
                                             <clipPath id="clip-path">
@@ -101,41 +101,9 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                             <line class="cls-4" x1="320" y1="792" x2="2000" y2="-888"/>
                                           </g>
                                         </svg>
-                                        <span class='title'>go to data2viz main&nbsp;site</span>
                                     </a>
 
-                                    <a href="https://data2viz.io" class="d2v-link">
-                                        <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                                             viewBox="0 0 270 270" style="enable-background:new 0 0 270 270;" xml:space="preserve"
-                                             class='link-icon'>
-                                        <g id="Layer_1_1_">
-                                        </g>
-                                        <g id="Layer_3">
-                                        </g>
-                                        <g id="Layer_4">
-                                        </g>
-                                        <g id="Layer_2">
-                                            <g>
-
-                                                    <rect x="128.5" y="127.3" transform="matrix(0.9482 -0.3176 0.3176 0.9482 -36.0197 50.6366)" class="st0" width="17.6" height="17"/>
-                                                <g>
-
-                                                        <rect x="128.5" y="127.3" transform="matrix(0.9482 -0.3176 0.3176 0.9482 -36.0197 50.6366)" class="st0" width="17.6" height="17"/>
-                                                    <path class="st0" d="M194.6,118.5c-12.9-43-31.5-53-74.5-40.1s-53,31.5-40.1,74.5s31.5,53,74.5,40.1S207.5,161.5,194.6,118.5z
-                                                         M172.9,146.4l-8.1,2.7l2.8,8.4c1.1,3.4-0.7,7.1-4.1,8.2c-0.7,0.2-1.5,0.4-2.2,0.3c-2.6-0.1-5.1-1.8-6-4.4l-2.8-8.4l-16.7,5.6
-                                                        l2.8,8.4c1.1,3.4-0.7,7.1-4.1,8.2c-0.7,0.2-1.5,0.4-2.2,0.3c-2.6-0.1-5.1-1.8-6-4.4l-2.8-8.4l-8.1,2.7c-0.7,0.2-1.5,0.4-2.2,0.3
-                                                        c-2.6-0.1-5.1-1.8-6-4.4c-1.1-3.4,0.7-7.1,4.1-8.2l8.1-2.7l-5.4-16.1l-8.1,2.7c-0.7,0.2-1.5,0.4-2.2,0.3c-2.6-0.1-5.1-1.8-6-4.4
-                                                        c-1.1-3.4,0.7-7.1,4.1-8.2l8.1-2.7l-2.8-8.4c-1.1-3.4,0.7-7.1,4.1-8.2s7.1,0.7,8.2,4.1l2.8,8.4l16.7-5.6l-2.8-8.4
-                                                        c-1.1-3.4,0.7-7.1,4.1-8.2c3.4-1.1,7.1,0.7,8.2,4.1l2.8,8.4l8.1-2.7c3.4-1.1,7.1,0.7,8.2,4.1c1.1,3.4-0.7,7.1-4.1,8.2l-8.1,2.7
-                                                        l5.4,16.1l8.1-2.7c3.4-1.1,7.1,0.7,8.2,4.1C178.1,141.6,176.3,145.3,172.9,146.4z"/>
-                                                </g>
-                                            </g>
-                                        </g>
-                                        </svg>
-                                        <span class='title'>join us on&nbsp;slack!</span>
-                                    </a>
-
-                                    <a href="https://github.com/data2viz/data2viz" class="d2v-link-ltr" >
+                                    <a href="https://github.com/data2viz/data2viz" class="d2v-link-ltr" target="_blank" title='view code'>
                                         <svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class='link-icon' viewBox="0 0 360 360">
                                           <g class="cls-2">
                                             <line class="cls-3" x1="320" y1="315" x2="2000" y2="-1365"/>
@@ -151,7 +119,6 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                             <path class="cls-5" d="M154.5218,244.42221c.14225.8038-.68408,1.63013-1.86462,1.85-1.16115.21346-2.23489-.28449-2.3836-1.08184-.1439-.82467.697-1.65117,1.85651-1.86462,1.182-.20534,2.24135.2782,2.39171,1.09642Zm0,0"/>
                                           </g>
                                         </svg>
-                                        <span class='title'>github project</span>
                                     </a>
                                 </div>
                             </div>
