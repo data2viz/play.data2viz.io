@@ -186,6 +186,8 @@ Most of the data2viz visual elements accepts a `ColorOrGradient` object for defi
 A gradient is defined by giving at least 2 `ColorStop`, each corresponding to a color and its position along 
 the gradient (in percentage).
 
+Note that the gradient positioning defined by its `ColorStop` is absolute.
+
 
 ### Linear gradient
 
@@ -197,6 +199,8 @@ A Linear gradient can be easily created using the `Colors.Gradient.linear()` bui
  Next you call `withColor()` given a Color and a percentage to set the base color then add any number of `ColorStop` 
  using `andColor()`.
  
+ <!--- TODO use style inheritance here  -->
+ 
  ```height=100
  import io.data2viz.color.*
  import io.data2viz.geom.*
@@ -207,21 +211,35 @@ fun main() {
  //sampleStart
     viz {
         size = Size(800.0, 100.0)
-        rect {
-            width = 800.0
-            height = 50.0
-            fill = Colors.Gradient.linear(Point(.0, .0), Point(800.0, .0))
-                .withColor(Colors.Web.hotpink)
-                .andColor(Colors.Web.skyblue)
+        
+        val lineGradient = Colors.Gradient.linear(Point(.0, .0), Point(800.0, .0))
+                   .withColor(Colors.Web.hotpink, .2)             // under 20% the gradient color is "hot pink"
+                   .andColor(Colors.Web.blueviolet, .5)           // middle of the gradient (50%) is "blue violet"
+                   .andColor(Colors.Web.skyblue, .8)              // from 80% the gradient color is "sky blue"
+        
+        line {
+            x1 = 100.0
+            y1 = 18.0
+            x2 = 500.0
+            y2 = 18.0
+            stroke = lineGradient
+            strokeWidth = 30.0 
         }
-        rect {
-            y = 50.0
-            width = 800.0
-            height = 50.0
-            fill = Colors.Gradient.linear(Point(.0, .0), Point(800.0, .0))
-                .withColor(Colors.Web.hotpink, .20)           // gradient start (0%) with "hot pink"
-                .andColor(Colors.Web.blueviolet, .5)         // middle of the gradient (50%) is "blue violet"
-                .andColor(Colors.Web.skyblue, .80)
+        line {
+            x1 = 300.0
+            y1 = 50.0
+            x2 = 700.0
+            y2 = 50.0
+            stroke = lineGradient
+            strokeWidth = 30.0 
+        }
+        line {
+            x1 = .0
+            y1 = 82.0
+            x2 = 800.0
+            y2 = 82.0
+            stroke = lineGradient
+            strokeWidth = 30.0 
         }
     }.bindRendererOnNewCanvas()    
 //sampleEnd
@@ -238,7 +256,7 @@ If you want to paint a shape using a radial gradient, use the `Colors.Gradient.r
 Next you call `withColor()` given a Color and a percentage to set the base color then add any number of `ColorStop` 
 using `andColor()`.
   
- ```height=400
+ ```height=200
  import io.data2viz.color.*
  import io.data2viz.geom.*
  import io.data2viz.math.*
@@ -246,16 +264,18 @@ using `andColor()`.
   
 fun main() {
     //sampleStart
-    val myGradient = Colors.Gradient.radial(Point(400.0, 200.0), 200.0)
-        .withColor(Colors.Web.hotpink, .0)           // gradient start (0%) with "hot pink"
-        .andColor(Colors.Web.blueviolet, .5)         // middle of the gradient (50%) is "blue violet"
-        .andColor(Colors.Web.skyblue, 1.0)           // end of the gradient (100%) "is sky blue"
+    val myGradient = Colors.Gradient.radial(Point(400.0, 100.0), 100.0)
+        .withColor(Colors.Web.hotpink, .0)              // gradient start (center - 0%) with "hot pink"
+        .andColor(Colors.Web.skyblue, 1.0)              // end of the gradient (100% and more) "is sky blue"
     viz {
-        size = Size(800.0, 400.0)
-        rect {
-            width  = 800.0
-            height = 400.0
-            fill = myGradient
+        size = Size(800.0, 200.0)
+        (1..3).forEach {
+            circle {
+                x = it * 200.0
+                y = 100.0
+                radius = 100.0
+                fill = myGradient
+            }
         }
     }.bindRendererOnNewCanvas()
     //sampleEnd
