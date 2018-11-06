@@ -4,10 +4,11 @@
   "description": "data2viz playground pages (documentation, examples, …)",
   "main": "public/index.html",
   "scripts": {
-    "dev": "webpack-dev-server --open --mode='development'",
-    "clean": "rm -rf ../resources/public/*/ && find ../resources/public -type f ! -name '*.html' -delete",
+    "dev:webpack-server": "webpack-dev-server --open --mode='development'",
+    "dev:webpack": "webpack --mode='development' --watch",
+    "clean": "rm -rf ../src/main/resources/public/*/ && find ../src/main/resources/public -type f ! -name '*.html' -delete",
     "build": "npm run build:ico && npm run build:webpack",
-    "build:ico": "png-to-ico src/favicon.png > ../resources/public/favicon.ico && cp src/favicon.png ../resources/public/",
+    "build:ico": "png-to-ico src/favicon.png > ../src/main/resources/public/favicon.ico && cp src/favicon.png ../src/main/resources/public/",
     "build:webpack": "webpack --mode='production'"
   },
   "repository": {

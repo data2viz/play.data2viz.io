@@ -1,5 +1,5 @@
 const path = require('path');
-const distFolder = "../resources/public";
+const distFolder = "../src/main/resources/public/";
 const webpack = require('webpack');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
