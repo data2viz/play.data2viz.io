@@ -9,3 +9,6 @@ logs/
 
 # development files
 /src/main/resources/public/index.html
+
+/.gradle/
+/build/
