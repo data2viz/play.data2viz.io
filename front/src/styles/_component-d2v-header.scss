@@ -40,6 +40,7 @@
     @include site-max-width;
     @include column-container;
     @include container-content-justified;
+    overflow: visible;
 
     .left,
     .right {
@@ -49,6 +50,7 @@
 
     .right {
       @include gutter;
+      overflow: visible;
     }
   }
 
@@ -57,5 +59,16 @@
     height: 50px;
     width: auto;
     padding: 0.3em;
+    :hover {
+      fill: $color-main;
+    }
+  }
+  .link-icon {
+    fill: $color-main-dark;
+  }
+  .d2v-link:hover {
+    .link-icon {
+      fill: $color-main;
+    }
   }
 }

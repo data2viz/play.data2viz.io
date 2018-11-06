@@ -28,7 +28,7 @@ button,
 
 .d2v-link {
   display: inline-block;
-  position: relative;
+  position: static;
   border-bottom: none !important;
   overflow: visible;
 
@@ -37,7 +37,7 @@ button,
   }
 
   .title {
-    position: fixed;
+    position: absolute;
     display: inline-block;
     background-color: rgba(0, 0, 0, 0.05);
     color: black;
