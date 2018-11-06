@@ -91,7 +91,6 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                               <rect class="cls-1" x="2000" y="-878" width="2530" height="1670"/>
                                             </clipPath>
                                           </defs>
-                                          <title>go-back-to-main-page</title>
                                           <g>
                                             <path class="cls-2" d="M80,80V280H280V80ZM260,260H100V100H260Z"/>
                                             <polygon class="cls-2" points="240 120 190 120 215 170 240 120"/>
@@ -107,7 +106,6 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
 
                                     <a href="https://github.com/data2viz/data2viz" class="d2v-link" >
                                         <svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class='link-icon' viewBox="0 0 360 360">
-                                          <title>go-to-github-project</title>
                                           <g class="cls-2">
                                             <line class="cls-3" x1="320" y1="315" x2="2000" y2="-1365"/>
                                           </g>
