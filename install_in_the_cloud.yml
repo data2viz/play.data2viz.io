@@ -6,9 +6,9 @@
 
   tasks:
 
-    - name: Deploy git sources from bitbucket project {{ name }}
+    - name: Deploy git sources from github project {{ name }}
       git:
-        repo: git@bitbucket.org:d3k/{{ name }}.git
+        repo: git@github.com:data2viz/{{ name }}.git
         dest: /home/d2v/{{ name }}
         accept_hostkey: yes
         force: yes
