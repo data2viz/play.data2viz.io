@@ -6,3 +6,6 @@ front/node_modules/
 
 #logs
 logs/
+
+# development files
+/src/main/resources/public/index.html
