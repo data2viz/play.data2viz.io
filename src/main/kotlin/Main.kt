@@ -81,7 +81,6 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                 <div class="left">
                                     <a href='/' class="d2v-link">
                                         <img src="/images/logo-play.png" class="logo">
-                                        <span class='title'>back to home&nbsp;page</span>
                                     </a>
                                 </div>
                                 <div class="right">
