@@ -21,7 +21,7 @@ fun main() {									// 2
 }
 ```
 
- 1. In ***data2viz*** projects, it is usually a good practise to do star **imports** even
+ 1. In ***data2viz*** projects, it is usually a good practise to do **star imports** even
 when there is less than 5 imported elements in the package. It gives easy access to extension
 functions, particularly during code completion.
 

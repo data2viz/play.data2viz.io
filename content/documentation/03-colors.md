@@ -28,7 +28,7 @@ fun main() {
     viz {
         rect {
             size = Size(50.0, 50.0)
-            fill = (Colors.Web.blueviolet)    // (1)            
+            fill = Colors.Web.blueviolet
         }
 
     }.bindRendererOnNewCanvas()
@@ -64,19 +64,16 @@ fun main() {
 }
 ```
 
-
-
 You can also use the values from 0 to 255 of the **RGB** channels to create a color calling 
 `Colors.rgb`. 
 
-Beside **RGB**, *data2viz* allows you to use different colors spaces to create colors: 
+Beside **RGB**, *data2viz* allows you to use different color spaces to create colors: 
   - **HSL** (Hue, Saturation, Luminosity), 
   - **HCL** (Hue, Chroma, Luminance) and
   - **LAB** (also known as CIE Lab). 
   
 For each of them a factory function is available in `Colors`, taking
 the transparency alpha as a last parameter with a default value of 1.0 (opaque).
-
 
 ```height=50
 import io.data2viz.color.*
@@ -85,9 +82,7 @@ import io.data2viz.math.*
 import io.data2viz.viz.*
 
 fun main() {
-
     //sampleStart
-
     viz {
         size = Size(600.0, 50.0)
         rect {
@@ -97,24 +92,23 @@ fun main() {
         rect {
             x = 50.0
             size = Size(50.0, 50.0)
-            fill = Colors.rgb(255, 0, 0, .5)                 // <- add 50% transparency
-        }        
+            fill = Colors.rgb(255, 0, 0, .5)                 // <- with 50% transparency
+        }
         rect {
             x = 100.0
             size = Size(50.0, 50.0)
             fill = Colors.hsl(38.82.deg, 1.0, 0.5)           // <- HSL color space
-        }        
+        }
         rect {
             x = 150.0
             size = Size(50.0, 50.0)
             fill = Colors.hcl(167.95.deg, 46.55, 92.03)      // <- HCL color space
-        }        
+        }
         rect {
             x = 200.0
             size = Size(50.0, 50.0)
             fill = Colors.lab(30.83, 26.05, -42.08)          // <- LAC (CIE) color space
-        }        
-
+        }
     }.bindRendererOnNewCanvas()
     //sampleEnd
 }
@@ -125,55 +119,64 @@ fun main() {
 
 ## Color manipulation
 
-### Brighten
+### Change lightness
 
-The `brighten()` function take a single `strength` parameter (defaults to 1.0) and return a new color 
-with changed lightness.
+The `brighten()` and `darken()` functions take a single `strength` parameter (defaults to 1.0) and return a new color 
+with changed lightness. 
+
+*You can note that `brighten(x)` is equivalent to `darken(-x)`*
 
 ```height=50
 import io.data2viz.viz.*
 import io.data2viz.color.*
+import io.data2viz.geom.*
 
-//sampleStart
 fun main() {
+//sampleStart
     viz {
-        (0..3).forEach {
+        size = Size(600.0, 50.0)
+        (0..6).forEach {
             rect {
-                x = it * 25.0
-                width = 25.0
-                height = 25.0
-                fill = Colors.Web.hotpink.brighten(it.toDouble())
+                x = it * 50.0
+                width = 50.0
+                height = 50.0
+                fill = Colors.Web.forestgreen.brighten(it - 3.0)
             }
         }
     }.bindRendererOnNewCanvas()
-}
 //sampleEnd
+}
 ```
 
-### Darken
+### Change saturation
 
-The `darken()` function take a single `strength` parameter (defaults to 1.0) and return a new color 
-with changed lightness.
+The `saturate()` and `desaturate()` functions take a single `strength` parameter (defaults to 1.0) and return a new 
+color with changed saturation. 
+
+*You can note that `saturate(x)` is equivalent to `desaturate(-x)`*
 
 ```height=50
 import io.data2viz.viz.*
 import io.data2viz.color.*
+import io.data2viz.geom.*
+import io.data2viz.math.*
 
-//sampleStart
 fun main() {
+//sampleStart
     viz {
-        (0..3).forEach {
+        size = Size(600.0, 50.0)
+        val myColor = Colors.hsl(300.deg, 0.4, 0.5)
+        (0..6).forEach {
             rect {
-                x = it * 25.0
-                y = 25.0
-                width = 25.0
-                height = 25.0
-                fill = Colors.Web.hotpink.darken(it.toDouble())
+                x = it * 50.0
+                width = 50.0
+                height = 50.0
+                fill = myColor.saturate(it - 3.0)
             }
         }
     }.bindRendererOnNewCanvas()
-}
 //sampleEnd
+}
 ```
 
 ## Color gradients
@@ -200,8 +203,7 @@ A Linear gradient can be easily created using the `Colors.Gradient.linear()` bui
  import io.data2viz.math.*
  import io.data2viz.viz.*
  
- fun main() {
- 
+fun main() {
  //sampleStart
     viz {
         size = Size(800.0, 100.0)
@@ -223,7 +225,7 @@ A Linear gradient can be easily created using the `Colors.Gradient.linear()` bui
         }
     }.bindRendererOnNewCanvas()    
 //sampleEnd
- }
+}
  ```
  
 ### Radial gradient
