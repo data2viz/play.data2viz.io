@@ -35,8 +35,6 @@ fun main(args: Array<String>) {
 val tutorials = Articles("tutorials")
 
 fun Application.mainModule() {
-    install(Compression)
-    install(CallLogging)
     routing {
         trace { application.log.trace(it.buildText()) }
         tutorials.mdFiles.forEach { docFile ->
@@ -183,6 +181,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                 }
             }
         }
+        script("text/javascript", "/main.js"){}
         footer {
             id = "d2v-footer"
             //language=HTML
@@ -204,7 +203,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                 """.trimIndent()
             }
         }
-        script("text/javascript", "/main.js"){}
+
     }
 }
 
