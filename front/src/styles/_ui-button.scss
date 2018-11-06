@@ -26,8 +26,35 @@ button,
   font-size: 0.75em;
 }
 
-.d2v-home-logo {
+.d2v-link {
   display: inline-block;
+  position: relative;
   border-bottom: none !important;
+  overflow: visible;
 
+  > * {
+    display: block;
+  }
+
+  .title {
+    position: fixed;
+    display: inline-block;
+    background-color: rgba(0, 0, 0, 0.05);
+    color: black;
+    z-index: 10000;
+    padding: .5em;
+    box-shadow: 0 5px 8px -4px rgba(0, 0, 0, 0.25);
+    font-size: 0.85em;
+    transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+
+  &:hover {
+    .title {
+      transition-delay: 500ms;
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 }
