@@ -32,21 +32,21 @@ fun main(args: Array<String>) {
 }
 
 
-val documentation = Articles("documentation")
+val tutorials = Articles("tutorials")
 
 fun Application.mainModule() {
     install(Compression)
     install(CallLogging)
     routing {
         trace { application.log.trace(it.buildText()) }
-        documentation.mdFiles.forEach { docFile ->
+        tutorials.mdFiles.forEach { docFile ->
             get(docFile.url) {
                 call.respondHtml {
                     generateDocumentationPage(docFile)
                 }
             }
         }
-        get("/") { call.respondRedirect(documentation.mdFiles.first().url)}
+        get("/") { call.respondRedirect(tutorials.mdFiles.first().url)}
 
         static("/") {
             resources("public")
@@ -129,7 +129,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                 div("wrap") {
                     ul("menu d2v-menu-vertical") {
                         id = "site-navigation"
-                        documentation.mdFiles.forEach { page ->
+                        tutorials.mdFiles.forEach { page ->
                             val currentPage = (docFile.title == page.title)
                             li("page ${if (currentPage) "active" else "unactive"}") {
                                 a("/${page.url}") { +page.title }
