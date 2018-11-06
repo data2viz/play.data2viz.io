@@ -12,7 +12,6 @@
         dest: /home/d2v/{{ name }}
         accept_hostkey: yes
         force: yes
-        version: new-structure
 
     - name: build {{ name }}
       command: chdir=/home/d2v/{{ name }}
