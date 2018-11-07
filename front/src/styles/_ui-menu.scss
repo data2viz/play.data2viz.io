@@ -48,6 +48,10 @@ ul.menu,
 
   li {
     display: block;
+
+    > * {
+      display: inline-block;
+    }
   }
 
   > * + *:not(.no-marge),
