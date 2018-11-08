@@ -10,15 +10,27 @@
   min-width: $min-width;
 
 
-  .active {
-    color: $color-main-dark;
+  .chapter {
+    .active {
+      position: relative;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        bottom: 0.25em;
+        left: -1em;
+        transform: translateX(0) translateY(-50%);
+        width: 0.4em;
+        height: 0.4em;
+        background-color: $color-secondary;
+        border-radius: 50%;
+      }
+    }
   }
 
   a {
-    color: $color-main-light;
-    &:hover {
-      color: $color-main;
-    }
+    color: $color-main-dark;
   }
 
   .menu-fixed & {
@@ -48,7 +60,7 @@
       line-height: 1.25em;
     }
 
-    > li > a {
+    li > * {
       font-weight: 700;
     }
 
