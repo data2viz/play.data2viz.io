@@ -101,7 +101,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                         </svg>
                                     </a>
 
-                                    <a href="https://github.com/data2viz/data2viz" class="d2v-link-ltr" target="_blank" title='view code'>
+                                    <a href="https://github.com/data2viz/data2viz" class="d2v-link" target="_blank" title='view code'>
                                         <svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class='link-icon' viewBox="0 0 360 360">
                                           <g class="cls-2">
                                             <line class="cls-3" x1="320" y1="315" x2="2000" y2="-1365"/>
