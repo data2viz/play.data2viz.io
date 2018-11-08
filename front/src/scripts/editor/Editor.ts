@@ -1,24 +1,108 @@
-import {IKotlinPlaygroundEditor} from "./IKotlinPlaygroundEditor"
+import {KotlinPlayground} from "./KotlinPlayground"
+import {HTML_SELECTORS} from "../HTML_SELECTORS"
+import {createHTMLElement} from "../tools"
+
+declare function KotlinPlayground(selector: string | HTMLElement, eventFunctions?: KotlinPlayground.IEventFunctions): Promise<KotlinPlayground.IEditor[]>
 
 export class Editor {
+    private MORE_THAN_ONCE_CODE_CHANGED_CLASSNAME = "more-than-once-code-changed"
+    private SHORTCUT_INFO_CLASSNAME = "shortcut-info compiler-info"
+
     constructor(
-        public codeArea: HTMLDivElement,
-        public kotlinEditor: IKotlinPlaygroundEditor,
-    ) {}
+        selector: string | HTMLElement,
+    ) {
+        this._selector = selector
+    }
+
+    private _selector: string | HTMLElement
+
+    public init(): Promise<Editor> {
+        return new Promise(resolve => {
+            KotlinPlayground(this._selector, this._eventFunctions).then(() => {
+                if(this._KotlinPlaygroundEditor) {
+
+                    this._kotlinEditorContainer = this._KotlinPlaygroundEditor.nodes[0]
+
+                    const codeArea = this._kotlinEditorContainer.querySelector(HTML_SELECTORS.CODE_AREA)
+
+                    if(codeArea !== null && codeArea instanceof HTMLElement) {
+                        this._codeArea = codeArea
+                    }
+                }
+
+                resolve( this )
+            })
+        })
+    }
+
+    private _kotlinEditorContainer?: HTMLElement
+    get kotlinEditorContainer() {
+        return this._kotlinEditorContainer
+    }
+
+    private _codeArea?: HTMLElement
+    public get codeArea() {return this._codeArea}
+
+    public get bottom_of_codeArea_is_above_bottom_of_screen() {
+        return this.codeArea ? this.codeArea.getBoundingClientRect().bottom >= 0 : false
+    }
+    public get bottom_of_codeArea_is_below_top_of_screen() {
+        return this.codeArea ? this.codeArea.getBoundingClientRect().bottom <= window.innerHeight : false
+    }
 
     private _hasBeenExecuted = false
-    get hasNotBeenExecuted() { return !this._hasBeenExecuted}
+    public get hasNotBeenExecuted() { return !this._hasBeenExecuted}
 
-    get isOnScreen() {
-        return this.codeArea.getBoundingClientRect().bottom >= 0 && this.codeArea.getBoundingClientRect().bottom <= window.innerHeight
+    public get isOnScreen() {
+        if (this._KotlinPlaygroundEditor) {
+            return this.bottom_of_codeArea_is_above_bottom_of_screen && this.bottom_of_codeArea_is_below_top_of_screen
+        }
     }
 
     public execute(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this._hasBeenExecuted = true
-            this.kotlinEditor.execute()
+            if( this._KotlinPlaygroundEditor) {
+                this._hasBeenExecuted = true
+                this._KotlinPlaygroundEditor.execute()
+            }
             resolve()
             reject(new Error("can't execute kotlin playground editor"))
         });
     }
+
+    private _eventFunctions: KotlinPlayground.IEventFunctions = {
+        getInstance: (editor: KotlinPlayground.IEditor) => {
+            this._KotlinPlaygroundEditor = editor
+        },
+        onChange: (code: string) => {
+            this.changedCounter++
+
+            if(this.changedCounter === 2) {
+                if(this.kotlinEditorContainer) {
+                    this.kotlinEditorContainer.appendChild(
+                        createHTMLElement(
+                            "div",
+                            [
+                                createHTMLElement(
+                                    "div",
+                                    "ctrl + r : run"
+                                ),
+                                createHTMLElement(
+                                    "div",
+                                    "ctrl + space : code completion"
+                                )
+                            ],
+                            this.SHORTCUT_INFO_CLASSNAME
+                        )
+                    )
+
+                    this.kotlinEditorContainer.classList.add(this.MORE_THAN_ONCE_CODE_CHANGED_CLASSNAME)
+                }
+            }
+        },
+    };
+
+    private _KotlinPlaygroundEditor?: KotlinPlayground.IEditor
+
+    private changedCounter = 0
 }
