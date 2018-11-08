@@ -9,7 +9,7 @@
   box-sizing: border-box;
   background-color: white;
   transition: box-shadow 500ms ease-in-out;
-  box-shadow: 0 -10px 0px 5px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.35);
 
   a.github-corner > svg {
     fill: $color-main !important;
@@ -74,5 +74,5 @@
 }
 
 .menu-fixed #d2v-header {
-  box-shadow: 0 0 10px 5px hsla(0, 0%, 0%, 0.05);
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
 }
