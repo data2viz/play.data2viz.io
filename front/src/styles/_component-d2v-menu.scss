@@ -18,8 +18,8 @@
         content: '';
         display: block;
         position: absolute;
-        bottom: 0.25em;
-        left: -1em;
+        top: 50%;
+        left: -$menu-padding;
         transform: translateX(0) translateY(-50%);
         width: 0.4em;
         height: 0.4em;
@@ -31,6 +31,11 @@
 
   a {
     color: $color-main-dark;
+    border-bottom-color: rgba($color-main-dark, 0);
+
+    &:hover {
+      border-bottom-color: rgba($color-main-dark, 1);
+    }
   }
 
   .menu-fixed & {
@@ -54,10 +59,6 @@
 
     .menu-fixed & {
       top: 4em;
-    }
-
-    * {
-      line-height: 1.25em;
     }
 
     li > * {
