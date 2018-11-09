@@ -119,10 +119,58 @@ fun main() {
 
 ## Color manipulation
 
+Data2viz provides several functions to manipulate colors based on **color perception**.
+
+### Luminance & Contrast
+
+Some color spaces like LAB or LCH use a parameter to determine the "lightness" of a color, but the 
+hue of impacts the lightness we perceived from it (the luminance). 
+
+For example, blue and yellow seems to have very different brightness even if these 2 colors are created using 
+the same "lightness" parameter.
+
+The `luminance()` function returns the **perceived lightness** of a given color.
+ 
+The `contrast()` function returns the **contrast ratio** of 2 colors. If this ratio is over 4.5 
+the 2 colors are considered contrasted enough to allow readability. The `isContrastOk()` function allows you to 
+check it.
+
+```height=50
+import io.data2viz.viz.*
+import io.data2viz.color.*
+import io.data2viz.geom.*
+import io.data2viz.math.*
+
+fun main() {
+//sampleStart
+    val blue = Colors.hsl(240.deg, 1.0, 0.5)             // blue hue     50% lightness
+    val yellow = Colors.hsl(60.deg, 1.0, 0.5)            // yellow hue   50% lightness
+
+    println("Blue perceived lightness = ${blue.luminance()}")
+    println("Yellow perceived lightness = ${yellow.luminance()}")
+    println("Blue / Yellow contrast ratio = ${blue.contrast(yellow)}")
+    println("Is Blue over Yellow contrasted enough? ${blue.isContrastOk(yellow)}")
+
+    viz {
+        rect {
+            width = 50.0
+            height = 50.0
+            fill = blue
+        }
+        rect {
+            x = 50.0
+            width = 50.0
+            height = 50.0
+            fill = yellow
+        }
+    }.bindRendererOnNewCanvas()
+//sampleEnd
+}
+```
+
 ### Change lightness
 
-The `brighten()` and `darken()` functions take a single `strength` parameter (defaults to 1.0) and return a new color 
-with changed lightness. 
+The `brighten()` and `darken()` change the lightness of a given color.
 
 *You can note that `brighten(x)` is equivalent to `darken(-x)`*
 
@@ -152,8 +200,7 @@ fun main() {
 
 ### Change saturation
 
-The `saturate()` and `desaturate()` functions take a single `strength` parameter (defaults to 1.0) and return a new 
-color with changed saturation. 
+The `brighten()` and `darken()` change the saturation of a given color.
 
 *You can note that `saturate(x)` is equivalent to `desaturate(-x)`*
 
