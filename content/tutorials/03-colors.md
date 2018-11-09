@@ -134,6 +134,8 @@ hue impacts the lightness we perceived from it (the luminance).
 For example, blue and yellow seems to have very different brightness even if these 2 colors are created using 
 the same "lightness" parameter in HSL.
 
+<!-- TODO maybe image and link from here : http://www.workwithcolor.com/color-luminance-2233.htm --->
+
 The `luminance()` function returns the **perceived lightness** of a given color.
  
 The **contrast** we perceive is tightly bound to the luminance of 2 given colors, you can use the `contrast()` 
