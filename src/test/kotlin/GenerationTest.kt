@@ -12,7 +12,7 @@ class GenerationTest {
     @Test
     fun loadFiles() {
         assertTrue {
-            val articleTitles = Articles("documentation").mdFiles.map { it.title }
+            val articleTitles = Articles("tutorials").mdFiles.map { it.title }
             articleTitles.contains("Let's start")
         }
     }

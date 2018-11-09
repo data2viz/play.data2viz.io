@@ -9,6 +9,8 @@ export class D2VKotlinEditors {
         this.setEditors(kotlinEditors)
 
         this.setListenerForEditorsAutoExecution()
+
+        this.runVisibleEditors()
     }
 
     private editors: Editor[] = []
@@ -28,11 +30,15 @@ export class D2VKotlinEditors {
 
     private setListenerForEditorsAutoExecution() {
         addScrollEventListener(() => {
-            for(const editor of this.editors) {
-                if(editor.isOnScreen && editor.hasNotBeenExecuted) {
-                    editor.execute()
-                }
-            }
+            this.runVisibleEditors()
         })
+    }
+
+    private runVisibleEditors() {
+        for(const editor of this.editors) {
+            if(editor.isOnScreen && editor.hasNotBeenExecuted) {
+                editor.execute()
+            }
+        }
     }
 }
