@@ -29,8 +29,7 @@ code {
 
 h1 {
   @include font-xxl;
-  color: $color-main;
-  //color: black;
+  //color: $color-main;
   padding-bottom: 0.25em;
   border-bottom: solid 1px;
 }
@@ -39,10 +38,12 @@ h2 {
   @include font-xl;
   padding-bottom: 0.25em;
   border-bottom: solid 1px;
+  color: $color-main-light;
 }
 
 h3 {
   @include font-l;
+  color: $color-main-light;
 }
 
 h4 {
