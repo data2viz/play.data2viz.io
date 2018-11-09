@@ -19,6 +19,8 @@ $break-point-md: ( $min-width * strip-units($font-size) ) / $browser-s-default-f
 $color-main: $blue;
 $color-main-dark-extra:   hsl(243, 25%, 20%);
 $color-main-dark:         hsl(243, 15%, 30%);
+$color-main-medium:       hsl(243, 15%, 40%);
+$color-main-medium-light: hsl(243, 15%, 50%);
 $color-main-light:        hsl(243, 20%, 60%);
 $color-main-light-extra:  hsl(243, 15%, 80%);
 

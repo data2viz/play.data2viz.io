@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   @include font-init;
-  color: $color-main-dark;
+  color: $color-main-dark-extra;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -29,7 +29,7 @@ code {
 
 h1 {
   @include font-xxl;
-  //color: $color-main;
+  color: $color-main-medium;
   padding-bottom: 0.25em;
   border-bottom: solid 1px;
 }
@@ -38,12 +38,12 @@ h2 {
   @include font-xl;
   padding-bottom: 0.25em;
   border-bottom: solid 1px;
-  color: $color-main-light;
+  color: $color-main-medium;
 }
 
 h3 {
   @include font-l;
-  color: $color-main-light;
+  color: $color-main-medium;
 }
 
 h4 {
