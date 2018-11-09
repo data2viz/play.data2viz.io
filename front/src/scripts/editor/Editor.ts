@@ -85,11 +85,11 @@ export class Editor {
                             [
                                 createHTMLElement(
                                     "div",
-                                    "ctrl + r : run"
+                                    "CTRL + R : run"
                                 ),
                                 createHTMLElement(
                                     "div",
-                                    "ctrl + space : code completion"
+                                    "CTRL + SPACE : code completion"
                                 )
                             ],
                             this.SHORTCUT_INFO_CLASSNAME
