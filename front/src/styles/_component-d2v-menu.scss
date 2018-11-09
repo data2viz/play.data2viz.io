@@ -19,8 +19,8 @@
         display: block;
         position: absolute;
         top: 50%;
-        left: -$menu-padding;
-        transform: translateX(0) translateY(-50%);
+        right: -$menu-padding;
+        transform: translateX(0) translateY(-33%);
         width: 0.4em;
         height: 0.4em;
         background-color: $color-secondary;
