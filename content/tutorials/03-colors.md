@@ -1,9 +1,14 @@
 # Colors and gradients
 
-Colors are used everywhere in dataviz. So let's have a look at how you can use them inside data2viz.
+Colors are used everywhere in data visualizations and -as a way of displaying data- they need to 
+be chosen with care to ensure that the perception we have of the color carry the right information to your audience.
 
-Colors are managed in there own module. You have to import the dependency inside your project 
-(`io.data2viz.color`) and in the import directive in your code.
+That's why data2viz provides a lot of helpful functions to create several colors and gradients and still maintain 
+a high level of readability and accessibility in your visuals.
+
+In data2viz, colors are managed in there own module:
+- import the dependency inside your project (`io.data2viz.color`)
+- add the import directive in your code (`import io.data2viz.color.*`)
 
 
 ## Color creation
@@ -50,13 +55,13 @@ fun main() {
     viz {
         rect {
             size = Size(50.0, 50.0)
-            fill = 0x87ceeb.color      // <- Int extension val
+            fill = 0x87ceeb.color           // <- Int extension val
                 
         }
         rect {
             x = 50.0
             size = Size(50.0, 50.0)
-            fill = "#800080".color     // <- String extension val
+            fill = "#800080".color          // <- String extension val
         }
 
     }.bindRendererOnNewCanvas()
@@ -67,13 +72,13 @@ fun main() {
 You can also use the values from 0 to 255 of the **RGB** channels to create a color calling 
 `Colors.rgb`. 
 
-Beside **RGB**, *data2viz* allows you to use different color spaces to create colors: 
-  - **HSL** (Hue, Saturation, Luminosity), 
-  - **HCL** (Hue, Chroma, Luminance) and
+Beside **RGB**, data2viz allows you to use different color spaces to create colors: 
+  - **HSL** (Hue, Saturation, Lightness), 
+  - **HCL** (Hue, Chroma, Lightness) and
   - **LAB** (also known as CIE Lab). 
   
 For each of them a factory function is available in `Colors`, taking
-the transparency alpha as a last parameter with a default value of 1.0 (opaque).
+the transparency alpha as a last parameter with a default value of 100% (opaque).
 
 ```height=50
 import io.data2viz.color.*
@@ -107,7 +112,7 @@ fun main() {
         rect {
             x = 200.0
             size = Size(50.0, 50.0)
-            fill = Colors.lab(30.83, 26.05, -42.08)          // <- LAC (CIE) color space
+            fill = Colors.lab(30.83, 26.05, -42.08)          // <- LAB color space
         }
     }.bindRendererOnNewCanvas()
     //sampleEnd
@@ -124,16 +129,17 @@ Data2viz provides several functions to manipulate colors based on **color percep
 ### Luminance & Contrast
 
 Some color spaces like LAB or LCH use a parameter to determine the "lightness" of a color, but the 
-hue of impacts the lightness we perceived from it (the luminance). 
+hue impacts the lightness we perceived from it (the luminance). 
 
 For example, blue and yellow seems to have very different brightness even if these 2 colors are created using 
-the same "lightness" parameter.
+the same "lightness" parameter in HSL.
 
 The `luminance()` function returns the **perceived lightness** of a given color.
  
-The `contrast()` function returns the **contrast ratio** of 2 colors. If this ratio is over 4.5 
-the 2 colors are considered contrasted enough to allow readability. The `isContrastOk()` function allows you to 
-check it.
+The **contrast** we perceive is tightly bound to the luminance of 2 given colors, you can use the `contrast()` 
+function to compute the *perceived contrast ratio* of 2 colors. 
+
+*Check the [WCAG](https://www.w3.org/TR/WCAG20/#contrast-ratiodef) for more info about contrast and readability.*
 
 ```height=50
 import io.data2viz.viz.*
@@ -146,10 +152,11 @@ fun main() {
     val blue = Colors.hsl(240.deg, 1.0, 0.5)             // blue hue     50% lightness
     val yellow = Colors.hsl(60.deg, 1.0, 0.5)            // yellow hue   50% lightness
 
-    println("Blue perceived lightness = ${blue.luminance()}")
+    println("Blue: input lightness = ${blue.l}")
+    println("Blue: perceived lightness = ${blue.luminance()}")
+    println("Yellow: input lightness = ${yellow.l}")
     println("Yellow perceived lightness = ${yellow.luminance()}")
     println("Blue / Yellow contrast ratio = ${blue.contrast(yellow)}")
-    println("Is Blue over Yellow contrasted enough? ${blue.isContrastOk(yellow)}")
 
     viz {
         rect {
@@ -168,11 +175,9 @@ fun main() {
 }
 ```
 
-### Change lightness
+### Change brightness
 
-The `brighten()` and `darken()` change the lightness of a given color.
-
-*You can note that `brighten(x)` is equivalent to `darken(-x)`*
+The `brighten()` and `darken()` allows you to easily change the brightness of a given color.
 
 ```height=50
 import io.data2viz.viz.*
@@ -184,13 +189,13 @@ fun main() {
 //sampleStart
     viz {
         size = Size(600.0, 50.0)
-        val myColor = Colors.hsl(260.deg, 0.5, 0.5)
-        (0..6).forEach {
+        val myColor = Colors.hsl(260.deg, 1.0, .1)
+        (0..10).forEach {
             rect {
                 x = it * 50.0
                 width = 50.0
                 height = 50.0
-                fill = myColor.brighten(it - 3.0)
+                fill = myColor.brighten(it / 2.0)
             }
         }
     }.bindRendererOnNewCanvas()
@@ -200,9 +205,7 @@ fun main() {
 
 ### Change saturation
 
-The `brighten()` and `darken()` change the saturation of a given color.
-
-*You can note that `saturate(x)` is equivalent to `desaturate(-x)`*
+The `saturate()` and `desaturate()` functions allows you to easily change the saturation of a given color.
 
 ```height=50
 import io.data2viz.viz.*
@@ -214,13 +217,13 @@ fun main() {
 //sampleStart
     viz {
         size = Size(600.0, 50.0)
-        val myColor = Colors.hsl(260.deg, 0.5, 0.5)
-        (0..6).forEach {
+        val myColor = Colors.hsl(240.deg, 1.0, .5)
+        (0..7).forEach {
             rect {
                 x = it * 50.0
                 width = 50.0
                 height = 50.0
-                fill = myColor.saturate(it - 3.0)
+                fill = myColor.desaturate(it.toDouble())
             }
         }
     }.bindRendererOnNewCanvas()
@@ -243,8 +246,8 @@ shapes using it.*
 
 A Linear gradient can be easily created using the `Colors.Gradient.linear()` builder.
 
- * `start`: Point, starting point of the gradient
- * `end`: Point, ending point of the gradient
+ * `start`: starting point of the gradient
+ * `end`: ending point of the gradient
  
  Next you call `withColor()` given a Color and a percentage to set the base color then add any number of `ColorStop` 
  using `andColor()`.
@@ -263,9 +266,9 @@ fun main() {
         size = Size(800.0, 100.0)
         
         val linearGradient = Colors.Gradient.linear(Point(.0, .0), Point(800.0, .0))
-                   .withColor(Colors.Web.hotpink, .2)             // under 20% the gradient color is "hot pink"
-                   .andColor(Colors.Web.blueviolet, .5)           // middle of the gradient (50%) is "blue violet"
-                   .andColor(Colors.Web.skyblue, .8)              // from 80% the gradient color is "sky blue"
+                   .withColor(Colors.Web.hotpink, .2)          // under 20% color is "hot pink"
+                   .andColor(Colors.Web.blueviolet, .5)        // middle (50%) is "blue violet"
+                   .andColor(Colors.Web.skyblue, .8)           // from 80% color is "sky blue"
         
         line {
             x1 = 100.0
@@ -300,8 +303,8 @@ fun main() {
  
 If you want to paint a shape using a radial gradient, use the `Colors.Gradient.radial()` builder.
  
- * `center`: Point, starting point of the gradient
- * `radius`: Double, radius of the gradient
+ * `center`: starting point of the gradient
+ * `radius`: radius of the gradient
  
 Next you call `withColor()` given a Color and a percentage to set the base color then add any number of `ColorStop` 
 using `andColor()`.
