@@ -1,9 +1,9 @@
-import {addScrollEventListener} from "./addScrollEventListener"
-import {getPageScrollPositionTop} from "./getPageScrollPositionTop"
-import {HTML_SELECTORS} from "./HTML_SELECTORS"
+import {addScrollEventListener} from "../addScrollEventListener"
+import {getPageScrollPositionTop} from "../getPageScrollPositionTop"
+import {HTML_SELECTORS} from "../HTML_SELECTORS"
 
 
-export function menuPositionObserver(referenceElementForFixedMenu: HTMLElement, topElementFixedOverMenu?: HTMLElement) {
+export function setMenuPosition(referenceElementForFixedMenu: HTMLElement, topElementFixedOverMenu?: HTMLElement) {
 
     const FIXED_MENU_CLASS_NAME = "menu-fixed"
 

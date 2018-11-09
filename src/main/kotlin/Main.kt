@@ -78,7 +78,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                 <div id="current-section-name"></div>
                                 <div class="left">
                                     <a href='/' class="d2v-link">
-                                        <img src="/images/logo-play.png" class="logo">
+                                        <img src="/images/logo-play-io_all_min-color_variation-v3.png" class="logo">
                                     </a>
                                 </div>
                                 <div class="right">
