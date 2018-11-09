@@ -160,14 +160,12 @@ fun main() {
 
     viz {
         rect {
-            width = 50.0
-            height = 50.0
+            size = Size(50.0, 50.0)
             fill = blue
         }
         rect {
             x = 50.0
-            width = 50.0
-            height = 50.0
+            size = Size(50.0, 50.0)
             fill = yellow
         }
     }.bindRendererOnNewCanvas()
@@ -193,8 +191,7 @@ fun main() {
         (0..10).forEach {
             rect {
                 x = it * 50.0
-                width = 50.0
-                height = 50.0
+                size = Size(50.0, 50.0)
                 fill = myColor.brighten(it / 2.0)
             }
         }
@@ -221,8 +218,7 @@ fun main() {
         (0..7).forEach {
             rect {
                 x = it * 50.0
-                width = 50.0
-                height = 50.0
+                size = Size(50.0, 50.0)
                 fill = myColor.desaturate(it.toDouble())
             }
         }
