@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   @include font-init;
-  color: $color-main-dark-extra;
+  color: $color-main-dark;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -29,21 +29,14 @@ code {
 
 h1 {
   @include font-xxl;
-  color: $color-main-medium;
-  padding-bottom: 0.25em;
-  border-bottom: solid 1px;
 }
 
 h2 {
   @include font-xl;
-  padding-bottom: 0.25em;
-  border-bottom: solid 1px;
-  color: $color-main-medium;
 }
 
 h3 {
   @include font-l;
-  color: $color-main-medium;
 }
 
 h4 {
@@ -59,7 +52,7 @@ h6 {
 }
 
 a {
-  color: $color-main;
+  color: inherit;
   text-decoration: none;
   border-bottom: solid 1px rgba($color-main, 0);
 }
