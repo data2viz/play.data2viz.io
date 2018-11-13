@@ -27,12 +27,26 @@ export class Editor {
 
                     if(codeArea !== null && codeArea instanceof HTMLElement) {
                         this._codeArea = codeArea
+
+                        const codeMirrorStyleElement = codeArea.querySelector(".CodeMirror") as HTMLDivElement
+
+                        const editorThemeClassname = Editor.getCookie("theme");
+                        if(editorThemeClassname) {
+                            codeMirrorStyleElement.classList.add(`cm-s-${editorThemeClassname}`)
+                        }
                     }
                 }
 
                 resolve( this )
             })
         })
+    }
+
+    private static getCookie(name: string) {
+        const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+
+        if (match) return match[2];
+        else return null
     }
 
     private _kotlinEditorContainer?: HTMLElement

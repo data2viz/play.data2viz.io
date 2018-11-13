@@ -1,11 +1,6 @@
 package io.data2viz.play
 
-import io.ktor.application.Application
-import io.ktor.application.call
-import io.ktor.application.install
-import io.ktor.application.log
-import io.ktor.features.CallLogging
-import io.ktor.features.Compression
+import io.ktor.application.*
 import io.ktor.html.respondHtml
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
@@ -37,6 +32,9 @@ val tutorials = Articles("tutorials")
 fun Application.mainModule() {
     routing {
         trace { application.log.trace(it.buildText()) }
+        intercept(ApplicationCallPipeline.Features) {
+            call.response.cookies.append("theme", call.request.queryParameters["theme"] ?: "idea")
+        }
         tutorials.mdFiles.forEach { docFile ->
             get(docFile.url) {
                 call.respondHtml {
