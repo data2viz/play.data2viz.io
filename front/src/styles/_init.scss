@@ -7,7 +7,7 @@ body {
   margin: 0;
   padding: 0;
   @include font-init;
-  color: $color-main-dark;
+  color: $color-main-dark-extra;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
