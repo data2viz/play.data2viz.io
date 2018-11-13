@@ -6,12 +6,11 @@ The scale transforms your input, which is called the **domain**, to an output ca
 
 There are several types of scales, depending you work with discrete or continuous domain and range:
 
-| Domain |  Range |  Scale |
-|:---:|:---:|:---:|
-| Continuous | Continuous  |  Continuous |
-|  Discrete |  Continuous | Band |
-| Continuous  | Discrete  |  Quantize |
-| Discrete  | Discrete  |  Ordinal |
+| Domain |  Range |  Scales | Example of use |
+|:---:|:---:|:---:|:---:|
+| Continuous | Continuous  |  Linear, Log, Time... | Place points on a line chart |
+| Continuous  | Discrete  |  Quantize | Create a non-linear color scale for a [chloropeth map](https://en.wikipedia.org/wiki/Choropleth_map) |
+| Discrete  | Discrete  |  Point, Band | Place bars on a column chart |
 
 
 ## Scale creation
