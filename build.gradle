@@ -10,11 +10,14 @@ buildscript {
 
 plugins {
     id 'java'
+    id 'application'
     id 'org.jetbrains.kotlin.jvm' version '1.3.0'
 }
 
 
 group 'io.data2viz'
+
+mainClassName = 'io.data2viz.play.MainKt'
 
 sourceCompatibility = 1.8
 
