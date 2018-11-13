@@ -143,35 +143,51 @@ function to compute the *perceived contrast ratio* of 2 colors.
 
 *Check the [WCAG](https://www.w3.org/TR/WCAG20/#contrast-ratiodef) for more info about contrast and readability.*
 
-```height=50
+```width=800 height=250
 import io.data2viz.viz.*
 import io.data2viz.color.*
 import io.data2viz.geom.*
 import io.data2viz.math.*
 
 fun main() {
-//sampleStart
-    val blue = Colors.hsl(240.deg, 1.0, 0.5)             // blue hue     50% lightness
-    val yellow = Colors.hsl(60.deg, 1.0, 0.5)            // yellow hue   50% lightness
-
-    println("Blue: input lightness = ${blue.l}")
-    println("Blue: perceived lightness = ${blue.luminance()}")
-    println("Yellow: input lightness = ${yellow.l}")
-    println("Yellow perceived lightness = ${yellow.luminance()}")
-    println("Blue / Yellow contrast ratio = ${blue.contrast(yellow)}")
-
     viz {
-        rect {
-            size = Size(50.0, 50.0)
-            fill = blue
+        size = Size(800.0, 250.0)
+        //sampleStart
+        (0 until 360 step 30).forEach {
+            val angle = it.deg
+            val position = Point(250 + angle.sin * 100, 125 + angle.cos * 100)
+            val color = Colors.hsl(angle, 1.0, 0.5)
+            circle {                    // draw a circle with "pure-color" 
+                fill = color
+                radius = 24.0
+                x = position.x
+                y = position.y
+            }
+            circle {                    // draw a circle with the desaturated color
+                fill = color.desaturate(10.0)
+                radius = 24.0
+                x = position.x + 270
+                y = position.y
+            }
+            text {                      // indicate the perceived lightness of the color
+                x = position.x - 8
+                y = position.y + 6
+                fill = Colors.Web.black                 // TODO use contrast()
+                textContent = "${angle.deg.toInt()}%"	// change to luminance()
+            }
         }
-        rect {
-            x = 50.0
-            size = Size(50.0, 50.0)
-            fill = yellow
+        //sampleEnd
+        text {
+            x = 180.0
+            y = 130.0
+            textContent = "PURE COLORS - LUMINANCE"
+        }
+        text {
+            x = 445.0
+            y = 130.0
+            textContent = "SAME COLORS DESATURATED"
         }
     }.bindRendererOnNewCanvas()
-//sampleEnd
 }
 ```
 
