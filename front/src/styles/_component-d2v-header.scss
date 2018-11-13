@@ -17,7 +17,7 @@
 
   #current-section-name {
     position: absolute;
-    color: $color-main-light;
+    color: $color-main-dark;
     top: 50%;
     @include column-skip( 3, 12);
     line-height: 2em;
