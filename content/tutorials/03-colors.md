@@ -67,7 +67,7 @@ fun main() {
 You can also use the values from 0 to 255 of the **RGB** channels to create a color calling 
 `Colors.rgb`. 
 
-Beside **RGB**, *data2viz* allows you to use different color spaces to create colors: 
+Beside **RGB**, [data2viz](https://data2viz.io) allows you to use different color spaces to create colors: 
   - **HSL** (Hue, Saturation, Luminosity), 
   - **HCL** (Hue, Chroma, Luminance) and
   - **LAB** (also known as CIE Lab). 
@@ -183,7 +183,7 @@ fun main() {
 
 ## Color gradients
 
-Most of the data2viz visual elements accepts a `ColorOrGradient` object for defining its fill color.
+Most of the [data2viz](https://data2viz.io) visual elements accepts a `ColorOrGradient` object for defining its fill color.
 
 A gradient is defined by giving at least 2 `ColorStop`, each corresponding to a color and its position along 
 the gradient (in percentage).
