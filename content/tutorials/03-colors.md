@@ -13,7 +13,9 @@ In data2viz, colors are managed in there own module:
 
 ## Color creation
 
-The  `Colors` object will give you access to several way of having colors and gradients.
+The `Colors` object will give you access to several way of having colors and gradients.
+
+### Web colors
 
 The first option is to use a named color. All the CSS colors are accessible through
 the `Colors.Web` object. 
@@ -40,6 +42,8 @@ fun main() {
     //sampleEnd
 }
 ```
+
+### Hex colors
 
 Another usual option to create a color is through its **hexadecimal** code. You have
 2 extension vals to help you create a color from Int and String.
@@ -68,6 +72,8 @@ fun main() {
     //sampleEnd
 }
 ```
+
+### Color spaces
 
 You can also use the values from 0 to 255 of the **RGB** channels to create a color calling 
 `Colors.rgb`. 
@@ -120,8 +126,6 @@ fun main() {
  
 ```
 
-
-
 ## Color manipulation
 
 Data2viz provides several functions to manipulate colors based on **color perception**.
@@ -168,8 +172,10 @@ fun main() {
                 y = position.y
             }
             text {                      // indicate the perceived lightness of the color
-                x = position.x - 8
-                y = position.y + 6
+                x = position.x
+                y = position.y
+                baseline = TextAlignmentBaseline.MIDDLE
+                anchor = TextAnchor.MIDDLE
                 fill = Colors.Web.black                 // TODO use contrast()
                 textContent = "${angle.deg.toInt()}%"	// change to luminance()
             }
