@@ -153,7 +153,7 @@ fun main() {
         //sampleStart
         (0 until 360 step 30).forEach {
             val angle = it.deg
-            val position = Point(250 + angle.sin * 100, 125 + angle.cos * 100)
+            val position = Point(250 + angle.cos * 100, 125 + angle.sin * 100)
             val color = Colors.hsl(angle, 1.0, 0.5)
             circle {                    // draw a circle with "pure-color" 
                 fill = color
