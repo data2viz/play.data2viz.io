@@ -243,9 +243,9 @@ fun main() {
 }
 ```
 
-## Color gradients
+## Gradients
 
-Most of the data2viz visual elements accepts a `ColorOrGradient` object for defining its fill color.
+Most of the data2viz visual elements accepts a `ColorOrGradient` object for its fill color.
 
 A gradient is defined by giving at least 2 `ColorStop`, each corresponding to a color and its position along 
 the gradient (in percentage).
@@ -278,9 +278,9 @@ fun main() {
         size = Size(800.0, 100.0)
         
         val linearGradient = Colors.Gradient.linear(Point(.0, .0), Point(800.0, .0))
-                   .withColor(Colors.Web.hotpink, .2)          // under 20% color is "hot pink"
-                   .andColor(Colors.Web.blueviolet, .5)        // middle (50%) is "blue violet"
-                   .andColor(Colors.Web.skyblue, .8)           // from 80% color is "sky blue"
+           .withColor(Colors.Web.hotpink, .2)          // under 20% color is "hot pink"
+           .andColor(Colors.Web.blueviolet, .5)        // middle (50%) is "blue violet"
+           .andColor(Colors.Web.skyblue, .8)           // from 80% color is "sky blue"
         
         line {
             x1 = 100.0
@@ -330,8 +330,8 @@ using `andColor()`.
 fun main() {
     //sampleStart
     val radialGradient = Colors.Gradient.radial(Point(400.0, 100.0), 100.0)
-        .withColor(Colors.Web.hotpink, .0)              // gradient start (center - 0%) with "hot pink"
-        .andColor(Colors.Web.skyblue, 1.0)              // end of the gradient (100% and more) "is sky blue"
+        .withColor(Colors.Web.hotpink, .0)       // gradient center (0%) is "hot pink"
+        .andColor(Colors.Web.skyblue, 1.0)       // gradient end (100%) "is sky blue"
     viz {
         size = Size(800.0, 200.0)
         circle {
