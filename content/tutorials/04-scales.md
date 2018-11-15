@@ -8,21 +8,20 @@ There are several types of scales, depending you work with discrete or continuou
 
 | Domain |  Range |  Scales | Example of use |
 |:---:|:---:|:---:|:---:|
-| Continuous | Continuous  | **[Continuous](#continuous-scales)**: Linear, Log, Time... | Place points on a line chart |
-| Discrete  | Discrete  |  **[Ordinal](#ordinal-scales)**: Point, Band | Place bars on a column chart |
-| Continuous  | Discrete  |  **[Other](#other-scales)**: Quantize, Threshold, Quantile | Create a non-linear color scale for a [chloropeth map](https://en.wikipedia.org/wiki/Choropleth_map) |
+| Continuous | Continuous  | **[Scales.Continuous.*](#continuous-scales)** Linear, Log, Time... | Place points on a line chart |
+| Continuous  | Discrete  |  **[Scales.Quantized.*](#quantized-scales)** Quantize, Threshold, Quantile | Create a non-linear color scale for a [chloropeth map](https://en.wikipedia.org/wiki/Choropleth_map) |
+| Discrete  | Discrete  |  **[Scales.Discrete.*](#discrete-scales)** Point, Band | Place bars on a column chart |
 
 ## Continuous scales
 
 Continuous scales map a continuous, quantitative input domain to a continuous output range.
 
-A continuous scale is not constructed directly; instead, try a [linear](#linear-color-scales), 
-[color](#linear-color-scales),
+A continuous scale is not constructed directly; instead, try a [linear](#linear-scale), 
 [power](#power-and-log-scales), 
 [log](#power-and-log-scales), 
-or [time](#time-scales) scale.
+or [time](#time-scale) scale.
 
-### Linear numeric scales
+### Linear scale
 
 Linear scale is the standard continuous scale, it maps a continuous domain to a continuous range. 
 
@@ -72,7 +71,7 @@ fun main() {
 }
 ```
 
-### Linear color scales
+### Linear color scale
 
 The scale needs an color **interpolator**. You can use pre-parameterized color scales  
 with the factories in `Scales.Continuous.Colors.*`:
@@ -121,10 +120,10 @@ fun main() {
 
 ### Power and Log scales
 
-**Power scales** are linear scales with an exponential transforms applied to the input, the **exponent** is defined
+**Power scale** are linear scales with an exponential transforms applied to the input, the **exponent** is defined
 when creating the scale (defaults to 1).
 
-**Log scales** are linear scales with a logarithmic transforms applied to the input. The logarithm **base** 
+**Log scale** are linear scales with a logarithmic transforms applied to the input. The logarithm **base** 
 is set when creating the scale (defaults to 10).
 
 *Note : As log(0) = -∞, a log scale domain must be strictly-positive or strictly-negative.*
@@ -166,7 +165,7 @@ fun main() {
 }
 ```
 
-### Time scales
+### Time scale
 
 Time scales are a variant of linear scales that have a temporal domain: domain values are coerced to dates rather 
 than numbers, and invert likewise returns a date.
@@ -222,62 +221,9 @@ fun main() {
 }
 ```
 
-## Ordinal scales
+## Quantized scales
 
-Ordinal scales (or category scales) map a discrete domain to a discrete range. An ordinal scale might map a set 
-of objects to a set of colors, or to the horizontal positions of columns in a column chart.
-
-You can find factories for creating ordinal scale in `Scales.Ordinal.*` object.
-
-<!--- TODO note on "implicit domain" --->
-
-*Note: domain objects will be mapped to range objects in the specified order, if there is more objects in domain than 
-range, the scale will reuse objects from the start of the range.*
-                                                          
-### Ordinal color scales
-
-These scales are meant to map colors to different categories.
- 
-To mark the difference between comparable objects (where we would use gradients of colors) these scales propose 
-some color schemes with very distinct colors.
-
-To create a category color scale, use some of the functions in `Scales.Ordinal.*`.
-
-```height=50 width=800
-import io.data2viz.color.*
-import io.data2viz.scale.*
-import io.data2viz.geom.*
-import io.data2viz.viz.*
-
-fun main() {
-    //sampleStart
-    // scale category20 provides a set of 20 very distinct colors
-    val scale = scales.colors.category20<Int> { domain = (0 until 20).toList() }
-    viz {
-        size = Size(800.0, 50.0)
-        scale.domain.forEach { 
-            rect {
-                x = it * 31.0
-                size = Size(30.0, 50.0)
-                fill = scale(it)
-            }
-            text {
-                x = 15 + it * 31.0
-                y = 25.0
-                fill = Colors.Web.black
-                baseline = TextAlignmentBaseline.MIDDLE
-                anchor = TextAnchor.MIDDLE
-                textContent = "$it"
-            }
-        }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
-}
-```
-
-## Other scales
-
-### Quantize scales
+### Quantize scale
 
 Quantize scales are similar to linear scales, except they use a discrete rather than continuous range. 
 
@@ -329,7 +275,7 @@ fun main() {
 }
 ```
 
-### Threshold scales
+### Threshold scale
 
 A threshold scale is similar to a quantize scale, except that you define the subsets, they are not automatically 
 computed by dividing the domain by the size of the range list.
@@ -378,7 +324,7 @@ fun main() {
 }
 ```
 
-### Quantile scales
+### Quantile scale
 
 A quantile scale use [quantile distribution](https://en.wikipedia.org/wiki/Quantile) to divide your domain objects 
 into your range. As quantile distribution implies, objects should be distributed equally (in term of cardinality) 
@@ -419,6 +365,60 @@ fun main() {
                 baseline = TextAlignmentBaseline.MIDDLE
                 anchor = TextAnchor.MIDDLE
                 textContent = "$domainValue"
+            }
+        }
+    }.bindRendererOnNewCanvas()
+    //sampleEnd
+}
+```
+
+
+## Discrete scales
+
+Ordinal scales (or category scales) map a discrete domain to a discrete range. An ordinal scale might map a set 
+of objects to a set of colors, or to the horizontal positions of columns in a column chart.
+
+You can find factories for creating ordinal scale in `Scales.Ordinal.*` object.
+
+<!--- TODO note on "implicit domain" --->
+
+*Note: domain objects will be mapped to range objects in the specified order, if there is more objects in domain than 
+range, the scale will reuse objects from the start of the range.*
+                                                          
+### Discrete color scale
+
+These scales are meant to map colors to different categories.
+ 
+To mark the difference between comparable objects (where we would use gradients of colors) these scales propose 
+some color schemes with very distinct colors.
+
+To create a category color scale, use some of the functions in `Scales.Ordinal.*`.
+
+```height=50 width=800
+import io.data2viz.color.*
+import io.data2viz.scale.*
+import io.data2viz.geom.*
+import io.data2viz.viz.*
+
+fun main() {
+    //sampleStart
+    // scale category20 provides a set of 20 very distinct colors
+    val scale = scales.colors.category20<Int> { domain = (0 until 20).toList() }
+    viz {
+        size = Size(800.0, 50.0)
+        scale.domain.forEach { 
+            rect {
+                x = it * 31.0
+                size = Size(30.0, 50.0)
+                fill = scale(it)
+            }
+            text {
+                x = 15 + it * 31.0
+                y = 25.0
+                fill = Colors.Web.black
+                baseline = TextAlignmentBaseline.MIDDLE
+                anchor = TextAnchor.MIDDLE
+                textContent = "$it"
             }
         }
     }.bindRendererOnNewCanvas()
