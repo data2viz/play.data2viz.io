@@ -1,8 +1,9 @@
 @import "_params";
 
+$left-width: 6em;
+
 //todo set variables
 @mixin d2v-note-default {
-  $left-width: 3em;
 
   position: relative;
   background: #F7F7FA;
@@ -14,10 +15,12 @@
   line-height: 1.6em;
 
   &:before {
+    text-align: right;
     width: $left-width;
     display: block;
     content: "note";
     position: absolute;
+    padding-right: $gutter-width / 2;
     left: 0;
     top: 50%;
     transform: translate(-100%, -50%);
@@ -27,8 +30,6 @@
 }
 
 @mixin d2v-note-info {
-  $left-width: 2.7em;
-
   @include d2v-note-default;
   background: #F5F5FC;
   margin-left: $left-width;
@@ -41,8 +42,6 @@
 }
 
 @mixin d2v-note-warning {
-  $left-width: 5em;
-
   @include d2v-note-default;
   background: #FCF5F5;
   margin-left: $left-width;
