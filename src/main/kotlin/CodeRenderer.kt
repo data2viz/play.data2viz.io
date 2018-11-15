@@ -1,6 +1,7 @@
 package io.data2viz.play
 
 import org.commonmark.ext.heading.anchor.HeadingAnchorExtension
+import org.commonmark.ext.gfm.tables.TablesExtension
 import org.commonmark.node.*
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.CoreHtmlNodeRenderer
