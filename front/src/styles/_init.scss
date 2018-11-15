@@ -1,5 +1,6 @@
 @import "_params";
 @import "_params-fonts";
+@import "ui-blockquote";
 
 html,
 body {
@@ -19,6 +20,17 @@ code {
   @include font-reg;
 
   & & {
+    font-size: 1em;
+  }
+}
+
+blockquote {
+  @include d2v-blockquote;
+
+  p,
+  ul,
+  ol,
+  code {
     font-size: 1em;
   }
 }

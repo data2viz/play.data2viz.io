@@ -124,7 +124,7 @@ fun main() {
 The `brighten()` and `darken()` functions take a single `strength` parameter (defaults to 1.0) and return a new color 
 with changed lightness. 
 
-*You can note that `brighten(x)` is equivalent to `darken(-x)`*
+> You can note that `brighten(x)` is equivalent to `darken(-x)`
 
 ```height=50
 import io.data2viz.viz.*
@@ -155,7 +155,7 @@ fun main() {
 The `saturate()` and `desaturate()` functions take a single `strength` parameter (defaults to 1.0) and return a new 
 color with changed saturation. 
 
-*You can note that `saturate(x)` is equivalent to `desaturate(-x)`*
+>You can note that `saturate(x)` is equivalent to `desaturate(-x)`
 
 ```height=50
 import io.data2viz.viz.*
@@ -188,8 +188,7 @@ Most of the [data2viz](https://data2viz.io) visual elements accepts a `ColorOrGr
 A gradient is defined by giving at least 2 `ColorStop`, each corresponding to a color and its position along 
 the gradient (in percentage).
 
-*Note that the gradient positioning (as defined by its `ColorStop`) is absolute, not relative to the positions of the 
-shapes using it.*
+> Note that the gradient positioning (as defined by its `ColorStop`) is absolute, not relative to the positions of the shapes using it.
 
 
 ### Linear gradient

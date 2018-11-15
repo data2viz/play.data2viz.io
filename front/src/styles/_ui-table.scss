@@ -1,7 +1,8 @@
+//todo set variables
 @mixin d2v-table {
   border-collapse: collapse;
-  border: solid 1px hsla(240, 20%, 75%, 1);
-  box-shadow: 0 5px 20px -5px hsla(240, 60%, 30%, 0.15);
+  border: solid 1px hsla(240, 20%, 75%, 0.25);
+  box-shadow: 0 5px 10px -5px hsla(240, 50%, 60%, 0.15);
   border-radius: 5px;
   display: block;
   overflow: hidden;
@@ -9,7 +10,7 @@
 
   thead {
     background-color: hsla(240, 25%, 97%, 1);
-    border-bottom: solid 1px hsl(240, 20%, 75%);
+    border-bottom: solid 1px hsla(240, 20%, 75%, 0.25);
   }
 
   th, td {
@@ -19,6 +20,6 @@
   }
 
   tr + tr {
-    border-top: solid 1px hsl(240, 20%, 75%);
+    border-top: solid 1px hsla(240, 20%, 75%, 0.25);
   }
 }
