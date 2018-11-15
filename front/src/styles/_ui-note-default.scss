@@ -22,8 +22,8 @@ $left-width: 6em;
     position: absolute;
     padding-right: $gutter-width / 2;
     left: 0;
-    top: 50%;
-    transform: translate(-100%, -50%);
+    top: $gutter-width / 2;
+    transform: translate(-100%);
     color: #737380;
     font-weight: 700;
   }
