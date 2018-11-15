@@ -52,6 +52,10 @@ ul.menu,
     > * {
       display: inline-block;
     }
+
+    ul {
+      display: block;
+    }
   }
 
   > * + *:not(.no-marge),
