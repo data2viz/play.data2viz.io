@@ -17,7 +17,7 @@
 
   #current-section-name {
     position: absolute;
-    color: $color-main-light;
+    color: $color-main-dark;
     top: 50%;
     @include column-skip( 3, 12);
     line-height: 2em;
@@ -64,7 +64,7 @@
     }
   }
   .link-icon {
-    fill: $color-main-light;
+    fill: $color-main-light-extra;
   }
   [class*=d2v-link]:hover {
     .link-icon {
