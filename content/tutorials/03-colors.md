@@ -161,13 +161,13 @@ fun main() {
             val color = Colors.hsl(angle, 1.0, 0.5)
             circle {                    // draw a circle with "pure-color" 
                 fill = color
-                radius = 24.0
+                radius = 25.0
                 x = position.x
                 y = position.y
             }
             circle {                    // draw a circle with the desaturated color
                 fill = color.desaturate(10.0)
-                radius = 24.0
+                radius = 25.0
                 x = position.x + 270
                 y = position.y
             }
@@ -182,13 +182,17 @@ fun main() {
         }
         //sampleEnd
         text {
-            x = 180.0
-            y = 130.0
+            x = 250.0
+            y = 125.0
+            baseline = TextAlignmentBaseline.MIDDLE
+            anchor = TextAnchor.MIDDLE
             textContent = "PURE COLORS - LUMINANCE"
         }
         text {
-            x = 445.0
-            y = 130.0
+            x = 520.0
+            y = 125.0
+            baseline = TextAlignmentBaseline.MIDDLE
+            anchor = TextAnchor.MIDDLE
             textContent = "SAME COLORS DESATURATED"
         }
     }.bindRendererOnNewCanvas()
