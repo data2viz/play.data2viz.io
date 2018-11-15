@@ -1,10 +1,10 @@
 @import "_params";
 
-//$left-width: 6em;
+$left-width: 6em;
 
 //todo set variables
 @mixin d2v-note-default {
-  $left-width: 3em;
+  //$left-width: 3em;
 
   position: relative;
   background: #F7F7FA;
@@ -25,13 +25,13 @@
     transform: translate(-100%);
     color: #737380;
     font-weight: 700;
-    //text-align: right;
-    //padding-right: $gutter-width / 2;
+    text-align: right;
+    padding-right: $gutter-width / 2;
   }
 }
 
 @mixin d2v-note-info {
-  $left-width: 2.7em;
+  //$left-width: 2.7em;
 
   @include d2v-note-default;
   background: #F5F5FC;
@@ -45,7 +45,7 @@
 }
 
 @mixin d2v-note-warning {
-  $left-width: 5em;
+  //$left-width: 5em;
 
   @include d2v-note-default;
   background: #FCF5F5;
