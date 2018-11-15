@@ -1,11 +1,6 @@
 package io.data2viz.play
 
-import io.ktor.application.Application
-import io.ktor.application.call
-import io.ktor.application.install
-import io.ktor.application.log
-import io.ktor.features.CallLogging
-import io.ktor.features.Compression
+import io.ktor.application.*
 import io.ktor.html.respondHtml
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
@@ -37,6 +32,11 @@ val tutorials = Articles("tutorials")
 fun Application.mainModule() {
     routing {
         trace { application.log.trace(it.buildText()) }
+        intercept(ApplicationCallPipeline.Features) {
+            call.request.queryParameters["theme"]?.let {
+                call.response.cookies.append("theme", it, path = "/", maxAge = 3600 * 24 * 365)
+            }
+        }
         tutorials.mdFiles.forEach { docFile ->
             get(docFile.url) {
                 call.respondHtml {
@@ -78,7 +78,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                 <div id="current-section-name"></div>
                                 <div class="left">
                                     <a href='/' class="d2v-link">
-                                        <img src="/images/logo-play.png" class="logo">
+                                        <img src="/images/logo-play-io_all_min-color_variation-v3.png" class="logo">
                                     </a>
                                 </div>
                                 <div class="right">
@@ -101,7 +101,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                         </svg>
                                     </a>
 
-                                    <a href="https://github.com/data2viz/data2viz" class="d2v-link-ltr" target="_blank" title='view code'>
+                                    <a href="https://github.com/data2viz/data2viz" class="d2v-link" target="_blank" title='view code'>
                                         <svg id="Calque_1" data-name="Calque 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class='link-icon' viewBox="0 0 360 360">
                                           <g class="cls-2">
                                             <line class="cls-3" x1="320" y1="315" x2="2000" y2="-1365"/>

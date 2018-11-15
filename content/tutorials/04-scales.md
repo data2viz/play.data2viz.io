@@ -35,7 +35,7 @@ To create a linear scale, use the `Scales.Continuous.linear` function.
 - `range`: a **list of objects** of the same size as domain, giving the bounds of the range
 - `clamp`: do values outside of the domain should be clamped? (default to `false`)
 
-> Note: you can use `Scales.Continuous.linearRound` to get rounded scaled values.
+*Note: you can use `Scales.Continuous.linearRound` to get rounded scaled values.*
 
 ```height=50 width=800
 import io.data2viz.color.*
@@ -83,7 +83,7 @@ with the factories in `Scales.Continuous.Colors.*`:
 - `linearHSL`: linear interpolator in HSL
 - `linearHCL`: linear interpolator in HCL
 
-> Note: these color scales clamp values outside the range.
+*Note: these color scales clamp values outside the range.*
 
 ```height=50 width=800
 import io.data2viz.color.*
@@ -127,7 +127,7 @@ when creating the scale (defaults to 1).
 **Log scales** are linear scales with a logarithmic transforms applied to the input. The logarithm **base** 
 is set when creating the scale (defaults to 10).
 
-> Note : As log(0) = -∞, a log scale domain must be strictly-positive or strictly-negative.
+*Note : As log(0) = -∞, a log scale domain must be strictly-positive or strictly-negative.*
 
 To create these scales, use the `Scales.Continuous.pow` and `Scales.Continuous.log` functions.
 
@@ -231,7 +231,8 @@ You can find factories for creating ordinal scale in `Scales.Ordinal.*` object.
 
 <!--- TODO note on "implicit domain" --->
 
-> Note: domain objects will be mapped to range objects in the specified order, if there is more objects in domain than range, the scale will reuse objects from the start of the range.
+*Note: domain objects will be mapped to range objects in the specified order, if there is more objects in domain than 
+range, the scale will reuse objects from the start of the range.*
                                                           
 ### Ordinal color scales
 
@@ -283,7 +284,8 @@ Quantize scales are similar to linear scales, except they use a discrete rather 
 The continuous input domain is divided into uniform segments based on the number of values in (i.e., the 
 cardinality of) the output range.
 
-> Note: there is no value clamping so the segments may not be "uniform" as the first one accepts values down to -∞ and the last one values up to +∞*
+*Note: there is no value clamping so the segments may not be "uniform" as the first one accepts values down to -∞ 
+and the last one values up to +∞*
 
 To create a quantile scale, use the `Scales.Continuous.quantize` function.
 

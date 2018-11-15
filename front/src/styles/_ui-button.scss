@@ -15,7 +15,7 @@ button,
 }
 
 .d2v-button-transparent {
-  color: $color-main-dark;
+  color: $color-main-dark-extra;
   background-color: transparent;
 
   &:hover {
@@ -40,7 +40,7 @@ button,
     position: absolute;
     display: inline-block;
     background-color: rgba(0, 0, 0, 0.05);
-    color: black;
+    color: $color-main-dark-extra;
     z-index: 10000;
     padding: .5em;
     box-shadow: 0 5px 8px -4px rgba(0, 0, 0, 0.25);

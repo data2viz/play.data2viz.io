@@ -2,35 +2,16 @@ import {HTML_SELECTORS} from "../HTML_SELECTORS"
 import {addScrollEventListener} from "../addScrollEventListener"
 
 export function setNavigationMenu() {
-    setLevelNavOne()
-    setLevelNavTwo()
-}
+    generateListOfChapter().then((value) => {
+        updateChapterStatuInNavigationMenu(value)
 
-function setLevelNavOne() {
-    const CURRENT_SECTION_CLASSNAME = "active"
-
-    const LEVEL_ON_NAVIGATION_ELEMENTS = document.querySelectorAll(`${HTML_SELECTORS.NAVIGATION_MENU} > li > a`)
-
-    const currentTitlePage = document.querySelector("h1")
-
-    if(currentTitlePage !== null){
-        for(const level1MenuNavigationElement of LEVEL_ON_NAVIGATION_ELEMENTS) {
-            if(level1MenuNavigationElement.innerHTML === currentTitlePage.innerHTML) {
-                level1MenuNavigationElement.classList.add(CURRENT_SECTION_CLASSNAME)
-            }
-        }
-    }
-}
-
-function setLevelNavTwo() {
-    generateListOfTitleLevelTwo().then((value) => {
         addScrollEventListener(() => {
-            updateLevelTwoInNavigationMenu(value)
+            updateChapterStatuInNavigationMenu(value)
         })
     })
 }
 
-function updateLevelTwoInNavigationMenu(listOfTitleLevelTwo: TitleLevelTwo[]) {
+function updateChapterStatuInNavigationMenu(listOfTitleLevelTwo: Chapter[]) {
     let lastTitleIsNotFound = true
 
     for(const titleLevelTwo of listOfTitleLevelTwo) {
@@ -43,7 +24,7 @@ function updateLevelTwoInNavigationMenu(listOfTitleLevelTwo: TitleLevelTwo[]) {
     }
 }
 
-function generateListOfTitleLevelTwo(): Promise<TitleLevelTwo[]> {
+function generateListOfChapter(): Promise<Chapter[]> {
     return new Promise((resolve, reject) => {
         const listToReturn = []
 
@@ -51,7 +32,7 @@ function generateListOfTitleLevelTwo(): Promise<TitleLevelTwo[]> {
         const NAVIGATION_MENU_ELEMENT = document.querySelector(`${HTML_SELECTORS.NAVIGATION_MENU}`) as HTMLElement
 
         for(const navigationTwoElement of TITLE_TWO_ELEMENTS) {
-            listToReturn.push(new TitleLevelTwo(navigationTwoElement, NAVIGATION_MENU_ELEMENT))
+            listToReturn.push(new Chapter(navigationTwoElement, NAVIGATION_MENU_ELEMENT))
         }
 
         resolve(listToReturn.reverse())
@@ -60,7 +41,7 @@ function generateListOfTitleLevelTwo(): Promise<TitleLevelTwo[]> {
     })
 }
 
-class TitleLevelTwo {
+class Chapter {
     private _element: HTMLElement
 
     private _elementInMenu: HTMLElement | undefined

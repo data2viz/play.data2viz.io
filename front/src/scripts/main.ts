@@ -1,12 +1,14 @@
-import {menuPositionObserver} from "./menuPositionObserver"
+import {setMenuPosition} from "./navigation/setMenuPosition"
 import {HTML_SELECTORS} from "./HTML_SELECTORS"
-import {setCurrentSectionName} from "./navigationMenu/setCurrentSectionName"
-import {setNavigationMenu} from "./navigationMenu/setNavigationMenu"
-import {setEditors} from "./editor/setEditors"
+import {setCurrentSectionName} from "./navigation/setCurrentSectionName"
+import {setNavigationMenu} from "./navigation/setNavigationMenu"
+import {setEditorsManager} from "./editor/setEditorsManager"
 
-setEditors()
+setEditorsManager().then((editorManager) => {
+    editorManager.runVisibleEditors()
+})
 
-menuPositionObserver(
+setMenuPosition(
     document.querySelector(HTML_SELECTORS.CONTENT) as HTMLElement,
     document.querySelector(HTML_SELECTORS.TOP_HEADER) as HTMLElement,
 )

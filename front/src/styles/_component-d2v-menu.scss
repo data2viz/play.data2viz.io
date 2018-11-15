@@ -10,12 +10,32 @@
   min-width: $min-width;
 
 
-  .active {
-    color: $color-main;
+  .chapter {
+    .active {
+      position: relative;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        right: -0.5em;
+        transform: translateX(100%) translateY(-50%);
+        width: 1.25ex;
+        height: 1.25ex;
+        background-color: $color-secondary;
+        border-radius: 50%;
+      }
+    }
   }
 
   a {
     color: $color-main-dark;
+    border-bottom-color: rgba($color-main-dark, 0);
+
+    &:hover {
+      border-bottom-color: rgba($color-main-dark, 1);
+    }
   }
 
   .menu-fixed & {
@@ -41,7 +61,7 @@
       top: 4em;
     }
 
-    > li > a {
+    li > * {
       font-weight: 700;
     }
 
