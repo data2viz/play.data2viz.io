@@ -74,7 +74,7 @@ with the factories in `Scales.Continuous.Colors.*`:
 - `linearHCL`: linear interpolator in HCL
 
 ```info
-these color scales clamp values outside the range.*
+Power scales are linear scales with an exponential transforms applied to the input, the exponent is defined when creating the scale (defaults to 1). these color scales clamp values outside the range.* The scale needs an color interpolator. You can use pre-parameterized color scales
 ```
 
 ```height=50 width=800
