@@ -1,0 +1,24 @@
+@mixin d2v-table {
+  border-collapse: collapse;
+  border: solid 1px hsla(240, 20%, 75%, 1);
+  box-shadow: 0 5px 20px -5px hsla(240, 60%, 30%, 0.15);
+  border-radius: 5px;
+  display: block;
+  overflow: hidden;
+  line-height: 1.5em;
+
+  thead {
+    background-color: hsla(240, 25%, 97%, 1);
+    border-bottom: solid 1px hsl(240, 20%, 75%);
+  }
+
+  th, td {
+    text-align: left;
+    padding: 1em;
+    vertical-align: top;
+  }
+
+  tr + tr {
+    border-top: solid 1px hsl(240, 20%, 75%);
+  }
+}

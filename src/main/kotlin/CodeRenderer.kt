@@ -12,7 +12,7 @@ import org.commonmark.renderer.html.HtmlWriter
 
 const val data2vizVersion = "0.7.1-RC3"
 
-val extensions = listOf(HeadingAnchorExtension.create())
+val extensions = listOf(HeadingAnchorExtension.create(), TablesExtension.create())
 
 val parser = Parser.builder()
     .extensions(extensions)
