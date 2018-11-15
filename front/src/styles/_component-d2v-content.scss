@@ -1,5 +1,6 @@
 @import "_grid";
 @import "ui-table";
+@import "ui-note-default";
 
 #d2v-content {
   padding-top: $content-position-top;
@@ -9,6 +10,30 @@
 
   table {
     @include d2v-table;
+  }
+
+  /* notes */
+  @mixin note-style {
+    font-family: 'IBM Plex Serif', serif;
+
+    &:before {
+      font-family: $font-family;
+    }
+  }
+
+  .note {
+    @include d2v-note-default;
+    @include note-style;
+  }
+
+  .info {
+    @include d2v-note-info;
+    @include note-style;
+  }
+
+  .warning {
+    @include d2v-note-warning;
+    @include note-style;
   }
 }
 
@@ -28,7 +53,6 @@
       }
 
       p, ul, ol {
-        font-feature-settings: "ss02";
         font-family: 'IBM Plex Serif', serif;
       }
 

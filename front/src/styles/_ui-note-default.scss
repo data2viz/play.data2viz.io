@@ -1,0 +1,53 @@
+@import "_params";
+
+//todo set variables
+@mixin d2v-note-default {
+  $left-width: 3em;
+
+  position: relative;
+  background: #F7F7FA;
+  padding: $gutter-width / 2;
+  margin-left: $left-width;
+  margin-top: 3em;
+  margin-bottom: 3em;
+
+  &:before {
+    width: $left-width;
+    display: block;
+    content: "note";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-100%, -50%);
+    color: #737380;
+    font-weight: 700;
+  }
+}
+
+@mixin d2v-note-info {
+  $left-width: 2.7em;
+
+  @include d2v-note-default;
+  background: #F5F5FC;
+  margin-left: $left-width;
+
+  &:before {
+    content: "info";
+    width: $left-width;
+    color: #433EE0;
+  }
+}
+
+@mixin d2v-note-warning {
+  $left-width: 5em;
+
+  @include d2v-note-default;
+  background: #FCF5F5;
+  margin-left: $left-width;
+
+  &:before {
+    content: "warning";
+    width: $left-width;
+    color: #DD272D;
+  }
+}

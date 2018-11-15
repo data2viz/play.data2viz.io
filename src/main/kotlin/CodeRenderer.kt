@@ -44,8 +44,14 @@ class Data2vizCodeBlockNodeRenderer(context: HtmlNodeRendererContext) : CoreHtml
                 html.line()
             }
             is FencedCodeBlock -> {
+                val attributes = when(node.info) {
+                    "note" -> mapOf("class" to "note")
+                    "info" -> mapOf("class" to "info")
+                    "warning" -> mapOf("class" to "warning")
+                    else -> playGroundSpecificAttributes(node.info)
+                }
                 html.line()
-                html.tag("div", playGroundSpecificAttributes(node.info))
+                html.tag("div", attributes)
                 html.text(node.literal)
                 html.tag("/div")
                 html.line()
