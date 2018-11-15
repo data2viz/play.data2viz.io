@@ -33,7 +33,9 @@ fun Application.mainModule() {
     routing {
         trace { application.log.trace(it.buildText()) }
         intercept(ApplicationCallPipeline.Features) {
-            call.response.cookies.append("theme", call.request.queryParameters["theme"] ?: "idea")
+            call.request.queryParameters["theme"]?.let {
+                call.response.cookies.append("theme", it, path = "/", maxAge = 3600 * 24 * 365)
+            }
         }
         tutorials.mdFiles.forEach { docFile ->
             get(docFile.url) {
