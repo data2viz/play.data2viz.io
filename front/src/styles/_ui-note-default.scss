@@ -13,7 +13,12 @@ $left-width: 6em;
   margin-top: 3em;
   margin-bottom: 3em;
   font-weight: 400;
+  font-size: 1em;
   line-height: 1.6em;
+
+  > * {
+    font-size: 1em;
+  }
 
   &:before {
     width: $left-width;
@@ -27,6 +32,14 @@ $left-width: 6em;
     font-weight: 700;
     text-align: right;
     padding-right: $gutter-width / 2;
+  }
+
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
   }
 }
 
