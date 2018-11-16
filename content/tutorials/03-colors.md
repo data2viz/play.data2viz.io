@@ -202,6 +202,7 @@ fun main() {
 ### Change brightness
 
 The `brighten()` and `darken()` allows you to easily change the brightness of a given color.
+> You can note that `brighten(x)` is equivalent to `darken(-x)`
 
 ```height=50
 import io.data2viz.viz.*
@@ -229,6 +230,8 @@ fun main() {
 ### Change saturation
 
 The `saturate()` and `desaturate()` functions allows you to easily change the saturation of a given color.
+
+>You can note that `saturate(x)` is equivalent to `desaturate(-x)`
 
 ```height=50
 import io.data2viz.viz.*
@@ -260,8 +263,7 @@ Most of the data2viz visual elements accepts a `ColorOrGradient` object for its 
 A gradient is defined by giving at least 2 `ColorStop`, each corresponding to a color and its position along 
 the gradient (in percentage).
 
-*Note that the gradient positioning (as defined by its `ColorStop`) is absolute, not relative to the positions of the 
-shapes using it.*
+> Note that the gradient positioning (as defined by its `ColorStop`) is absolute, not relative to the positions of the shapes using it.
 
 
 ### Linear gradient

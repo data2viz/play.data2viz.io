@@ -1,6 +1,7 @@
 package io.data2viz.play
 
 import org.commonmark.ext.heading.anchor.HeadingAnchorExtension
+import org.commonmark.ext.gfm.tables.TablesExtension
 import org.commonmark.node.*
 import org.commonmark.parser.Parser
 import org.commonmark.renderer.html.CoreHtmlNodeRenderer
@@ -11,7 +12,7 @@ import org.commonmark.renderer.html.HtmlWriter
 
 const val data2vizVersion = "0.7.1-RC3"
 
-val extensions = listOf(HeadingAnchorExtension.create())
+val extensions = listOf(HeadingAnchorExtension.create(), TablesExtension.create())
 
 val parser = Parser.builder()
     .extensions(extensions)
@@ -43,8 +44,14 @@ class Data2vizCodeBlockNodeRenderer(context: HtmlNodeRendererContext) : CoreHtml
                 html.line()
             }
             is FencedCodeBlock -> {
+                val attributes = when(node.info) {
+                    "note" -> mapOf("class" to "note")
+                    "info" -> mapOf("class" to "info")
+                    "warning" -> mapOf("class" to "warning")
+                    else -> playGroundSpecificAttributes(node.info)
+                }
                 html.line()
-                html.tag("div", playGroundSpecificAttributes(node.info))
+                html.tag("div", attributes)
                 html.text(node.literal)
                 html.tag("/div")
                 html.line()
