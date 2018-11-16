@@ -89,12 +89,18 @@ fun main() {
 
 ## Discrete scales
 
-Discrete scales are pre-configured color scales to map categories to colors.  
+Discrete scales are pre-configured color scales map colors to different categories.  
+To mark the difference between comparable objects (where we would use gradients of colors) these scales propose 
+some color schemes with very distinct colors.
+
 You can create your own category color scale using the [Scales.Discrete.*](#discrete-scales) object, but 
 the `ScalesChromatic.Discrete` factory will offer some ready to use color scales.
 
+<div class="note">
+
 The factories names finish with a number indicating the total colors in the range of the scale, 
 `ScalesChromatic.Discrete.accent8` for example contains 8 distinct colors.
+</div>
 
 <div class="info">
 
@@ -281,63 +287,6 @@ fun main() {
             }
             text {
                 x = 8 + it * 17.0
-                y = 25.0
-                fill = Colors.Web.black
-                baseline = TextAlignmentBaseline.MIDDLE
-                anchor = TextAnchor.MIDDLE
-                textContent = "$it"
-            }
-        }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
-}
-```
-
-
-## Discrete scales
-
-Ordinal scales (or category scales) map a discrete domain to a discrete range. An ordinal scale might map a set 
-of objects to a set of colors, or to the horizontal positions of columns in a column chart.
-
-You can find factories for creating ordinal scale in `Scales.Ordinal.*` object.
-
-<!--- TODO note on "implicit domain" --->
-
-<div class="note">
-
-Domain objects will be mapped to range objects in the specified order, if there is more objects in domain than 
-range, the scale will reuse objects from the start of the range.
-</div>
-                                                          
-### Discrete color scale
-
-These scales are meant to map colors to different categories.
- 
-To mark the difference between comparable objects (where we would use gradients of colors) these scales propose 
-some color schemes with very distinct colors.
-
-To create a category color scale, use some of the functions in `Scales.Ordinal.*`.
-
-```height=50 width=800
-import io.data2viz.color.*
-import io.data2viz.scale.*
-import io.data2viz.geom.*
-import io.data2viz.viz.*
-
-fun main() {
-    //sampleStart
-    // scale category20 provides a set of 20 very distinct colors
-    val scale = scales.colors.category20<Int> { domain = (0 until 20).toList() }
-    viz {
-        size = Size(800.0, 50.0)
-        scale.domain.forEach { 
-            rect {
-                x = it * 31.0
-                size = Size(30.0, 50.0)
-                fill = scale(it)
-            }
-            text {
-                x = 15 + it * 31.0
                 y = 25.0
                 fill = Colors.Web.black
                 baseline = TextAlignmentBaseline.MIDDLE
