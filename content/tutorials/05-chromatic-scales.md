@@ -265,33 +265,31 @@ fun main() {
 
 Use `ScalesChromatic.Sequential.Cyclical.*` to create a new diverging scale.
 
-```height=50 width=800
+```height=200 width=800
 import io.data2viz.color.*
+import io.data2viz.math.*
 import io.data2viz.scale.*
 import io.data2viz.geom.*
 import io.data2viz.viz.*
 
 fun main() {
     //sampleStart
-    // for a sequential scale, the range is already defined
-    val scale = scales.colors.rainbow {
-        domain = StrictlyContinuous(0.0, 40.0)
+    // TODO change to cyclical
+    val scale = scales.colors.linearHSL {
+        domain = listOf(0.0, 180.0, 360.0, 540.0, 720.0)
+        range = listOf(Colors.Web.blue, Colors.Web.yellow, Colors.Web.red, Colors.Web.green, Colors.Web.blue)
     }
     viz {
-        size = Size(800.0, 50.0)
-        (0..40).forEach { 
-            rect {
-                x = it * 17.0
-                size = Size(16.0, 50.0)
-                fill = scale(it.toDouble())
-            }
-            text {
-                x = 8 + it * 17.0
-                y = 25.0
-                fill = Colors.Web.black
-                baseline = TextAlignmentBaseline.MIDDLE
-                anchor = TextAnchor.MIDDLE
-                textContent = "$it"
+        size = Size(800.0, 200.0)
+        (0..720).forEach { 
+            // TODO change to rotate
+            line {
+                val angle = (it/2.0).deg
+                x1 = 100.0 + 60 * angle.cos
+                x2 = 100.0 + 100 * angle.cos
+                y1 = 100.0 + 60 * angle.sin
+                y2 = 100.0 + 100 * angle.sin
+                stroke = scale(it.toDouble())
             }
         }
     }.bindRendererOnNewCanvas()
