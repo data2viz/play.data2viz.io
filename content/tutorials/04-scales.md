@@ -59,33 +59,42 @@ import io.data2viz.geom.*
 import io.data2viz.viz.*
 
 fun main() {
-    //sampleStart
-    // this scale maps 2 domain subsets
-    // first domain [0,100] to range [0,300], then domain [100,400] to range [300,600]
-    val scale = scales.continuous.linear {
-         domain = listOf(.0, 100.0, 400.0)
-         range = listOf(.0, 300.0, 600.0)
-    }
     viz {
          size = Size(800.0, 50.0)
+         rect {                     // visualize the first "range subset"
+            size = Size(300.0, 50.0)
+            fill = "#DDDDDD".color
+         }
+         rect {                     // visualize the second "range subset"
+            x = 300.0
+            size = Size(300.0, 50.0)
+            fill = "#AAAAAA".color
+         }
+        //sampleStart
+        // this scale maps 2 domain subsets to 2 range subsets (shown in greyscale)
+        //  "domain" for the number of the current frame (animation)
+        //  "range" for the position on screen
+        val scale = scales.continuous.linear {
+             domain = listOf(.0, 100.0, 400.0)
+             range = listOf(.0, 300.0, 600.0)
+        }
          var count = .0
          val myRect = rect {
-             size = Size(50.0, 50.0)
-             fill = "#33A7D8".color
+             size = Size(4.0, 50.0)
+             fill = "#FF3366".color
          }
          val myText = text {
              y = 25.0
              fill = Colors.Web.black
              baseline = TextAlignmentBaseline.MIDDLE
-             anchor = TextAnchor.MIDDLE
          }
          onFrame {
-             count = (count + 1) % 300
-             myRect.x = scale(count)
-             myText.x = 25 + scale(count)
+             count = (count + 1) % 400
+             myRect.x = scale(count) - 2
+             myText.x = 8 + scale(count)
              myText.textContent = "$count"
-         }
-    }.bindRendererOnNewCanvas() //sampleEnd
+         } //sampleEnd
+    }.bindRendererOnNewCanvas()
 }
 ```
 
@@ -112,13 +121,14 @@ import io.data2viz.viz.*
 
 fun main() {
     //sampleStart
-    val myDomain = listOf(1.0, 400.0)
+    val myDomain = listOf(1.0, 200.0)
     val myRange = listOf(.0, 600.0)
     val logScale = scales.continuous.log { domain = myDomain; range = myRange }
     val powScale = scales.continuous.pow(10.0) { domain = myDomain; range = myRange }
     viz {
         size = Size(800.0, 50.0)
         var count = 1.0
+        var increment = 1
         val logRect = rect {
             size = Size(50.0, 25.0)
             fill = "#33A7D8".color
@@ -141,8 +151,8 @@ fun main() {
             anchor = TextAnchor.MIDDLE
         }
         onFrame {
-            count++
-            if (count > 400) count = 1.0
+            count += increment
+            if (count >= 200 || count <= 1) increment *= -1
             logRect.x = logScale(count)
             logText.x = 25 + logScale(count)
             logText.textContent = "$count"
@@ -169,24 +179,31 @@ import io.data2viz.viz.*
 import io.data2viz.time.*
 
 fun main() {
-    //sampleStart
-    val events = listOf(
-        Pair("New Year 2018", date(2018, 1, 1)), 
-        Pair("Jim's birthday", date(2018, 2, 16)), 
-        Pair("Spring", date(2018, 3, 20)), 
-        Pair("Summer", date(2018, 6, 21)), 
-        Pair("Mike's birthday", date(2018, 8, 12)), 
-        Pair("Automn", date(2018, 9, 23)),
-        Pair("Sam's birthday", date(2018, 11, 8)),
-        Pair("New year's eve", date(2018, 12, 31))
-    )
-    
-    // scale translates dates to double for positionning events
-    val scale = scales.continuous.time {
-        domain = listOf(date(2018, 1, 1), date(2019, 1, 1))
-        range = listOf(50.0, 650.0)
-    }
     viz {
+        line {
+            x1 = 50.0
+            x2 = 650.0
+            y1 = 33.0
+            y2 = 33.0
+            stroke = Colors.Web.black
+        }
+    //sampleStart
+        val events = listOf(
+            Pair("New Year 2018", date(2018, 1, 1)), 
+            Pair("Jim's birthday", date(2018, 2, 16)), 
+            Pair("Spring", date(2018, 3, 20)), 
+            Pair("Summer", date(2018, 6, 21)), 
+            Pair("Mike's birthday", date(2018, 8, 12)), 
+            Pair("Automn", date(2018, 9, 23)),
+            Pair("Sam's birthday", date(2018, 11, 8)),
+            Pair("New year's eve", date(2018, 12, 31, 23, 59))
+        )
+        
+        // scale translates dates to double for positionning events
+        val scale = scales.continuous.time {
+            domain = listOf(date(2018, 1, 1), date(2019, 1, 1))
+            range = listOf(50.0, 650.0)
+        }
         size = Size(800.0, 50.0)
         events.forEach { 
             line {
@@ -194,6 +211,7 @@ fun main() {
                 y1 = 20.0
                 x2 = scale(it.second)
                 y2 = 40.0
+                strokeWidth = 2.0
                 stroke = Colors.Web.black
             }
             text {
@@ -204,8 +222,8 @@ fun main() {
                 anchor = TextAnchor.MIDDLE
                 textContent = "${it.first}"
             }
-        }
-    }.bindRendererOnNewCanvas() //sampleEnd
+        } //sampleEnd
+    }.bindRendererOnNewCanvas()
 }
 ```
 
@@ -216,6 +234,9 @@ These scales are often used with colors to display information in a non-linear w
 in a [chloropeth map](https://en.wikipedia.org/wiki/Choropleth_map).
 
 Quantized scales factories are located in `Scales.Quantized.*`.
+
+The 3 examples below show the same collection of `Double` separated in 3 groups, the distribution varies 
+depending on the scale you use.
 
 ### Quantize scale
 
@@ -392,7 +413,7 @@ To create an ordinal scale, use the `Scales.Discrete.ordinal` function.
 - `domain`: a **list of objects**
 - `range`: a **list of objects** 
 
-```height=50 width=800
+```height=0
 import io.data2viz.color.*
 import io.data2viz.scale.*
 import io.data2viz.geom.*
@@ -405,24 +426,8 @@ fun main() {
         domain = (0..10).toList()
         range = listOf("zero", "uno", "due", "tre", "quattro", "cinque", "sei", "sette", "otto", "nove", "dieci")
     }
-    viz {
-        size = Size(800.0, 50.0)
-        (1..9).forEach { 
-            rect {
-                x = it * 55.0
-                size = Size(50.0, 50.0)
-                fill = "#33A7D8".color
-            }
-            text {
-                x = 25 + it * 55.0
-                y = 25.0
-                fill = Colors.Web.black
-                baseline = TextAlignmentBaseline.MIDDLE
-                anchor = TextAnchor.MIDDLE
-                textContent = "${scale(it)}"
-            }
-        }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    (0..10).forEach { 
+        println("$it - ${scale(it)}")
+    } //sampleEnd
 }
 ```
