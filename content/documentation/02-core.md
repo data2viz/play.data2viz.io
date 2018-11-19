@@ -1,15 +1,15 @@
 # Core mechanisms
 
-All visualizations done with data2viz share some simple elements, this page describes the "basics" of the 
+All visuals done with data2viz share some simple elements, this page describes the "basics" of the 
 library.
 
 ## The Viz object
 
-Data2viz provides a comprehensive DSL to build visuals by assembling basic elements (rectangles, circles...).  
+Data2viz provides a comprehensive DSL to build visualizations by assembling basic elements (rectangles, circles...).  
 The first of your elements will be the "Viz" object that you can instantiate using the `viz` factory.
 
-Just type `viz`, open some curly braces and you'll have access to several elements you can start to add 
-on your page, just use the auto-completion to find out more!
+Just type `viz`, open some curly braces and you'll have access to several elements you can start to add, 
+use auto-completion (*CTRL+space*) to find out more!
 
 <div class="info">
 
@@ -38,12 +38,12 @@ fun main() {
 
 ## Utility types
 
-Drawing an arc on *Javascript* requires radians, but degrees on *Android*... to avoid confusion and guarantee a 
-unique behavior on different platform ***data2viz*** offers some "utility types" that can be easily instantiated 
-with extension properties: 
+Drawing an arc on *Javascript* requires radians, but degrees on *Android*...  
+To avoid confusion and guarantee a unique behavior on different platform data2viz offers some 
+"utility types" that can be easily instantiated with extension properties: 
 
-- `Angle`: create an Angle using *180.deg* or *PI.rad*
-- `Percent`: create a percentage with *50.pct*
+- `Angle`: create an Angle using `180.deg` or `PI.rad`
+- `Percent`: create a percentage using `50.pct`
 
 <div class="info">
 
@@ -77,8 +77,10 @@ fun main() {
 
 ## Common types
 
-In order to make the code more concise, several types are used for positioning (`Point`, `Vector`...), 
-sizing (`Size`) or defining a zone (`Extent`).
+In order to make the code more concise, several types are used as parameters for:
+- positioning: `Point`, `Vector`
+- sizing: `Size`
+- or defining a zone: `Extent`
 
 <div class="info">
 
