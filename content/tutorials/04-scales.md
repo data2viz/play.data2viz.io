@@ -205,8 +205,7 @@ fun main() {
                 textContent = "${it.first}"
             }
         }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
 
@@ -266,8 +265,7 @@ fun main() {
                 textContent = "$domainValue"
             }
         }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    }.bindRendererOnNewCanvas()  //sampleEnd
 }
 ```
 
@@ -314,8 +312,7 @@ fun main() {
                 textContent = "$domainValue"
             }
         }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
 
@@ -361,8 +358,7 @@ fun main() {
                 textContent = "$domainValue"
             }
         }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    }.bindRendererOnNewCanvas()  //sampleEnd
 }
 ```
 
