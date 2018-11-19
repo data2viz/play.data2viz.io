@@ -11,9 +11,9 @@ There are several types of scales, depending you work with discrete or continuou
 
 | Domain |  Range |  Factories | Example of use |
 |---|---|---|---|
-| Continuous | Continuous  | **[Scales.Continuous.*](#continuous-scales)**<br/>(linear, log, pow, time...) | Place points on a line chart |
-| Continuous  | Discrete  |  **[Scales.Quantized.*](#quantized-scales)**<br/>(quantize, threshold, quantile) | Distribute objects in quantiles |
-| Discrete  | Discrete  |  **[Scales.Discrete.*](#discrete-scales)**<br/>(ordinal, point, band) | Place bars on a column chart |
+| Continuous | Continuous  | **[Scales.Continuous.*](#continuous-scales)**<br/>*linear, log, pow, time...* | Place points on a line chart |
+| Continuous  | Discrete  |  **[Scales.Quantized.*](#quantized-scales)**<br/>*quantize, threshold, quantile* | Distribute objects in quantiles |
+| Discrete  | Discrete  |  **[Scales.Discrete.*](#discrete-scales)**<br/>*ordinal, point, band* | Place bars on a column chart |
 
 <div class="note">
 
@@ -36,9 +36,8 @@ or [time](#time-scale) scale.
 Continuous scales factories are located in `Scales.Continuous.*`.  
 The scale parameters are:
 
-- `domain`: a **list of objects** for each "subset" of the domain
+- `domain`: a **list of objects** (generally 2) for each "subset" of the domain
 - `range`: a **list of objects** of the same size as domain, giving the bounds of the range
-- `clamp`: do values outside the domain should be clamped? (default to `false`)
 
 ### Linear scale
 
@@ -61,30 +60,32 @@ import io.data2viz.viz.*
 
 fun main() {
     //sampleStart
+    // this scale maps 2 domain subsets
+    // first domain [0,100] to range [0,300], then domain [100,400] to range [300,600]
     val scale = scales.continuous.linear {
-        domain = listOf(.0, 10.0)
-        range = listOf(.0, 600.0)
+         domain = listOf(.0, 100.0, 400.0)
+         range = listOf(.0, 300.0, 600.0)
     }
     viz {
-        size = Size(800.0, 50.0)
-        (0..10).forEach { 
-            rect {
-                x = scale(it.toDouble())
-                size = Size(50.0, 50.0)
-                stroke = Colors.Web.black
-                fill = "#33A7D8".color
-            }
-            text {
-                x = 25 + scale(it.toDouble())
-                y = 25.0
-                fill = Colors.Web.black
-                baseline = TextAlignmentBaseline.MIDDLE
-                anchor = TextAnchor.MIDDLE
-                textContent = "$it"
-            }
-        }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+         size = Size(800.0, 50.0)
+         var count = .0
+         val myRect = rect {
+             size = Size(50.0, 50.0)
+             fill = "#33A7D8".color
+         }
+         val myText = text {
+             y = 25.0
+             fill = Colors.Web.black
+             baseline = TextAlignmentBaseline.MIDDLE
+             anchor = TextAnchor.MIDDLE
+         }
+         onFrame {
+             count = (count + 1) % 300
+             myRect.x = scale(count)
+             myText.x = 25 + scale(count)
+             myText.textContent = "$count"
+         }
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
 
@@ -111,30 +112,45 @@ import io.data2viz.viz.*
 
 fun main() {
     //sampleStart
-    val scale = scales.continuous.log {
-        domain = listOf(1.0, 10.0)
-        range = listOf(.0, 600.0)
-    }
+    val myDomain = listOf(1.0, 400.0)
+    val myRange = listOf(.0, 600.0)
+    val logScale = scales.continuous.log { domain = myDomain; range = myRange }
+    val powScale = scales.continuous.pow(10.0) { domain = myDomain; range = myRange }
     viz {
         size = Size(800.0, 50.0)
-        (1..10).forEach { 
-            rect {
-                x = scale(it.toDouble())
-                size = Size(50.0, 50.0)
-                stroke = Colors.Web.black
-                fill = "#33A7D8".color
-            }
-            text {
-                x = 25 + scale(it.toDouble())
-                y = 25.0
-                fill = Colors.Web.black
-                baseline = TextAlignmentBaseline.MIDDLE
-                anchor = TextAnchor.MIDDLE
-                textContent = "$it"
-            }
+        var count = 1.0
+        val logRect = rect {
+            size = Size(50.0, 25.0)
+            fill = "#33A7D8".color
         }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+        val logText = text {
+            y = 12.0
+            fill = Colors.Web.black
+            baseline = TextAlignmentBaseline.MIDDLE
+            anchor = TextAnchor.MIDDLE
+        }
+        val powRect = rect {
+            size = Size(50.0, 25.0)
+            y = 25.0
+            fill = "#FECE3E".color
+        }
+        val powText = text {
+            y = 37.0
+            fill = Colors.Web.black
+            baseline = TextAlignmentBaseline.MIDDLE
+            anchor = TextAnchor.MIDDLE
+        }
+        onFrame {
+            count++
+            if (count > 400) count = 1.0
+            logRect.x = logScale(count)
+            logText.x = 25 + logScale(count)
+            logText.textContent = "$count"
+            powRect.x = powScale(count)
+            powText.x = 25 + powScale(count)
+            powText.textContent = "$count"
+        }
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
 
