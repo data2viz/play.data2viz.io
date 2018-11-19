@@ -1,19 +1,16 @@
 # Chromatic Scales
 
-Chromatic Scales are [scales](/tutorial/scales/) that output [colors](/tutorial/colors/). 
-
-## Scale creation
-
-In the `ScalesChromatic` object you'll find a lot of factories to use pre-build colors scales.
+Chromatic Scales are [scales](/tutorial/scales/) that output [colors](/tutorial/colors/).  
+The `ScalesChromatic` object offers somes factories for creating pre-configured color scales:
 
 | Type |  Subtype |  Factories<br/>ScalesChromatic.*  | Example of use |
 |---|---|---|---|
-| Continuous | &nbsp; | **[Continuous.*](#continuous-scales)**<br/>(linearRGB...) | Create your own linear color scale  |
-| Discrete  | &nbsp; |  **[Discrete.*](#discrete-scales)**<br/>(dark8, pale12...) | Display distinct categories with no specific order |
-| Sequential  |  Single&nbsp;hue |  **[Sequential.SingleHue.*](#single-hue-scales)**<br/>(blues, greens, reds...) | Show continuous data on a single-color scheme |
-| Sequential  |  Multi&nbsp;hue |  **[Sequential.MultiHue.*](#multi-hue-scales)**<br/>(viridis, plasma...) | Show continuous data on multi-color scheme (better for large domains) |
-| Sequential  |  Diverging |  **[Sequential.Diverging.*](#diverging-scales)**<br/>(spectral, red_blue...) | Highlight divergence of continuous data (temperatures...)  |
-| Sequential  |  Cyclical |  **[Sequential.Cyclical.*](#cyclical-scales)**<br/>(rainbow...) | Good for radial visuals as<br/> start color == end color |
+| Continuous | &nbsp; | **[Continuous.*](#continuous-scales)**<br/>*linearRGB...* | Create your own linear color scale  |
+| Discrete  | &nbsp; |  **[Discrete.*](#discrete-scales)**<br/>*dark8, pale12...* | Display distinct categories with no specific order |
+| Sequential  |  Single&nbsp;hue |  **[Sequential.SingleHue.*](#single-hue-scales)**<br/>*blues, greens, reds...* | Show continuous data on a single-color scheme |
+| Sequential  |  Multi&nbsp;hue |  **[Sequential.MultiHue.*](#multi-hue-scales)**<br/>*viridis, plasma...* | Show continuous data on multi-color scheme (better for large domains) |
+| Sequential  |  Diverging |  **[Sequential.Diverging.*](#diverging-scales)**<br/>*spectral, red_blue...* | Highlight divergence of continuous data (temperatures...)  |
+| Sequential  |  Cyclical |  **[Sequential.Cyclical.*](#cyclical-scales)**<br/>*rainbow...* | Good for radial visuals as<br/> start color == end color |
 
 
 <div class="note">
@@ -82,8 +79,7 @@ fun main() {
                 }
             }
         }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
 
@@ -118,9 +114,7 @@ fun main() {
     val days = listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday") 
     
     // this scale map names of the days (as String) to colors
-    val scale = scales.colors.category10<String> {
-        domain = days
-    }
+    val scale = scales.colors.category10<String> { domain = days }
     viz {
         size = Size(800.0, 50.0)
         days.forEachIndexed { index, dayName ->
@@ -132,20 +126,19 @@ fun main() {
                 textContent = "$dayName"
             }
         }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
 
 ## Sequential scales
 
-Sequential scales are pre-configured scales so their range is fixed.  
+Sequential scales are pre-configured scales, the color scheme is already defined so the range is fixed.  
 
 These scales are distributed among 4 categories in `ScalesChromatic.Sequential.*`
-- `SingleHue.*`: interpolate over a single color starting generally from white
-- `MultiHue.*`: interpolate over multiple colors, like [viridis or magma](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
-- `Diverging.*`: interpolate over a diverging color-scheme ie. from blue to white to red
-- `Cyclical.*`: these scales use the same color at both end of the range
+- [`SingleHue.*`](#single-hue-scales): interpolate over a single color, generally starting from white
+- [`MultiHue.*`](#multi-hue-scales): interpolate over multiple colors, like [viridis or magma](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
+- [`Diverging.*`](#diverging-scales): use a diverging color-scheme ie. from blue to white to red
+- [`Cyclical.*`](#cyclical-scales): use the same color at both end of the range
 
 ### Single hue scales
 
@@ -180,8 +173,7 @@ fun main() {
                 textContent = "$it"
             }
         }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
 
@@ -218,8 +210,7 @@ fun main() {
                 textContent = "$it"
             }
         }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
 
@@ -256,14 +247,19 @@ fun main() {
                 textContent = "$it"
             }
         }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
 
 ### Cyclical scales
 
 Use `ScalesChromatic.Sequential.Cyclical.*` to create a new diverging scale.
+
+<div class="note">
+
+Cyclical color scales obviously do not clamp data, they just cycle over when you scale a value which is outside 
+the domain.
+</div>
 
 ```height=200 width=800
 import io.data2viz.color.*
@@ -275,6 +271,7 @@ import io.data2viz.viz.*
 fun main() {
     //sampleStart
     // TODO change to cyclical
+    // on this cyclical scale: scale(0) == scale(360) == scale(720)...
     val scale = scales.colors.linearHSL {
         domain = listOf(0.0, 180.0, 360.0, 540.0, 720.0)
         range = listOf(Colors.Web.blue, Colors.Web.yellow, Colors.Web.red, Colors.Web.green, Colors.Web.blue)
@@ -292,7 +289,6 @@ fun main() {
                 stroke = scale(it.toDouble())
             }
         }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
