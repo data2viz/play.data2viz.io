@@ -99,7 +99,7 @@ export class Editor {
                             [
                                 createHTMLElement(
                                     "div",
-                                    "CTRL + R : run"
+                                    "Windows: CTRL + F9 / MacOS: CTRL + R : run"
                                 ),
                                 createHTMLElement(
                                     "div",
