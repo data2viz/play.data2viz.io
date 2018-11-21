@@ -19,6 +19,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/d3k/play.data2viz.io#readme",
   "devDependencies": {
+    "@types/platform": "^1.3.1",
     "css-loader": "^1.0.0",
     "file-loader": "^2.0.0",
     "mini-css-extract-plugin": "^0.4.4",
@@ -32,6 +33,7 @@
     "webpack-dev-server": "^3.1.9"
   },
   "dependencies": {
+    "platform": "^1.3.5",
     "png-to-ico": "^2.0.1"
   }
 }

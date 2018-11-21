@@ -1,17 +1,32 @@
 import {KotlinPlayground} from "./KotlinPlayground"
 import {HTML_SELECTORS} from "../HTML_SELECTORS"
 import {createHTMLElement} from "../tools"
+import {PlatformOsName} from "../getUserOs"
 
 declare function KotlinPlayground(selector: string | HTMLElement, eventFunctions?: KotlinPlayground.IEventFunctions): Promise<KotlinPlayground.IEditor[]>
 
+
 export class Editor {
+
+    private TEXT_SHORTCUT = {
+        run: {
+            macOs: "CTRL + R",
+            windows: "CTRL + F9",
+            linux: "CTRL + F9",
+        }
+    }
+
+    private PLATFORM_OS_USER_NAME: PlatformOsName;
+
     private MORE_THAN_ONCE_CODE_CHANGED_CLASSNAME = "more-than-once-code-changed"
     private SHORTCUT_INFO_CLASSNAME = "shortcut-info compiler-info"
 
     constructor(
         selector: string | HTMLElement,
+        platformOsName: PlatformOsName,
     ) {
         this._selector = selector
+        this.PLATFORM_OS_USER_NAME = platformOsName
     }
 
     private _selector: string | HTMLElement
@@ -93,22 +108,43 @@ export class Editor {
 
             if(this.changedCounter === 2) {
                 if(this.kotlinEditorContainer) {
-                    this.kotlinEditorContainer.appendChild(
-                        createHTMLElement(
-                            "div",
-                            [
-                                createHTMLElement(
-                                    "div",
-                                    "Windows: CTRL + F9 / MacOS: CTRL + R : run"
-                                ),
-                                createHTMLElement(
-                                    "div",
-                                    "CTRL + SPACE : code completion"
-                                )
-                            ],
-                            this.SHORTCUT_INFO_CLASSNAME
+
+                    let textInShortcutHelperElement: string
+
+                    switch (this.PLATFORM_OS_USER_NAME) {
+                        case "OS X":
+                            textInShortcutHelperElement = this.TEXT_SHORTCUT.run.macOs
+                            break
+                        case "Windows":
+                            textInShortcutHelperElement = this.TEXT_SHORTCUT.run.windows
+                            break
+                        case "Linux":
+                            textInShortcutHelperElement = this.TEXT_SHORTCUT.run.linux
+                            break
+                        default:
+                            textInShortcutHelperElement = ""
+                    }
+
+                    console.log(this.PLATFORM_OS_USER_NAME)
+
+                    if(this.PLATFORM_OS_USER_NAME !== "Other") {
+                        this.kotlinEditorContainer.appendChild(
+                            createHTMLElement(
+                                "div",
+                                [
+                                    createHTMLElement(
+                                        "div",
+                                        textInShortcutHelperElement
+                                    ),
+                                    createHTMLElement(
+                                        "div",
+                                        "CTRL + SPACE : code completion"
+                                    )
+                                ],
+                                this.SHORTCUT_INFO_CLASSNAME
+                            )
                         )
-                    )
+                    }
 
                     this.kotlinEditorContainer.classList.add(this.MORE_THAN_ONCE_CODE_CHANGED_CLASSNAME)
                 }

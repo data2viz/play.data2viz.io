@@ -1,6 +1,6 @@
-import {KotlinPlayground} from "./KotlinPlayground"
 import {EditorManager} from "./EditorManager"
 import {Editor} from "./Editor"
+import {getUserOs} from "../getUserOs"
 
 export function setEditorsManager(): Promise<EditorManager> {
     return new Promise(resolve => {
@@ -12,7 +12,7 @@ export function setEditorsManager(): Promise<EditorManager> {
 
         for(const codeElement of codeElementsForKotlinPlaygroundEditorInit) {
             if(codeElement instanceof HTMLElement) {
-                listOfEditor.push(new Editor(codeElement))
+                listOfEditor.push(new Editor(codeElement, getUserOs()))
             }
         }
 
