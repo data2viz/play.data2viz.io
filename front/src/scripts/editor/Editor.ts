@@ -125,8 +125,6 @@ export class Editor {
                             textInShortcutHelperElement = ""
                     }
 
-                    console.log(this.PLATFORM_OS_USER_NAME)
-
                     if(this.PLATFORM_OS_USER_NAME !== "Other") {
                         this.kotlinEditorContainer.appendChild(
                             createHTMLElement(

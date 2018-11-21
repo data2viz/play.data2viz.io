@@ -1,8 +1,6 @@
 import platform from "platform"
 
 export function getUserOs(): PlatformOsName {
-     console.log(platform)
-
     if(platform.os) {
         switch (platform.os.family) {
             case "Windows":
