@@ -10,9 +10,9 @@ export class Editor {
 
     private TEXT_SHORTCUT = {
         run: {
-            macOs: "CTRL + R",
-            windows: "CTRL + F9",
-            linux: "CTRL + F9",
+            macOs: "CTRL + R: run code",
+            windows: "CTRL + F9: run code",
+            linux: "CTRL + F9: run code",
         }
     }
 
@@ -138,7 +138,7 @@ export class Editor {
                                     ),
                                     createHTMLElement(
                                         "div",
-                                        "CTRL + SPACE : code completion"
+                                        "CTRL + SPACE: code completion"
                                     )
                                 ],
                                 this.SHORTCUT_INFO_CLASSNAME
