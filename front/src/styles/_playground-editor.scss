@@ -1,0 +1,75 @@
+@import "_params";
+
+.playground-editor {
+  $separation-bar-width: 6px;
+  $header-bar-height: 60px;
+  $footer-bar-height: 60px;  //browser loader status bar
+
+  position: relative;
+  width: 100%;
+  height: calc(100vh - #{$header-bar-height});
+  box-sizing: border-box;
+
+  .kotlin-code + * {
+    margin: 0;
+  }
+
+  &__separation-bar {
+    position: absolute;
+    height: calc(100vh - #{$header-bar-height + $footer-bar-height});
+    width: $separation-bar-width;
+    background-color: $color-main-light-extra;
+    top: 0;
+    right: 50%;
+    z-index: 10;
+    cursor: col-resize;
+  }
+
+  .executable-fragment-wrapper {
+    width: 100%;
+    border-bottom: solid 1px $color-main-light-extra;
+  }
+
+  .executable-fragment {
+    width: 100%;
+    border: none;
+    flex-wrap: wrap;
+    display: flex;
+  }
+
+  .code-area {
+    width: 50%;
+    padding-right: $separation-bar-width;
+    box-sizing: border-box;
+  }
+
+  .js-code-output-canvas-placeholder {
+    width: 50%;
+    box-sizing: border-box;
+  }
+
+  .k2js-iframe {
+    padding-top: 0;
+  }
+
+  .output-wrapper {
+    border: none;
+  }
+
+  .console-close {
+    display: none;
+  }
+
+  .CodeMirror-scroll {
+    height: calc(100vh - #{$header-bar-height + $footer-bar-height});
+  }
+
+  .CodeMirror-gutters {
+    border-right: 1px solid $color-main-light-extra;
+    background: none;
+  }
+
+  .CodeMirror-linenumber {
+    color: $color-main-light-extra;
+  }
+}
