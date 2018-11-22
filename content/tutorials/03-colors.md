@@ -27,7 +27,7 @@ fun main() {
     //sampleStart
     viz {
         rect {
-            size = Size(50.0, 50.0)
+            size = size(50, 50)
             fill = Colors.Web.blueviolet
         }
 
@@ -49,14 +49,14 @@ fun main() {
     //sampleStart
     viz {
         rect {
-            size = Size(50.0, 50.0)
-            fill = 0x87ceeb.color      // <- Int extension val
+            size = size(50, 50)
+            fill = 0x87ceeb.col        // <- Int extension val
                 
         }
         rect {
             x = 50.0
-            size = Size(50.0, 50.0)
-            fill = "#800080".color     // <- String extension val
+            size = size(50, 50)
+            fill = "#800080".col       // <- String extension val
         }
 
     }.bindRendererOnNewCanvas()
@@ -84,30 +84,30 @@ import io.data2viz.viz.*
 fun main() {
     //sampleStart
     viz {
-        size = Size(600.0, 50.0)
+        size = size(600, 50)
         rect {
-            size = Size(50.0, 50.0)
-            fill = Colors.rgb(255, 0, 0)                     // <- pure red
+            size = size(50, 50)
+            fill = Colors.rgb(255, 0, 0)                       // <- pure red
         }        
         rect {
             x = 50.0
-            size = Size(50.0, 50.0)
-            fill = Colors.rgb(255, 0, 0, .5)                 // <- with 50% transparency
+            size = size(50, 50)
+            fill = Colors.rgb(255, 0, 0, 50.pct)               // <- with 50% transparency
         }
         rect {
             x = 100.0
-            size = Size(50.0, 50.0)
-            fill = Colors.hsl(38.82.deg, 1.0, 0.5)           // <- HSL color space
+            size = size(50, 50)
+            fill = Colors.hsl(38.82.deg, 100.pct, 50.pct)      // <- HSL color space
         }
         rect {
             x = 150.0
-            size = Size(50.0, 50.0)
-            fill = Colors.hcl(167.95.deg, 46.55, 92.03)      // <- HCL color space
+            size = size(50, 50)
+            fill = Colors.hcl(167.95.deg, 46.55, 92.03.pct)    // <- HCL color space
         }
         rect {
             x = 200.0
-            size = Size(50.0, 50.0)
-            fill = Colors.lab(30.83, 26.05, -42.08)          // <- LAC (CIE) color space
+            size = size(50, 50)
+            fill = Colors.lab(30.83.pct, 26.05, -42.08)        // <- LAB (CIE) color space
         }
     }.bindRendererOnNewCanvas()
     //sampleEnd
@@ -135,13 +135,12 @@ import io.data2viz.math.*
 fun main() {
 //sampleStart
     viz {
-        size = Size(600.0, 50.0)
-        val myColor = Colors.hsl(260.deg, 0.5, 0.5)
+        size = size(600, 50)
+        val myColor = Colors.hsl(260.deg, 50.pct, 50.pct)
         (0..6).forEach {
             rect {
                 x = it * 50.0
-                width = 50.0
-                height = 50.0
+                size = size(50, 50)
                 fill = myColor.brighten(it - 3.0)
             }
         }
@@ -166,13 +165,12 @@ import io.data2viz.math.*
 fun main() {
 //sampleStart
     viz {
-        size = Size(600.0, 50.0)
-        val myColor = Colors.hsl(260.deg, 0.5, 0.5)
+        size = size(600, 50)
+        val myColor = Colors.hsl(260.deg, 50.pct, 50.pct)
         (0..6).forEach {
             rect {
                 x = it * 50.0
-                width = 50.0
-                height = 50.0
+                size = size(50, 50)
                 fill = myColor.saturate(it - 3.0)
             }
         }
@@ -212,12 +210,12 @@ A Linear gradient can be easily created using the `Colors.Gradient.linear()` bui
 fun main() {
  //sampleStart
     viz {
-        size = Size(800.0, 100.0)
+        size = size(800, 100)
         
-        val linearGradient = Colors.Gradient.linear(Point(.0, .0), Point(800.0, .0))
-                   .withColor(Colors.Web.hotpink, .2)             // under 20% the gradient color is "hot pink"
-                   .andColor(Colors.Web.blueviolet, .5)           // middle of the gradient (50%) is "blue violet"
-                   .andColor(Colors.Web.skyblue, .8)              // from 80% the gradient color is "sky blue"
+        val linearGradient = Colors.Gradient.linear(point(0, 0), point(800, 0))
+                   .withColor(Colors.Web.hotpink, 20.pct)     // under 20% gradient is "hot pink"
+                   .andColor(Colors.Web.blueviolet, 50.pct)   // middle of gradient is "blue violet"
+                   .andColor(Colors.Web.skyblue, 80.pct)      // from 80% gradient is "sky blue"
         
         line {
             x1 = 100.0
@@ -266,11 +264,11 @@ using `andColor()`.
   
 fun main() {
     //sampleStart
-    val radialGradient = Colors.Gradient.radial(Point(400.0, 100.0), 100.0)
-        .withColor(Colors.Web.hotpink, .0)              // gradient start (center - 0%) with "hot pink"
-        .andColor(Colors.Web.skyblue, 1.0)              // end of the gradient (100% and more) "is sky blue"
+    val radialGradient = Colors.Gradient.radial(point(400, 100), 100.0)
+        .withColor(Colors.Web.hotpink, 0.pct)    // gradient start (center) is "hot pink"
+        .andColor(Colors.Web.skyblue, 100.pct)   // gradient end "is sky blue"
     viz {
-        size = Size(800.0, 200.0)
+        size = size(800, 200)
         circle {
             x = 400.0
             y = 100.0
