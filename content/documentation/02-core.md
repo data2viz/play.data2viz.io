@@ -26,9 +26,9 @@ import io.data2viz.viz.*                                // this import is mandat
 
 fun main() {
     viz {                                               // creating a "root" node
-        size = Size(200.0, 50.0)				        // sizing our viz
+        size = size(200, 50)				            // sizing our viz
         rect {                                          // adding a rectangle to our viz
-            size = Size(50.0, 50.0)
+            size = size(50, 50)
             fill = Colors.Web.crimson
         }
     }.bindRendererOnNewCanvas()                         // binding the viz to our canvas (javascript)
@@ -67,7 +67,7 @@ fun main() {
                 rotate(45.deg)                                  // rotate the group by 45°
             }
             rect {
-                size = Size(50.0, 50.0)
+                size = size(50, 50)
                 fill = Colors.Web.crimson.withAlpha(50.pct)     // fill color is "crimson", 50% alpha
             }
         }
@@ -84,7 +84,8 @@ In order to make the code more concise, several types are used as parameters for
 
 <div class="info">
 
-these types are located in `io.data2viz.geom` so we strongly recommend to star-import this package.
+These types are located in `io.data2viz.geom` so we strongly recommend to star-import this package and to
+use the factories which are a bit more practical.
 </div>
 
 ```height=50
@@ -92,12 +93,12 @@ import io.data2viz.color.*
 import io.data2viz.math.*
 import io.data2viz.viz.*
 //sampleStart
-import io.data2viz.geom.*                               // gives you access to Size, Point...
+import io.data2viz.geom.*                               // gives you access to size, point...
 
 fun main() {
     viz {
         rect {
-            size = Size(100.0, 50.0)                    // rectangle has a width of 100, a height of 50
+            size = size(100, 50)                        // rectangle has a width of 100, a height of 50
             fill = Colors.Web.crimson
         }
     }.bindRendererOnNewCanvas()
