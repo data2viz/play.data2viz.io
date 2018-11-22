@@ -2,8 +2,10 @@ package io.data2viz.play
 
 import io.ktor.application.*
 import io.ktor.html.respondHtml
+import io.ktor.http.content.resolveResource
 import io.ktor.http.content.resources
 import io.ktor.http.content.static
+import io.ktor.response.respond
 import io.ktor.response.respondRedirect
 import io.ktor.routing.get
 import io.ktor.routing.routing
@@ -44,6 +46,11 @@ fun Application.mainModule() {
                 }
             }
         }
+
+        get("/playground/")   {
+            call.respond(call.resolveResource("public/playground.html")!!)
+        }
+
         get("/") { call.respondRedirect(tutorials.mdFiles.first().url)}
 
         static("/") {
