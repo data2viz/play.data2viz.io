@@ -49,23 +49,23 @@ import io.data2viz.viz.*
 fun main() {
     //sampleStart
     val myDomain = listOf(.0, 100.0)
-    val myRange = listOf("#33A7D8".color, "#FECE3E".color)
+    val myRange = listOf("#33A7D8".col, "#FECE3E".col)
     
     // scale with linear interpolation in 2 color spaces : RGB & HCL
-    val scaleRGB = scales.colors.linearRGB { domain = myDomain; range = myRange }
-    val scaleHCL = scales.colors.linearHCL { domain = myDomain; range = myRange }
+    val scaleRGB = ScalesChromatic.Continuous.linearRGB { domain = myDomain; range = myRange }
+    val scaleHCL = ScalesChromatic.Continuous.linearHCL { domain = myDomain; range = myRange }
     viz {
-        size = Size(800.0, 50.0)
+        size = size(800, 50)
         (0..100).forEach { 
             rect {
                 x = 10 + it * 5.0
-                size = Size(5.0, 20.0)
+                size = size(5, 20)
                 fill = scaleRGB(it.toDouble())
             }
             rect {
                 x = 10 + it * 5.0
                 y = 30.0
-                size = Size(5.0, 20.0)
+                size = size(5, 20)
                 fill = scaleHCL(it.toDouble())
             }
             if (it%10 == 0) {
@@ -114,15 +114,15 @@ fun main() {
     val days = listOf("monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday") 
     
     // this scale map names of the days (as String) to colors
-    val scale = scales.colors.category10<String> { domain = days }
+    val scale = ScalesChromatic.Discrete.category10<String> { domain = days }
     viz {
-        size = Size(800.0, 50.0)
+        size = size(800, 50)
         days.forEachIndexed { index, dayName ->
             text {
-                x = 10 + index * 60.0
+                x = 30 + index * 70.0
                 y = 25.0
                 fill = scale(dayName)
-                baseline = TextAlignmentBaseline.MIDDLE
+                anchor = TextAnchor.MIDDLE
                 textContent = "$dayName"
             }
         }
@@ -153,15 +153,15 @@ import io.data2viz.viz.*
 fun main() {
     //sampleStart
     // for a sequential scale, the range is already defined
-    val scale = scales.colors.sequentialPurples {
+    val scale = ScalesChromatic.Sequential.SingleHue.purples {
         domain = StrictlyContinuous(0.0, 40.0)
     }
     viz {
-        size = Size(800.0, 50.0)
+        size = size(800, 50)
         (0..40).forEach { 
             rect {
                 x = it * 17.0
-                size = Size(16.0, 50.0)
+                size = size(16, 50)
                 fill = scale(it.toDouble())
             }
             text {
@@ -190,15 +190,15 @@ import io.data2viz.viz.*
 fun main() {
     //sampleStart
     // for a sequential scale, the range is already defined
-    val scale = scales.colors.sequentialViridis {
+    val scale = ScalesChromatic.Sequential.MultiHue.viridis {
         domain = StrictlyContinuous(0.0, 40.0)
     }
     viz {
-        size = Size(800.0, 50.0)
+        size = size(800, 50)
         (0..40).forEach { 
             rect {
                 x = it * 17.0
-                size = Size(16.0, 50.0)
+                size = size(16, 50)
                 fill = scale(it.toDouble())
             }
             text {
@@ -227,7 +227,7 @@ import io.data2viz.viz.*
 fun main() {
     //sampleStart
     // note the inverted domain to bind blue to -20 and red to +20 
-    val scale = scales.colors.sequentialRdYlBu() {
+    val scale = ScalesChromatic.Sequential.Diverging.red_yelow_blue() {
         domain = StrictlyContinuous(20.0, -20.0)
     }
     viz {
@@ -235,7 +235,7 @@ fun main() {
         (-20..20).forEach { 
             rect {
                 x = (it + 20) * 17.0
-                size = Size(16.0, 50.0)
+                size = size(16, 50)
                 fill = scale(it.toDouble())
             }
             text {
@@ -270,23 +270,22 @@ import io.data2viz.viz.*
 
 fun main() {
     //sampleStart
-    // TODO change to cyclical
     // on this cyclical scale: scale(0) == scale(360) == scale(720)...
-    val scale = scales.colors.linearHSL {
-        domain = listOf(0.0, 180.0, 360.0, 540.0, 720.0)
-        range = listOf(Colors.Web.blue, Colors.Web.yellow, Colors.Web.red, Colors.Web.green, Colors.Web.blue)
+    val scale = ScalesChromatic.Sequential.Cyclical.sineBow {
+        domain = StrictlyContinuous(.0, 360.0)
     }
     viz {
-        size = Size(800.0, 200.0)
-        (0..720).forEach { 
+        size = size(800, 200)
+        (0..360).forEach { 
             // TODO change to rotate
             line {
-                val angle = (it/2.0).deg
+                val angle = it.deg
                 x1 = 100.0 + 60 * angle.cos
                 x2 = 100.0 + 100 * angle.cos
                 y1 = 100.0 + 60 * angle.sin
                 y2 = 100.0 + 100 * angle.sin
                 stroke = scale(it.toDouble())
+                strokeWidth = 2.0
             }
         }
     }.bindRendererOnNewCanvas() //sampleEnd
