@@ -9,6 +9,10 @@
   background-color: $color-main-dark-extra;
   color: white;
 
+  &.d2v-footer--clamp-to-content {
+    margin-top: 0;
+  }
+
   .wrap {
     @include column-container;
     @include site-max-width;

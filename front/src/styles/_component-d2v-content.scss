@@ -8,6 +8,11 @@
   box-sizing: border-box;
   min-height: 100vh;
 
+  &.d2v-content--editor {
+    padding-top: 0;
+    min-height: 0;
+  }
+
   table {
     @include d2v-table;
   }
@@ -40,6 +45,10 @@
 #d2v-main {
     @include site-max-width;
     @include column-container;
+
+    &.d2v-main--full-width {
+      max-width: none !important;
+    }
 
     > .site-text {
       @include column( 7, 12);

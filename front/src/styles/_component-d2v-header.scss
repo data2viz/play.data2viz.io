@@ -11,6 +11,22 @@
   transition: box-shadow 500ms ease-in-out;
   box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
 
+  .menu-fixed & {
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
+  }
+
+  &.d2v-header--un-fixed {
+    position: relative;
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid $color-main-light-extra;
+  }
+
+  &.d2v-header--full-width {
+    .wrap {
+      max-width: none !important;
+    }
+  }
+
   a.github-corner > svg {
     fill: $color-main !important;
   }
@@ -71,8 +87,4 @@
       fill: $color-main;
     }
   }
-}
-
-.menu-fixed #d2v-header {
-  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.05);
 }
