@@ -21,10 +21,12 @@ To create a new simulation use the factory `forceSimulation` and set at least th
 import io.data2viz.color.*
 import io.data2viz.geom.*
 import io.data2viz.math.*
+import io.data2viz.timer.*
 import io.data2viz.viz.*
 
 fun main() {
     //sampleStart
+    val timer = timer()
     viz {
         rect {
             size = Size(50.0, 50.0)
@@ -43,7 +45,7 @@ fun main() {
 Another usual option to create a color is through its **hexadecimal** code. You have
 2 extension vals to help you create a color from Int and String.
 
-```height=50
+```height=600
 import io.data2viz.color.*
 import io.data2viz.force.*
 import io.data2viz.geom.*
