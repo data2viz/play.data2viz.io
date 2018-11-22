@@ -60,35 +60,35 @@ import io.data2viz.viz.*
 
 fun main() {
     viz {
-         size = Size(800.0, 50.0)
+         size = size(800, 50)
          rect {                     // visualize the first "range subset"
-            size = Size(300.0, 50.0)
-            fill = "#DDDDDD".color
+            size = size(300, 50)
+            fill = "#DDDDDD".col
          }
          rect {                     // visualize the second "range subset"
             x = 300.0
-            size = Size(300.0, 50.0)
-            fill = "#AAAAAA".color
+            size = size(300, 50)
+            fill = "#AAAAAA".col
          }
         //sampleStart
         // this scale maps 2 domain subsets to 2 range subsets (shown in greyscale)
         //  "domain" for the number of the current frame (animation)
         //  "range" for the position on screen
-        val scale = scales.continuous.linear {
+        val scale = Scales.Continuous.linear {
              domain = listOf(.0, 100.0, 400.0)
              range = listOf(.0, 300.0, 600.0)
         }
          var count = .0
          val myRect = rect {
-             size = Size(4.0, 50.0)
-             fill = "#FF3366".color
+             size = size(4, 50)
+             fill = "#FF3366".col
          }
          val myText = text {
              y = 25.0
              fill = Colors.Web.black
              baseline = TextAlignmentBaseline.MIDDLE
          }
-         onFrame {
+         animation {
              count = (count + 1) % 400
              myRect.x = scale(count) - 2
              myText.x = 8 + scale(count)
@@ -123,15 +123,15 @@ fun main() {
     //sampleStart
     val myDomain = listOf(1.0, 200.0)
     val myRange = listOf(.0, 600.0)
-    val logScale = scales.continuous.log { domain = myDomain; range = myRange }
-    val powScale = scales.continuous.pow(10.0) { domain = myDomain; range = myRange }
+    val logScale = Scales.Continuous.log { domain = myDomain; range = myRange }
+    val powScale = Scales.Continuous.pow(10.0) { domain = myDomain; range = myRange }
     viz {
-        size = Size(800.0, 50.0)
+        size = size(800, 50)
         var count = 1.0
         var increment = 1
         val logRect = rect {
-            size = Size(50.0, 25.0)
-            fill = "#33A7D8".color
+            size = size(50, 25)
+            fill = "#33A7D8".col
         }
         val logText = text {
             y = 12.0
@@ -140,9 +140,9 @@ fun main() {
             anchor = TextAnchor.MIDDLE
         }
         val powRect = rect {
-            size = Size(50.0, 25.0)
+            size = size(50, 25)
             y = 25.0
-            fill = "#FECE3E".color
+            fill = "#FECE3E".col
         }
         val powText = text {
             y = 37.0
@@ -150,7 +150,7 @@ fun main() {
             baseline = TextAlignmentBaseline.MIDDLE
             anchor = TextAnchor.MIDDLE
         }
-        onFrame {
+        animation {
             count += increment
             if (count >= 200 || count <= 1) increment *= -1
             logRect.x = logScale(count)
@@ -200,11 +200,11 @@ fun main() {
         )
         
         // scale translates dates to double for positionning events
-        val scale = scales.continuous.time {
+        val scale = Scales.Continuous.time {
             domain = listOf(date(2018, 1, 1), date(2019, 1, 1))
             range = listOf(50.0, 650.0)
         }
-        size = Size(800.0, 50.0)
+        size = size(800, 50)
         events.forEach { 
             line {
                 x1 = scale(it.second)
@@ -264,17 +264,17 @@ import io.data2viz.viz.*
 fun main() {
     //sampleStart
     // scale divides the domain [0,9] into 3 segments: [-∞,3[ [3,6[ [6,+∞]
-    val scale = scales.quantize<Color> {
+    val scale = Scales.Quantized.quantize<Color> {
         domain = StrictlyContinuous(0.0, 9.0)
-        range = listOf("#E966AC".color, "#33A7D8".color, "#FECE3E".color)
+        range = listOf("#E966AC".col, "#33A7D8".col, "#FECE3E".col)
     }
     val someValues = listOf(0.0, 1.0, 1.5, 2.0, 3.0, 6.0, 7.0, 8.0, 9.0)
     viz {
-        size = Size(800.0, 50.0)
+        size = size(800, 50)
         someValues.forEachIndexed { index, domainValue ->
             rect {
                 x = index * 55.0
-                size = Size(50.0, 50.0)
+                size = size(50, 50)
                 fill = scale(domainValue)
             }
             text {
@@ -311,17 +311,17 @@ import io.data2viz.viz.*
 fun main() {
     //sampleStart
     // scale divides the domain based on thresholds: [-∞,1[ [1,8[ [8,+∞]
-    val scale = scales.threshold<Color> {
+    val scale = Scales.Quantized.threshold<Color> {
         domain = listOf(1.0, 8.0)
-        range = listOf("#E966AC".color, "#33A7D8".color, "#FECE3E".color)
+        range = listOf("#E966AC".col, "#33A7D8".col, "#FECE3E".col)
     }
     val someValues = listOf(0.0, 1.0, 1.5, 2.0, 3.0, 6.0, 7.0, 8.0, 9.0)
     viz {
-        size = Size(800.0, 50.0)
+        size = size(800, 50)
         someValues.forEachIndexed { index, domainValue ->
             rect {
                 x = index * 55.0
-                size = Size(50.0, 50.0)
+                size = size(50, 50)
                 fill = scale(domainValue)
             }
             text {
@@ -358,16 +358,16 @@ fun main() {
     //sampleStart
     val someValues = listOf(0.0, 1.0, 1.5, 2.0, 3.0, 6.0, 7.0, 8.0, 9.0)
     // scale divides into 3-quantiles for even distribution [-∞,1.83[ [1.83,6.33[ [6.33,+∞]
-    val scale = scales.quantile<Color> {
+    val scale = Scales.Quantized.quantile<Color> {
         domain = someValues
-        range = listOf("#E966AC".color, "#33A7D8".color, "#FECE3E".color)
+        range = listOf("#E966AC".col, "#33A7D8".col, "#FECE3E".col)
     }
     viz {
-        size = Size(800.0, 50.0)
+        size = size(800, 50)
         someValues.forEachIndexed { index, domainValue ->
             rect {
                 x = index * 55.0
-                size = Size(50.0, 50.0)
+                size = size(50, 50)
                 fill = scale(domainValue)
             }
             text {
@@ -422,7 +422,7 @@ import io.data2viz.viz.*
 fun main() {
     //sampleStart
     // scale maps Integer to their italian name
-    val scale = scales.ordinal<Int, String> { 
+    val scale = Scales.Discrete.ordinal<Int, String> { 
         domain = (0..10).toList()
         range = listOf("zero", "uno", "due", "tre", "quattro", "cinque", "sei", "sette", "otto", "nove", "dieci")
     }
