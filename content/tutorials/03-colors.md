@@ -41,8 +41,7 @@ fun main() {
             fill = Colors.Web.blueviolet
         }
 
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
 
@@ -71,8 +70,7 @@ fun main() {
             fill = "#800080".col            // <- String extension val
         }
 
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
 
@@ -123,8 +121,7 @@ fun main() {
             size = size(50, 50)
             fill = Colors.lab(30.83.pct, 26.05, -42.08)         // <- LAB color space
         }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
  
 ```
@@ -186,8 +183,7 @@ fun main() {
                         		else Colors.Web.white
                 textContent = "${(color.luminance().value*100).toInt()}%"
             }
-        }
-        //sampleEnd
+        } //sampleEnd
         text {
             x = 250.0
             y = 125.0
@@ -235,8 +231,7 @@ fun main() {
                 fill = myColor.brighten(it / 2.0)
             }
         }
-    }.bindRendererOnNewCanvas()
-//sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
 
@@ -267,8 +262,7 @@ fun main() {
                 fill = myColor.desaturate(it.toDouble())
             }
         }
-    }.bindRendererOnNewCanvas()
-//sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
 
@@ -337,8 +331,7 @@ fun main() {
             stroke = linearGradient
             strokeWidth = 30.0 
         }
-    }.bindRendererOnNewCanvas()    
-//sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
  ```
  
@@ -371,7 +364,6 @@ fun main() {
             radius = 100.0
             fill = radialGradient
         }
-    }.bindRendererOnNewCanvas()
-    //sampleEnd
+    }.bindRendererOnNewCanvas() //sampleEnd
 }
   ```

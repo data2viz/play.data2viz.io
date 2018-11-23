@@ -3,14 +3,14 @@
 Chromatic Scales are [scales](/tutorial/scales/) that output [colors](/tutorial/colors/).  
 The `ScalesChromatic` object offers somes factories for creating pre-configured color scales:
 
-| Type |  Subtype |  Factories<br/>ScalesChromatic.*  | Example of use |
+|  Scales factory<br/>ScalesChromatic.* | Type |  Subtype  | Example of use |
 |---|---|---|---|
-| Continuous | &nbsp; | **[Continuous.*](#continuous-scales)**<br/>*linearRGB...* | Create your own linear color scale  |
-| Discrete  | &nbsp; |  **[Discrete.*](#discrete-scales)**<br/>*dark8, pale12...* | Display distinct categories with no specific order |
-| Sequential  |  Single&nbsp;hue |  **[Sequential.SingleHue.*](#single-hue-scales)**<br/>*blues, greens, reds...* | Show continuous data on a single-color scheme |
-| Sequential  |  Multi&nbsp;hue |  **[Sequential.MultiHue.*](#multi-hue-scales)**<br/>*viridis, plasma...* | Show continuous data on multi-color scheme (better for large domains) |
-| Sequential  |  Diverging |  **[Sequential.Diverging.*](#diverging-scales)**<br/>*spectral, red_blue...* | Highlight divergence of continuous data (temperatures...)  |
-| Sequential  |  Cyclical |  **[Sequential.Cyclical.*](#cyclical-scales)**<br/>*rainbow...* | Good for radial visuals as<br/> start color == end color |
+| **[Continuous.*](#continuous-scales)**<br/>*linearRGB...* | Continuous | &nbsp; | Create your own linear color scale  |
+|  **[Discrete.*](#discrete-scales)**<br/>*dark8, pale12...*| Discrete  | &nbsp;  | Display distinct categories with no specific order |
+|  **[Sequential.SingleHue.*](#single-hue-scales)**<br/>*blues, greens, reds...* | Sequential  |  Single&nbsp;hue | Show continuous data on a single-color scheme |
+|  **[Sequential.MultiHue.*](#multi-hue-scales)**<br/>*viridis, plasma...*| Sequential  |  Multi&nbsp;hue  | Show continuous data on multi-color scheme (better for large domains) |
+|  **[Sequential.Diverging.*](#diverging-scales)**<br/>*spectral, red_blue...* | Sequential  |  Diverging | Highlight divergence of continuous data (temperatures...)  |
+|  **[Sequential.Cyclical.*](#cyclical-scales)**<br/>*rainbow...* | Sequential  |  Cyclical | Good for radial visuals as<br/> start color == end color |
 
 
 <div class="note">
@@ -39,6 +39,10 @@ than 180° on the chromatic wheel these interpolators will take the "longest way
 Learn more about the bias of "default RGB interpolation" in [this video](https://www.youtube.com/watch?v=LKnqECcg6Gw).
 </div>
 
+LONGUEUR
+
+IMPORTS
+
 ```height=50 width=800
 import io.data2viz.color.*
 import io.data2viz.scale.*
@@ -48,33 +52,38 @@ import io.data2viz.viz.*
 
 fun main() {
     //sampleStart
-    val myDomain = listOf(.0, 100.0)
-    val myRange = listOf("#33A7D8".col, "#FECE3E".col)
+    val valuesDomain = listOf(.0, 100.0)
+    val colorRange = listOf("#33A7D8".col, "#FECE3E".col)
     
     // scale with linear interpolation in 2 color spaces : RGB & HCL
-    val scaleRGB = ScalesChromatic.Continuous.linearRGB { domain = myDomain; range = myRange }
-    val scaleHCL = ScalesChromatic.Continuous.linearHCL { domain = myDomain; range = myRange }
+    val scaleRGB = ScalesChromatic.Continuous.linearRGB { 
+        domain = valuesDomain
+        range = colorRange
+    }
+    val scaleHCL = ScalesChromatic.Continuous.linearHCL { 
+        domain = valuesDomain
+        range = colorRange 
+    }
     viz {
         size = size(800, 50)
         (0..100).forEach { 
             rect {
                 x = 10 + it * 5.0
-                size = size(5, 20)
-                fill = scaleRGB(it.toDouble())
+                size = size(5, 19)
+                fill = scaleRGB(it)
             }
             rect {
                 x = 10 + it * 5.0
-                y = 30.0
-                size = size(5, 20)
-                fill = scaleHCL(it.toDouble())
+                y = 31.0
+                size = size(5, 19)
+                fill = scaleHCL(it)
             }
-            if (it%10 == 0) {
+            if (it % 10 == 0) {
                 text {
                     x = 10 + it * 5.0
                     y = 26.0
                     fill = Colors.Web.black
-                    baseline = TextAlignmentBaseline.MIDDLE
-                    anchor = TextAnchor.MIDDLE
+                    textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
                     textContent = "$it"
                 }
             }
@@ -106,6 +115,7 @@ The colors in these scales are mostly derived from Cynthia A. Brewer’s [ColorB
 ```height=50 width=800
 import io.data2viz.color.*
 import io.data2viz.scale.*
+import io.data2viz.math.*
 import io.data2viz.geom.*
 import io.data2viz.viz.*
 
@@ -122,7 +132,7 @@ fun main() {
                 x = 30 + index * 70.0
                 y = 25.0
                 fill = scale(dayName)
-                anchor = TextAnchor.MIDDLE
+                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
                 textContent = "$dayName"
             }
         }
@@ -147,8 +157,11 @@ Use `ScalesChromatic.Sequential.SingleHue.*` to create a new single hue scale.
 ```height=50 width=800
 import io.data2viz.color.*
 import io.data2viz.scale.*
+import io.data2viz.math.*
 import io.data2viz.geom.*
 import io.data2viz.viz.*
+import io.data2viz.color.Colors.Web.white
+import io.data2viz.color.Colors.Web.black
 
 fun main() {
     //sampleStart
@@ -159,17 +172,17 @@ fun main() {
     viz {
         size = size(800, 50)
         (0..40).forEach { 
+            val color = scale(it.toDouble())
             rect {
                 x = it * 17.0
                 size = size(16, 50)
-                fill = scale(it.toDouble())
+                fill = color
             }
             text {
                 x = 8 + it * 17.0
                 y = 25.0
-                fill = Colors.Web.black
-                baseline = TextAlignmentBaseline.MIDDLE
-                anchor = TextAnchor.MIDDLE
+                fill = if (color.luminance() > 40.pct) black else white
+                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
                 textContent = "$it"
             }
         }
@@ -184,8 +197,11 @@ Use `ScalesChromatic.Sequential.MultiHue.*` to create a new multi hue scale.
 ```height=50 width=800
 import io.data2viz.color.*
 import io.data2viz.scale.*
+import io.data2viz.math.*
 import io.data2viz.geom.*
 import io.data2viz.viz.*
+import io.data2viz.color.Colors.Web.white
+import io.data2viz.color.Colors.Web.black
 
 fun main() {
     //sampleStart
@@ -196,17 +212,17 @@ fun main() {
     viz {
         size = size(800, 50)
         (0..40).forEach { 
+            val color = scale(it.toDouble())
             rect {
                 x = it * 17.0
                 size = size(16, 50)
-                fill = scale(it.toDouble())
+                fill = color
             }
             text {
                 x = 8 + it * 17.0
                 y = 25.0
-                fill = Colors.Web.black
-                baseline = TextAlignmentBaseline.MIDDLE
-                anchor = TextAnchor.MIDDLE
+                fill = if (color.luminance() > 40.pct) black else white
+                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
                 textContent = "$it"
             }
         }
@@ -221,29 +237,33 @@ Use `ScalesChromatic.Sequential.Diverging.*` to create a new diverging scale.
 ```height=50 width=800
 import io.data2viz.color.*
 import io.data2viz.scale.*
+import io.data2viz.math.*
 import io.data2viz.geom.*
 import io.data2viz.viz.*
+import io.data2viz.color.Colors.Web.white
+import io.data2viz.color.Colors.Web.black
+
 
 fun main() {
     //sampleStart
-    // note the inverted domain to bind blue to -20 and red to +20 
+    // note the inverted domain to bind blue to -15 and red to +15 
     val scale = ScalesChromatic.Sequential.Diverging.red_yelow_blue() {
-        domain = StrictlyContinuous(20.0, -20.0)
+        domain = StrictlyContinuous(15.0, -15.0)
     }
     viz {
         size = Size(800.0, 50.0)
-        (-20..20).forEach { 
+        (-15..15).forEach { 
+            val color = scale(it.toDouble())
             rect {
-                x = (it + 20) * 17.0
-                size = size(16, 50)
-                fill = scale(it.toDouble())
+                x = (it + 15) * 21.0
+                size = size(20, 50)
+                fill = color
             }
             text {
-                x = 8 + (it + 20) * 17.0
+                x = 10 + (it + 15) * 21.0
                 y = 25.0
-                fill = Colors.Web.black
-                baseline = TextAlignmentBaseline.MIDDLE
-                anchor = TextAnchor.MIDDLE
+                fill = if (color.luminance() > 40.pct) black else white
+                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
                 textContent = "$it"
             }
         }
@@ -277,15 +297,14 @@ fun main() {
     viz {
         size = size(800, 200)
         (0..360).forEach { 
-            // TODO change to rotate
             line {
                 val angle = it.deg
-                x1 = 100.0 + 60 * angle.cos
-                x2 = 100.0 + 100 * angle.cos
+                x1 = 300.0 + 60 * angle.cos
+                x2 = 300.0 + 100 * angle.cos
                 y1 = 100.0 + 60 * angle.sin
                 y2 = 100.0 + 100 * angle.sin
                 stroke = scale(it.toDouble())
-                strokeWidth = 2.0
+                strokeWidth = 3.0
             }
         }
     }.bindRendererOnNewCanvas() //sampleEnd

@@ -55,6 +55,7 @@ You can use `Scales.Continuous.linearRound` to get rounded scaled values.
 ```height=50 width=800
 import io.data2viz.color.*
 import io.data2viz.scale.*
+import io.data2viz.math.*
 import io.data2viz.geom.*
 import io.data2viz.viz.*
 
@@ -79,20 +80,29 @@ fun main() {
              range = listOf(.0, 300.0, 600.0)
         }
          var count = .0
-         val myRect = rect {
-             size = size(4, 50)
-             fill = "#FF3366".col
-         }
-         val myText = text {
-             y = 25.0
-             fill = Colors.Web.black
-             baseline = TextAlignmentBaseline.MIDDLE
-         }
-         animation {
-             count = (count + 1) % 400
-             myRect.x = scale(count) - 2
-             myText.x = 8 + scale(count)
-             myText.textContent = "$count"
+         group {
+             rect {                         // the red slider
+                 size = size(4, 50)
+                 fill = "#FF3366".col
+             }
+             val domainText = text {
+                 x = 8.0
+                 y = 20.0
+                 fill = Colors.Web.black
+             }
+             val rangeText = text {
+                 x = 8.0
+                 y = 35.0
+                 fill = Colors.Web.black
+             }
+             animation {
+                 count = (count + 1) % 400
+                 transform {
+                    translate(scale(count) - 2)
+                 }
+                 domainText.textContent = "Domain = $count"
+                 rangeText.textContent = "Range = ${scale(count).toInt()}"
+             } 
          } //sampleEnd
     }.bindRendererOnNewCanvas()
 }
@@ -116,6 +126,7 @@ To create these scales, use the `Scales.Continuous.pow` and `Scales.Continuous.l
 ```height=50 width=800
 import io.data2viz.color.*
 import io.data2viz.scale.*
+import io.data2viz.math.*
 import io.data2viz.geom.*
 import io.data2viz.viz.*
 
@@ -136,8 +147,7 @@ fun main() {
         val logText = text {
             y = 12.0
             fill = Colors.Web.black
-            baseline = TextAlignmentBaseline.MIDDLE
-            anchor = TextAnchor.MIDDLE
+            textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
         }
         val powRect = rect {
             size = size(50, 25)
@@ -147,8 +157,7 @@ fun main() {
         val powText = text {
             y = 37.0
             fill = Colors.Web.black
-            baseline = TextAlignmentBaseline.MIDDLE
-            anchor = TextAnchor.MIDDLE
+            textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
         }
         animation {
             count += increment
@@ -174,6 +183,7 @@ To create a time scale, use the `Scales.Continuous.time` function.
 ```height=50 width=800
 import io.data2viz.color.*
 import io.data2viz.scale.*
+import io.data2viz.math.*
 import io.data2viz.geom.*
 import io.data2viz.viz.*
 import io.data2viz.time.*
@@ -188,15 +198,15 @@ fun main() {
             stroke = Colors.Web.black
         }
     //sampleStart
-        val events = listOf(
-            Pair("New Year 2018", date(2018, 1, 1)), 
-            Pair("Jim's birthday", date(2018, 2, 16)), 
-            Pair("Spring", date(2018, 3, 20)), 
-            Pair("Summer", date(2018, 6, 21)), 
-            Pair("Mike's birthday", date(2018, 8, 12)), 
-            Pair("Automn", date(2018, 9, 23)),
-            Pair("Sam's birthday", date(2018, 11, 8)),
-            Pair("New year's eve", date(2018, 12, 31, 23, 59))
+        val events = listOf<Pair<Date, String>>(
+            date(2018, 1, 1) to "New Year 2018",
+            date(2018, 2, 16) to "Jim's birthday",
+            date(2018, 3, 20) to "Spring",
+            date(2018, 6, 21) to "Summer",
+            date(2018, 8, 12) to "Mike's birthday", 
+            date(2018, 9, 23) to "Automn",
+            date(2018, 11, 8) to "Sam's birthday",
+            date(2018, 12, 31, 23, 59) to "New year's eve"
         )
         
         // scale translates dates to double for positionning events
@@ -207,20 +217,20 @@ fun main() {
         size = size(800, 50)
         events.forEach { 
             line {
-                x1 = scale(it.second)
+                x1 = scale(it.first)
                 y1 = 20.0
-                x2 = scale(it.second)
+                x2 = scale(it.first)
                 y2 = 40.0
                 strokeWidth = 2.0
                 stroke = Colors.Web.black
             }
             text {
-                x = scale(it.second)
+                x = scale(it.first)
                 y = 10.0
                 fill = Colors.Web.black
-                baseline = TextAlignmentBaseline.MIDDLE
-                anchor = TextAnchor.MIDDLE
-                textContent = "${it.first}"
+                fontSize = 10.0
+                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+                textContent = "${it.second}"
             }
         } //sampleEnd
     }.bindRendererOnNewCanvas()
@@ -258,6 +268,7 @@ To create a quantile scale, use the `Scales.Quantized.quantize` function.
 ```height=50 width=800
 import io.data2viz.color.*
 import io.data2viz.scale.*
+import io.data2viz.math.*
 import io.data2viz.geom.*
 import io.data2viz.viz.*
 
@@ -281,8 +292,7 @@ fun main() {
                 x = 25 + index * 55.0
                 y = 25.0
                 fill = Colors.Web.black
-                baseline = TextAlignmentBaseline.MIDDLE
-                anchor = TextAnchor.MIDDLE
+                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
                 textContent = "$domainValue"
             }
         }
@@ -305,6 +315,7 @@ Let's have a look at the same example as before but with different thresholds:
 ```height=50 width=800
 import io.data2viz.color.*
 import io.data2viz.scale.*
+import io.data2viz.math.*
 import io.data2viz.geom.*
 import io.data2viz.viz.*
 
@@ -328,8 +339,7 @@ fun main() {
                 x = 25 + index * 55.0
                 y = 25.0
                 fill = Colors.Web.black
-                baseline = TextAlignmentBaseline.MIDDLE
-                anchor = TextAnchor.MIDDLE
+                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
                 textContent = "$domainValue"
             }
         }
@@ -351,13 +361,14 @@ To create a quantile scale, use the `Scales.Quantized.quantile` function.
 ```height=50 width=800
 import io.data2viz.color.*
 import io.data2viz.scale.*
+import io.data2viz.math.*
 import io.data2viz.geom.*
 import io.data2viz.viz.*
 
 fun main() {
     //sampleStart
     val someValues = listOf(0.0, 1.0, 1.5, 2.0, 3.0, 6.0, 7.0, 8.0, 9.0)
-    // scale divides into 3-quantiles for even distribution [-∞,1.83[ [1.83,6.33[ [6.33,+∞]
+    // scale divides in 3-quantiles for even distribution [-∞,1.83[ [1.83,6.33[ [6.33,+∞]
     val scale = Scales.Quantized.quantile<Color> {
         domain = someValues
         range = listOf("#E966AC".col, "#33A7D8".col, "#FECE3E".col)
@@ -374,8 +385,7 @@ fun main() {
                 x = 25 + index * 55.0
                 y = 25.0
                 fill = Colors.Web.black
-                baseline = TextAlignmentBaseline.MIDDLE
-                anchor = TextAnchor.MIDDLE
+                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
                 textContent = "$domainValue"
             }
         }
@@ -416,6 +426,7 @@ To create an ordinal scale, use the `Scales.Discrete.ordinal` function.
 ```height=0
 import io.data2viz.color.*
 import io.data2viz.scale.*
+import io.data2viz.math.*
 import io.data2viz.geom.*
 import io.data2viz.viz.*
 
