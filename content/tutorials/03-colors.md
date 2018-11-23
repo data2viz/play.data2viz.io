@@ -1,14 +1,14 @@
 # Colors and gradients
 
 Colors are used everywhere in data visualizations and -as a way of displaying data- they need to 
-be chosen with care to ensure that the perception we have of the color carry the right information to your audience.
+be chosen with care to ensure that the perception of the color carry the right information.
 
-That's why data2viz provides a lot of helpful functions to create several colors and gradients and still maintain 
-a high level of readability and accessibility in your visuals.
+Data2viz provides a lot of helpful functions to create several colors and gradients and still maintain 
+a high level of readability and accessibility in visuals.
 
 <div class="note">
 
-In data2viz, colors are managed in there own module:
+In data2viz, colors are managed in their own module:
 - import the dependency inside your project (`io.data2viz.color`)
 - add the import directive in your code (`import io.data2viz.color.*`)
 </div>
@@ -16,15 +16,15 @@ In data2viz, colors are managed in there own module:
 
 ## Color creation
 
-The `Colors` object will give you access to several way of having colors and gradients.
+The `Colors` object provides several ways to retrieve colors and gradients.
 
 ### Web colors
 
-The first option is to use a named color. All the CSS colors are accessible through
+The first option is to use a named color. All CSS colors are accessible as references through
 the `Colors.Web` object. 
 
-All you have to do is calling `Colors.Web.darkturquoise` to have a reference 
-on the dark turquoise html color. As colors are immutable objects, you can
+For example, `Colors.Web.darkturquoise` returns a reference 
+on the dark turquoise html color. As colors are immutable objects, it's then possible to
 reuse and pass references of these named colors.
 
 ```height=50
@@ -47,8 +47,8 @@ fun main() {
 
 ### Hex colors
 
-Another usual option to create a color is through its **hexadecimal** code. You have
-2 extension vals to help you create a color from Int and String.
+Another usual option to create a color is through its **hexadecimal** code. There are
+2 extension vals that simplify the creation of a color from Int and String.
 
 ```height=50
 import io.data2viz.color.*
@@ -79,13 +79,13 @@ fun main() {
 You can also use the values from 0 to 255 of the **RGB** channels to create a color calling 
 `Colors.rgb`. 
 
-Beside **RGB**, data2viz allows you to use different color spaces to create colors: 
+Beside **RGB**, data2viz allows the use of different color spaces to create colors: 
   - **HSL** (Hue, Saturation, Lightness), 
   - **HCL** (Hue, Chroma, Lightness) and
   - **LAB** (also known as CIE Lab). 
   
 For each of them a factory function is available in `Colors`, taking
-the transparency alpha as a last parameter with a default value of 100% (opaque).
+the transparency alpha as a last parameter with a d
 
 ```height=50
 import io.data2viz.color.*
@@ -140,8 +140,8 @@ the same "lightness" parameter in HSL.
 
 The `luminance()` function returns the **perceived lightness** of a given color.
  
-The **contrast** we perceive is tightly bound to the luminance of 2 given colors, you can use the `contrast()` 
-function to compute the *perceived contrast ratio* of 2 colors. 
+The **contrast** we perceive is tightly bound to the luminance of 2 given colors. The `contrast()` 
+computes the *perceived contrast ratio* of 2 colors. 
 
 <div class="info">
 
@@ -204,7 +204,7 @@ fun main() {
 
 ### Change brightness
 
-The `brighten()` and `darken()` allows you to easily change the brightness of a given color.
+`brighten()` and `darken()` functions allow to easily change the brightness of a given color.
 
 <div class="note">
 
@@ -235,7 +235,7 @@ fun main() {
 
 ### Change saturation
 
-The `saturate()` and `desaturate()` functions allows you to easily change the saturation of a given color.
+The `saturate()` and `desaturate()` functions change the saturation of a given color.
 
 <div class="note">
 
@@ -279,7 +279,7 @@ Gradient positioning (as defined by its `ColorStop`) is absolute, not relative t
 
 ### Linear gradient
 
-A Linear gradient can be easily created using the `Colors.Gradient.linear()` builder.
+A Linear gradient is created using the `Colors.Gradient.linear()` builder.
 
  * `start`: starting point of the gradient
  * `end`: ending point of the gradient
