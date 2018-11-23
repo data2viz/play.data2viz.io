@@ -28,21 +28,11 @@ class Data2vizCodeBlockNodeRenderer(context: HtmlNodeRendererContext) : CoreHtml
 
     private val html: HtmlWriter = context.writer
 
-    override fun getNodeTypes(): Set<Class<out Node>> = setOf(
-        FencedCodeBlock::class.java,
-        IndentedCodeBlock::class.java
-    )
+    override fun getNodeTypes(): Set<Class<out Node>> = setOf(FencedCodeBlock::class.java)
 
     override fun render(node: Node) {
 
         when (node){
-            is IndentedCodeBlock -> {
-                html.line()
-                html.tag("div", d2vAttributes)
-                html.text(node.literal)
-                html.tag("/div")
-                html.line()
-            }
             is FencedCodeBlock -> {
                 val attributes = when(node.info) {
                     "note" -> mapOf("class" to "note")
