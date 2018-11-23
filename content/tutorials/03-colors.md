@@ -181,21 +181,21 @@ fun main() {
                 y = position.y
                 fill = if (color.luminance() > 30.pct) black else white
                 textContent = "${(color.luminance().value*100).toInt()}%"
-                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+                textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
             }
         } //sampleEnd
         text {
             x = 250.0
             y = 125.0
             fill = Colors.Web.black
-            textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+            textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
             textContent = "LUMINANCE"
         }
         text {
             x = 520.0
             y = 125.0
             fill = Colors.Web.black
-            textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+            textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
             textContent = "DESATURATED COLORS"
         }
     }.bindRendererOnNewCanvas()
