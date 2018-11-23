@@ -175,6 +175,11 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                 }
                             }
                         }
+                        li(classes = "d2v-playground-link") {
+                            a (href = "#"){
+                                +"try it on playground!"
+                            }
+                        }
                     }
                 }
             }
