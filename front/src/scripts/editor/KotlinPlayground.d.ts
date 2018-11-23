@@ -3,7 +3,7 @@ export interface ICodeMirror {
 }
 
 export namespace KotlinPlayground {
-    interface IEditor {
+    interface IEditorInstance {
         state: String[],            // playground attributes, dependencies and etc.
         nodes: HTMLElement[],       // playground NodeElement.
         execute: () => void,        // function for executing code snippet.
@@ -17,6 +17,6 @@ export namespace KotlinPlayground {
         onCloseConsole?:    () => void;
         onOpenConsole?:     () => void;
         callback?:          (targetNode: HTMLElement, mountNode: HTMLElement) => void;
-        getInstance?:       (instance: KotlinPlayground.IEditor) => void
+        getInstance?:       (instance: KotlinPlayground.IEditorInstance) => void
     }
 }
