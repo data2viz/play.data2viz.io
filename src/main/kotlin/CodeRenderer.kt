@@ -34,19 +34,13 @@ class Data2vizCodeBlockNodeRenderer(context: HtmlNodeRendererContext) : CoreHtml
 
         when (node){
             is FencedCodeBlock -> {
-                val attributes = when(node.info) {
-                    "note" -> mapOf("class" to "note")
-                    "info" -> mapOf("class" to "info")
-                    "warning" -> mapOf("class" to "warning")
-                    else -> playGroundSpecificAttributes(node.info)
-                }
+                val attributes = playGroundSpecificAttributes(node.info)
                 html.line()
                 html.tag("div", attributes)
                 html.text(node.literal)
                 html.tag("/div")
                 html.line()
             }
-
             else -> error("unknown type:: ${node.javaClass}")
         }
 
