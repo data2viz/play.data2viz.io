@@ -3,37 +3,6 @@
 All visuals done with data2viz share some simple elements, this page describes the "basics" of the
 library.
 
-## The Viz object
-
-Data2viz provides a comprehensive DSL to build visualizations by assembling basic elements (rectangles, circles...).
-The first of your elements will be the "Viz" object that you can instantiate using the `viz` factory.
-
-Just type `viz`, open some curly braces and you'll have access to several elements you can start to add,
-use auto-completion (*CTRL+space*) to find out more!
-
-<div class="note">
-
-As data2viz is multiplatform, you need to precise how you'll display your visualization.
-`Viz.bindRendererOnNewCanvas()` for example, is a javascript-specific extension function to render your viz
-in a web canvas.
-</div>
-
-```height=50
-import io.data2viz.color.*
-import io.data2viz.geom.*
-//sampleStart
-import io.data2viz.viz.*                     // this import is mandatory
-
-fun main() {
-    viz {                                    // creating a "root" node
-        size = size(200, 50)				 // sizing our viz
-        rect {                               // adding a rectangle to our viz
-            size = size(50, 50)
-            fill = Colors.Web.crimson
-        }
-    }.bindRendererOnNewCanvas()              // binding the viz to our canvas (JS)
-} //sampleEnd
-```
 
 
 ## Utility types
