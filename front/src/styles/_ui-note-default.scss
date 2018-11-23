@@ -1,37 +1,27 @@
 @import "_params";
 
-$left-width: 6em;
-
 //todo set variables
 @mixin d2v-note-default {
-  //$left-width: 3em;
-
   position: relative;
   background: #F7F7FA;
-  padding: $gutter-width / 2;
-  margin-left: $left-width;
+  padding: 0.6em 1.2em 1em;
+  margin-left: 0;
   margin-top: 3em;
   margin-bottom: 3em;
-  font-weight: 400;
-  font-size: 1em;
-  line-height: 1.6em;
-
-  > * {
-    font-size: 1em;
-  }
+  //font-weight: 600;
+  //font-size: 1em;
+  //line-height: 1.6em;
 
   &:before {
-    width: $left-width;
     display: block;
     content: "note";
     position: absolute;
     left: 0;
-    top: $gutter-width / 2;
-    transform: translate(-100%);
+    top: 0;
+    transform: translateY(-1.3em);
     color: #737380;
-    font-weight: 700;
-    text-align: right;
-    padding-right: $gutter-width / 2;
+    font-weight: 600;
+    font-family: $font-family;
   }
 
   > *:first-child {
@@ -44,29 +34,21 @@ $left-width: 6em;
 }
 
 @mixin d2v-note-info {
-  //$left-width: 2.7em;
-
   @include d2v-note-default;
   background: #F5F5FC;
-  margin-left: $left-width;
 
   &:before {
     content: "info";
-    width: $left-width;
     color: #433EE0;
   }
 }
 
 @mixin d2v-note-warning {
-  //$left-width: 5em;
-
   @include d2v-note-default;
   background: #FCF5F5;
-  margin-left: $left-width;
 
   &:before {
     content: "warning";
-    width: $left-width;
     color: #DD272D;
   }
 }

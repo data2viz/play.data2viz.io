@@ -12,28 +12,33 @@
     @include d2v-table;
   }
 
-  /* notes */
-  @mixin note-style {
-    font-family: 'IBM Plex Serif', serif;
+  ul {
+    padding-left: 1.5em;
 
-    &:before {
-      font-family: $font-family;
+    li {
+      list-style-type: none;
+      position: relative;
+
+      &:before {
+        content: "–";
+        display: inline-block;
+        position: absolute;
+        left: -1.4em;
+      }
     }
   }
 
+  /* notes */
   .note {
     @include d2v-note-default;
-    @include note-style;
   }
 
   .info {
     @include d2v-note-info;
-    @include note-style;
   }
 
   .warning {
     @include d2v-note-warning;
-    @include note-style;
   }
 }
 
@@ -52,8 +57,12 @@
         }
       }
 
-      p, ul, ol {
-        font-family: 'IBM Plex Serif', serif;
+      font-family: 'IBM Plex Serif', serif;
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: $font-family;
       }
 
       code {
