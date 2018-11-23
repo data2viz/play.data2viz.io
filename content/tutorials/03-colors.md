@@ -97,26 +97,26 @@ fun main() {
     //sampleStart
     viz {
         size = size(600, 50)
-        rect {              // pure red fill
+        rect {                      // pure red fill
             size = size(50, 50)
             fill = Colors.rgb(255, 0, 0)
         }        
-        rect {              // filled with 50% transparency
+        rect {                      // filled with 50% transparency
             x = 50.0
             size = size(50, 50)
             fill = Colors.rgb(255, 0, 0, 50.pct)
         }
-        rect {              // fill defined in HSL color space
+        rect {                      // fill defined in HSL color space
             x = 100.0
             size = size(50, 50)
             fill = Colors.hsl(38.82.deg, 100.pct, 50.pct)
         }
-        rect {              // fill defined in HCL color space
+        rect {                      // fill defined in HCL color space
             x = 150.0
             size = size(50, 50)
             fill = Colors.hcl(167.95.deg, 46.55, 92.03.pct)
         }
-        rect {              // fill defined in LAB color space
+        rect {                      // fill defined in LAB color space
             x = 200.0
             size = size(50, 50)
             fill = Colors.lab(30.83.pct, 26.05, -42.08)
@@ -305,29 +305,27 @@ fun main() {
            .andColor(Colors.Web.blueviolet, 50.pct)    // middle (50%) is "blue violet"
            .andColor(Colors.Web.skyblue, 80.pct)       // from 80% color is "sky blue"
         
+        // we set stroke & strokewidth here, and use style delegation to pass it down
+        stroke = linearGradient
+        strokeWidth = 30.0 
+        
         line {
             x1 = 100.0
             y1 = 18.0
             x2 = 500.0
             y2 = 18.0
-            stroke = linearGradient
-            strokeWidth = 30.0 
         }
         line {
             x1 = 300.0
             y1 = 50.0
             x2 = 700.0
             y2 = 50.0
-            stroke = linearGradient
-            strokeWidth = 30.0 
         }
         line {
             x1 = .0
             y1 = 82.0
             x2 = 800.0
             y2 = 82.0
-            stroke = linearGradient
-            strokeWidth = 30.0 
         }
     }.bindRendererOnNewCanvas() //sampleEnd
 }
