@@ -90,7 +90,7 @@ val d2vModules = listOf("random", "core", "color", "timer", "quadtree", "force",
     .joinToString()
 
 val d2vAttributes = mapOf(
-    "theme" to "idea",
+    "theme" to "darcula",
     "data-output-height" to "100",
     "class" to "kotlin-code d2v-large",
     "data-target-platform" to "canvas",
