@@ -3,11 +3,15 @@
 .playground-editor {
   $separation-bar-width: 6px;
   $header-bar-height: 60px;
-  $footer-bar-height: 60px;  //browser loader status bar
+  $footer-bar-height: 50px;  //browser loader status bar
+  $run-button-padding: 10px;
+  $kotlin-editor-canvas-height-settings: 500px;
 
+  background: hsla(244, 40%, 98%, 1);
   position: relative;
   width: 100%;
   height: calc(100vh - #{$header-bar-height});
+  min-height: $kotlin-editor-canvas-height-settings + $footer-bar-height + $header-bar-height;
   box-sizing: border-box;
 
   .kotlin-code + * {
@@ -17,12 +21,32 @@
   &__separation-bar {
     position: absolute;
     height: calc(100vh - #{$header-bar-height + $footer-bar-height});
+    min-height: $kotlin-editor-canvas-height-settings + $footer-bar-height;
     width: $separation-bar-width;
     background-color: $color-main-light-extra;
     top: 0;
     right: 50%;
     z-index: 10;
     cursor: col-resize;
+  }
+
+  .compiler-info {
+    line-height: 1ex;
+    padding: $gutter-width;
+
+    > * {
+      display: inline-block;
+    }
+
+    > * + * {
+      margin-left: 15px;
+    }
+  }
+
+  .run-button {
+    right: 50%;
+    top: 0;
+    transform: translate(-#{$run-button-padding + $separation-bar-width}, #{$run-button-padding});
   }
 
   .executable-fragment-wrapper {
@@ -46,6 +70,8 @@
   .js-code-output-canvas-placeholder {
     width: 50%;
     box-sizing: border-box;
+    background: white;
+    overflow: auto;
   }
 
   .k2js-iframe {
@@ -62,6 +88,7 @@
 
   .CodeMirror-scroll {
     height: calc(100vh - #{$header-bar-height + $footer-bar-height});
+    min-height: $kotlin-editor-canvas-height-settings + $footer-bar-height;
   }
 
   .CodeMirror-gutters {

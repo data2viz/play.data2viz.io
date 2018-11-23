@@ -59,7 +59,7 @@ export function urlScriptHistory() {
             window.onpopstate = () => {
                 console.log("history navigation")
 
-                if(editor.KotlinPlaygroundEditorInstance) {
+                if (editor.KotlinPlaygroundEditorInstance) {
                     console.log(editor.KotlinPlaygroundEditorInstance.codemirror)
                 }
             }

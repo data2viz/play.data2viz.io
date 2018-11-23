@@ -16,7 +16,7 @@ export class Editor {
         }
     }
 
-    private PLATFORM_OS_USER_NAME: PlatformOsName;
+    private readonly PLATFORM_OS_USER_NAME: PlatformOsName;
 
     private MORE_THAN_ONCE_CODE_CHANGED_CLASSNAME = "more-than-once-code-changed"
     private SHORTCUT_INFO_CLASSNAME = "shortcut-info compiler-info"
@@ -130,6 +130,7 @@ export class Editor {
                     }
 
                     if(this.PLATFORM_OS_USER_NAME !== "Other") {
+
                         this.kotlinEditorContainer.appendChild(
                             createHTMLElement(
                                 "div",
