@@ -11,10 +11,13 @@ class Articles(path: String) {
 	val mdFiles: List<MdFileDescriptor>
 
 	init {
-	    mdFiles = File("content/$path").listFiles().map {
-			it.toDescriptor()
+	    mdFiles = File("content/$path")
+			.listFiles()
+			.filter { it.name.endsWith(".md") }
+			.map {
+				it.toDescriptor()
 				.also { logger.info("${it.title} loaded") }
-		}.sortedBy { it.name }
+			}.sortedBy { it.name }
 	}
 
 	private fun File.toDescriptor(): MdFileDescriptor {
