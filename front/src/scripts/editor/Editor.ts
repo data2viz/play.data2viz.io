@@ -3,7 +3,7 @@ import {HTML_SELECTORS} from "../HTML_SELECTORS"
 import {createHTMLElement} from "../tools"
 import {PlatformOsName} from "../getUserOs"
 
-declare function KotlinPlayground(selector: string | HTMLElement, eventFunctions?: KotlinPlayground.IEventFunctions): Promise<KotlinPlayground.IEditor[]>
+declare function KotlinPlayground(selector: string | HTMLElement, eventFunctions?: KotlinPlayground.IEventFunctions): Promise<KotlinPlayground.IEditorInstance[]>
 
 
 export class Editor {
@@ -24,19 +24,23 @@ export class Editor {
     constructor(
         selector: string | HTMLElement,
         platformOsName: PlatformOsName,
+        onChange?: (code: string) => void
     ) {
         this._selector = selector
         this.PLATFORM_OS_USER_NAME = platformOsName
+        this._onChange = onChange
     }
 
     private _selector: string | HTMLElement
 
+    private readonly _onChange?: (code: string) => void
+
     public init(): Promise<Editor> {
         return new Promise(resolve => {
             KotlinPlayground(this._selector, this._eventFunctions).then(() => {
-                if(this._KotlinPlaygroundEditor) {
+                if(this._KotlinPlaygroundEditorInstance) {
 
-                    this._kotlinEditorContainer = this._KotlinPlaygroundEditor.nodes[0]
+                    this._kotlinEditorContainer = this._KotlinPlaygroundEditorInstance.nodes[0]
 
                     const codeArea = this._kotlinEditorContainer.querySelector(HTML_SELECTORS.CODE_AREA)
 
@@ -83,16 +87,16 @@ export class Editor {
     public get hasNotBeenExecuted() { return !this._hasBeenExecuted}
 
     public get isOnScreen() {
-        if (this._KotlinPlaygroundEditor) {
+        if (this._KotlinPlaygroundEditorInstance) {
             return this.bottom_of_codeArea_is_above_bottom_of_screen && this.bottom_of_codeArea_is_below_top_of_screen
         }
     }
 
     public execute(): Promise<any> {
         return new Promise((resolve, reject) => {
-            if( this._KotlinPlaygroundEditor) {
+            if( this._KotlinPlaygroundEditorInstance) {
                 this._hasBeenExecuted = true
-                this._KotlinPlaygroundEditor.execute()
+                this._KotlinPlaygroundEditorInstance.execute()
             }
             resolve()
             reject(new Error("can't execute kotlin playground editor"))
@@ -100,8 +104,8 @@ export class Editor {
     }
 
     private _eventFunctions: KotlinPlayground.IEventFunctions = {
-        getInstance: (editor: KotlinPlayground.IEditor) => {
-            this._KotlinPlaygroundEditor = editor
+        getInstance: (editor: KotlinPlayground.IEditorInstance) => {
+            this._KotlinPlaygroundEditorInstance = editor
         },
         onChange: (code: string) => {
             this.changedCounter++
@@ -147,10 +151,15 @@ export class Editor {
                     this.kotlinEditorContainer.classList.add(this.MORE_THAN_ONCE_CODE_CHANGED_CLASSNAME)
                 }
             }
+
+            if(this._onChange) {
+                this._onChange(code)
+            }
         },
     };
 
-    private _KotlinPlaygroundEditor?: KotlinPlayground.IEditor
+    private _KotlinPlaygroundEditorInstance?: KotlinPlayground.IEditorInstance
+    get KotlinPlaygroundEditorInstance() {return this._KotlinPlaygroundEditorInstance}
 
     private changedCounter = 0
 }
