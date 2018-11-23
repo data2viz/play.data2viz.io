@@ -147,7 +147,7 @@ fun main() {
         val logText = text {
             y = 12.0
             fill = Colors.Web.black
-            textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+            textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
         }
         val powRect = rect {
             size = size(50, 25)
@@ -157,7 +157,7 @@ fun main() {
         val powText = text {
             y = 37.0
             fill = Colors.Web.black
-            textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+            textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
         }
         animation {
             count += increment
@@ -229,7 +229,7 @@ fun main() {
                 y = 10.0
                 fill = Colors.Web.black
                 fontSize = 10.0
-                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+                textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
                 textContent = "${it.second}"
             }
         } //sampleEnd
@@ -292,7 +292,7 @@ fun main() {
                 x = 25 + index * 55.0
                 y = 25.0
                 fill = Colors.Web.black
-                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+                textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
                 textContent = "$domainValue"
             }
         }
@@ -339,7 +339,7 @@ fun main() {
                 x = 25 + index * 55.0
                 y = 25.0
                 fill = Colors.Web.black
-                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+                textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
                 textContent = "$domainValue"
             }
         }
@@ -385,7 +385,7 @@ fun main() {
                 x = 25 + index * 55.0
                 y = 25.0
                 fill = Colors.Web.black
-                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+                textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
                 textContent = "$domainValue"
             }
         }
