@@ -12,9 +12,9 @@ import io.data2viz.viz.*
 
 fun main() {									// 2
     viz {										// 3
-        size = Size(200.0, 50.0)				// 4
+        size = size(200, 50)				    // 4
         rect {									// 5
-            size = Size(50.0, 50.0)
+            size = size(50, 50)
             fill = Colors.Web.blueviolet
         }
     }.bindRendererOnNewCanvas()					// 6
@@ -31,7 +31,7 @@ functions, particularly during code completion.
  its configuration. It starts with the `viz` call that takes a lambda (with receiver).
 
  4. A visualization has width and height properties. They can be accessed using the
-property `size`.
+property `size`, given a `Size` object you create via the factory `size`. 
 
  5. Visual nodes are created through DSL functions  taking a lambdas with receiver for
  the configuration. In this example, the code is creating a rectangle, defining its size

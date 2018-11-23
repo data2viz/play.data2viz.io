@@ -61,13 +61,13 @@ fun main() {
     viz {
         rect {
             size = size(50, 50)
-            fill = 0x87ceeb.col             // <- Int extension val
+            fill = 0x87ceeb.col        // <- Int extension val
                 
         }
         rect {
             x = 50.0
             size = size(50, 50)
-            fill = "#800080".col            // <- String extension val
+            fill = "#800080".col       // <- String extension val
         }
 
     }.bindRendererOnNewCanvas() //sampleEnd
@@ -97,29 +97,29 @@ fun main() {
     //sampleStart
     viz {
         size = size(600, 50)
-        rect {
+        rect {              // pure red fill
             size = size(50, 50)
-            fill = Colors.rgb(255, 0, 0)                        // <- pure red
+            fill = Colors.rgb(255, 0, 0)
         }        
-        rect {
+        rect {              // filled with 50% transparency
             x = 50.0
             size = size(50, 50)
-            fill = Colors.rgb(255, 0, 0, 50.pct)                // <- with 50% transparency
+            fill = Colors.rgb(255, 0, 0, 50.pct)
         }
-        rect {
+        rect {              // fill defined in HSL color space
             x = 100.0
             size = size(50, 50)
-            fill = Colors.hsl(38.82.deg, 100.pct, 50.pct)       // <- HSL color space
+            fill = Colors.hsl(38.82.deg, 100.pct, 50.pct)
         }
-        rect {
+        rect {              // fill defined in HCL color space
             x = 150.0
             size = size(50, 50)
-            fill = Colors.hcl(167.95.deg, 46.55, 92.03.pct)     // <- HCL color space
+            fill = Colors.hcl(167.95.deg, 46.55, 92.03.pct)
         }
-        rect {
+        rect {              // fill defined in LAB color space
             x = 200.0
             size = size(50, 50)
-            fill = Colors.lab(30.83.pct, 26.05, -42.08)         // <- LAB color space
+            fill = Colors.lab(30.83.pct, 26.05, -42.08)
         }
     }.bindRendererOnNewCanvas() //sampleEnd
 }
@@ -153,6 +153,8 @@ import io.data2viz.viz.*
 import io.data2viz.color.*
 import io.data2viz.geom.*
 import io.data2viz.math.*
+import io.data2viz.color.Colors.Web.white
+import io.data2viz.color.Colors.Web.black
 
 fun main() {
     viz {
@@ -177,27 +179,23 @@ fun main() {
             text {                      // indicate the perceived lightness of the color
                 x = position.x
                 y = position.y
-                baseline = TextAlignmentBaseline.MIDDLE
-                anchor = TextAnchor.MIDDLE
-                fill = if (color.contrast(Colors.Web.black) > 6) Colors.Web.black 
-                        		else Colors.Web.white
+                fill = if (color.luminance() > 30.pct) black else white
                 textContent = "${(color.luminance().value*100).toInt()}%"
+                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
             }
         } //sampleEnd
         text {
             x = 250.0
             y = 125.0
             fill = Colors.Web.black
-            baseline = TextAlignmentBaseline.MIDDLE
-            anchor = TextAnchor.MIDDLE
+            textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
             textContent = "LUMINANCE"
         }
         text {
             x = 520.0
             y = 125.0
             fill = Colors.Web.black
-            baseline = TextAlignmentBaseline.MIDDLE
-            anchor = TextAnchor.MIDDLE
+            textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
             textContent = "DESATURATED COLORS"
         }
     }.bindRendererOnNewCanvas()
@@ -303,9 +301,9 @@ fun main() {
         size = size(800, 100)
         
         val linearGradient = Colors.Gradient.linear(point(0, 0), point(800, 0))
-           .withColor(Colors.Web.hotpink, 20.pct)        // under 20% color is "hot pink"
-           .andColor(Colors.Web.blueviolet, 50.pct)      // middle (50%) is "blue violet"
-           .andColor(Colors.Web.skyblue, 80.pct)         // from 80% color is "sky blue"
+           .withColor(Colors.Web.hotpink, 20.pct)      // under 20% color is "hot pink"
+           .andColor(Colors.Web.blueviolet, 50.pct)    // middle (50%) is "blue violet"
+           .andColor(Colors.Web.skyblue, 80.pct)       // from 80% color is "sky blue"
         
         line {
             x1 = 100.0
@@ -354,8 +352,8 @@ using `andColor()`.
 fun main() {
     //sampleStart
     val radialGradient = Colors.Gradient.radial(point(400, 100), 100.0)
-        .withColor(Colors.Web.hotpink, 0.pct)       // gradient center (0%) is "hot pink"
-        .andColor(Colors.Web.skyblue, 100.pct)      // gradient end (100%) "is sky blue"
+        .withColor(Colors.Web.hotpink, 0.pct)       // gradient center is "hot pink"
+        .andColor(Colors.Web.skyblue, 100.pct)      // gradient end "is sky blue"
     viz {
         size = size(800, 200)
         circle {
