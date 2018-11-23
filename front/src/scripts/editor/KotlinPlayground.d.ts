@@ -16,6 +16,7 @@ export namespace KotlinPlayground {
         onTestPassed?:      () => void;
         onCloseConsole?:    () => void;
         onOpenConsole?:     () => void;
+        getJsCode?:         (code: string) => void
         callback?:          (targetNode: HTMLElement, mountNode: HTMLElement) => void;
         getInstance?:       (instance: KotlinPlayground.IEditorInstance) => void
     }
