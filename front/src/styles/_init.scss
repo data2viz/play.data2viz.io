@@ -16,12 +16,17 @@ body {
 p,
 ul,
 ol,
-code {
+code,
+table {
   @include font-reg;
 
   & & {
     font-size: 1em;
   }
+}
+
+table {
+  font-size: 1.2em;
 }
 
 code {
