@@ -39,9 +39,6 @@ than 180° on the chromatic wheel these interpolators will take the "longest way
 Learn more about the bias of "default RGB interpolation" in [this video](https://www.youtube.com/watch?v=LKnqECcg6Gw).
 </div>
 
-LONGUEUR
-
-IMPORTS
 
 ```height=50 width=800
 import io.data2viz.color.*
@@ -83,7 +80,7 @@ fun main() {
                     x = 10 + it * 5.0
                     y = 26.0
                     fill = Colors.Web.black
-                    textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+                    textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
                     textContent = "$it"
                 }
             }
@@ -132,7 +129,7 @@ fun main() {
                 x = 30 + index * 70.0
                 y = 25.0
                 fill = scale(dayName)
-                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+                textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
                 textContent = "$dayName"
             }
         }
@@ -181,7 +178,7 @@ fun main() {
             text {
                 x = 8 + it * 17.0
                 y = 25.0
-                fill = if (color.luminance() > 40.pct) black else white
+                textColor = if (color.luminance() > 50.pct) black else white
                 textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
                 textContent = "$it"
             }
@@ -221,8 +218,8 @@ fun main() {
             text {
                 x = 8 + it * 17.0
                 y = 25.0
-                fill = if (color.luminance() > 40.pct) black else white
-                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+                textColor = if (color.luminance() > 50.pct) black else white
+                textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
                 textContent = "$it"
             }
         }
@@ -262,8 +259,8 @@ fun main() {
             text {
                 x = 10 + (it + 15) * 21.0
                 y = 25.0
-                fill = if (color.luminance() > 40.pct) black else white
-                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+                textColor = if (color.luminance() > 50.pct) black else white
+                textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
                 textContent = "$it"
             }
         }
