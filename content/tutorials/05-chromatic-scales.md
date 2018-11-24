@@ -79,7 +79,6 @@ fun main() {
                 text {
                     x = 10 + it * 5.0
                     y = 26.0
-                    fill = Colors.Web.black
                     textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
                     textContent = "$it"
                 }
@@ -128,7 +127,7 @@ fun main() {
             text {
                 x = 30 + index * 70.0
                 y = 25.0
-                fill = scale(dayName)
+                textColor = scale(dayName)
                 textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
                 textContent = "$dayName"
             }
@@ -179,7 +178,7 @@ fun main() {
                 x = 8 + it * 17.0
                 y = 25.0
                 textColor = if (color.luminance() > 50.pct) black else white
-                textAlign = textAlign(TextAnchor.MIDDLE, TextAlignmentBaseline.MIDDLE)
+                textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
                 textContent = "$it"
             }
         }
