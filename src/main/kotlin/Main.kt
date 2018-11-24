@@ -47,8 +47,8 @@ fun Application.mainModule() {
             }
         }
 
-        get("/playground/")   {
-            call.respond(call.resolveResource("public/playground.html")!!)
+        get("/sketch/")   {
+            call.respond(call.resolveResource("public/sketch.html")!!)
         }
 
         get("/") { call.respondRedirect(tutorials.mdFiles.first().url)}
@@ -176,8 +176,8 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                             }
                         }
                         li(classes = "d2v-playground-link") {
-                            a (href = "/playground/"){
-                                +"try it on playground!"
+                            a (href = "/sketch/"){
+                                +"Sketch your Viz!"
                             }
                         }
                     }

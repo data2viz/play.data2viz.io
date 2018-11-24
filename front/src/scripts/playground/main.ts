@@ -25,7 +25,7 @@ import {getUserOs} from "../getUserOs"
 declare const RawDeflate: {
     inflate: (string: string) => string
     deflate: (string: string) => string
-}
+};
 
 interface IScriptData {
     name: string,
@@ -38,26 +38,26 @@ export function urlScriptHistory() {
         code: 'console.log("hello")',
     };
 
-    const urlData = getUrlData()
+    const urlData = getUrlData();
 
-    const codeElementForKotlinPlayground = document.querySelector('.kotlin-code')
+    const codeElementForKotlinPlayground = document.querySelector('.kotlin-code');
 
     if(codeElementForKotlinPlayground && codeElementForKotlinPlayground instanceof HTMLElement) {
 
         if(urlData.hasScriptData) {
-            scriptData = urlData.scriptData
+            scriptData = urlData.scriptData;
             codeElementForKotlinPlayground.textContent = scriptData.code
         }
 
         const onCodeChange = (code: string) => {
             updateUrlAndScriptData(code, scriptData)
-        }
+        };
 
         new Editor(codeElementForKotlinPlayground, getUserOs(), onCodeChange).init().then(editor => {
-            editor.execute()
+            editor.execute();
 
             window.onpopstate = () => {
-                console.log("history navigation")
+                console.log("history navigation");
 
                 if (editor.KotlinPlaygroundEditorInstance) {
                     console.log(editor.KotlinPlaygroundEditorInstance.codemirror)
@@ -68,13 +68,13 @@ export function urlScriptHistory() {
 }
 
 function updateUrlAndScriptData(code: string, scriptData: IScriptData) {
-    scriptData.code = code
+    scriptData.code = code;
     updateHash(scriptData)
 }
 
 function getUrlData(): {hasScriptData: boolean, scriptData: IScriptData} {
-    const hash = window.location.hash
-    const match = hash.match(/#\/S\/(.*)$/)
+    const hash = window.location.hash;
+    const match = hash.match(/#\/S\/(.*)$/);
 
     const defaultReturn = {
         hasScriptData: false,
@@ -82,10 +82,10 @@ function getUrlData(): {hasScriptData: boolean, scriptData: IScriptData} {
             code: "",
             name: "",
         }
-    }
+    };
 
     if(match && match[1]) {
-        const scriptFromUrl: Object = JSON.parse(decode(match[1]))
+        const scriptFromUrl: Object = JSON.parse(decode(match[1]));
 
         if (scriptFromUrl.hasOwnProperty("name") && scriptFromUrl.hasOwnProperty("code")) {
             return {
@@ -96,7 +96,7 @@ function getUrlData(): {hasScriptData: boolean, scriptData: IScriptData} {
                 }
             }
         } else {
-            console.error("script from url isn't type of IScriptData")
+            console.error("script from url isn't type of IScriptData");
             return defaultReturn
         }
     } else {
@@ -117,8 +117,8 @@ function updateHash(script: IScriptData) {
     //     '/S/' + encode(JSON.stringify(script))
     // );
 
-    const locationPath      = "/playground/"
-    const locationHash      = `/S/${encode(JSON.stringify(script))}`
+    const locationPath      = "/sketch/";
+    const locationHash      = `/S/${encode(JSON.stringify(script))}`;
 
     history.pushState(null, "", `${locationPath}#${locationHash}`)
 }
