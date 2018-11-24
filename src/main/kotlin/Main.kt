@@ -176,7 +176,7 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                             }
                         }
                         li(classes = "d2v-playground-link") {
-                            a (href = "#"){
+                            a (href = "/playground/"){
                                 +"try it on playground!"
                             }
                         }
