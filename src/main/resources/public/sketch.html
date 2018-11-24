@@ -120,7 +120,9 @@ import io.data2viz.viz.*
 
 fun main() {
     viz {
-        size = size(600, 600)
+        size = size(600, 600)  //<- you need a viz size
+
+        // but change everything from here
         val gradient =
             Colors.Gradient.linear(point(0, 0), point(600, 0))
                 .withColor(Colors.Web.hotpink)
@@ -132,6 +134,7 @@ fun main() {
             textColor = gradient
             fontSize = 80.0
         }
+        // to here
     }.bindRendererOnNewCanvas()
 }
                 </div>
