@@ -64,17 +64,27 @@ fun main() {
     viz {
         size = size(800, 50)
         (0..100).forEach { 
-            rect {
-                x = 10 + it * 5.0
-                size = size(5, 19)
-                fill = scaleRGB(it)
-            }
-            rect {
-                x = 10 + it * 5.0
-                y = 31.0
-                size = size(5, 19)
-                fill = scaleHCL(it)
-            }
+          rect {
+              x = 10 + it * 5.0
+              size = size(5, 19)
+              fill = scaleRGB(it)
+          }
+          text {
+              x = 520.0
+              y = 13.0
+              textContent = "<-- RGB interpolation bias"
+          }
+          rect {
+              x = 10 + it * 5.0
+              y = 31.0
+              size = size(5, 19)
+              fill = scaleHCL(it)
+          }
+          text {
+              x = 520.0
+              y = 43.0
+              textContent = "<-- better interpolation with HCL"
+          }
             if (it % 10 == 0) {
                 text {
                     x = 10 + it * 5.0
