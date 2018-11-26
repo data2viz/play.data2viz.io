@@ -300,10 +300,33 @@ ol .d2v-menu-vertical {
     font-size: 1em;
     line-height: 1.3333333333em; }
 
+/* fonts */
+/* grid */
+/* break points */
+/* colors */
+/* layout */
 .shortcut-info {
   position: absolute;
   left: 0;
   animation: info-apparition 750ms ease-in-out both; }
+
+.executable-fragment {
+  border: none;
+  box-shadow: 0 10px 10px -10px rgba(128, 128, 128, 0.1), 0 5px 5px 0 rgba(128, 128, 128, 0.1); }
+
+.executable-fragment-wrapper {
+  margin-top: 50px; }
+
+.js-code-output-executor {
+  border: none !important; }
+
+.console-close {
+  display: none; }
+
+.compiler-info {
+  font-family: "Poppins", sans-serif;
+  top: 100%;
+  padding-top: 1em; }
 
 @keyframes info-apparition {
   0% {
@@ -341,7 +364,8 @@ ol .d2v-menu-vertical {
     cursor: col-resize; }
   .playground-editor .compiler-info {
     line-height: 1ex;
-    padding: 2em; }
+    padding: 2em;
+    font-family: "Poppins", sans-serif; }
     .playground-editor .compiler-info > * {
       display: inline-block; }
     .playground-editor .compiler-info > * + * {
