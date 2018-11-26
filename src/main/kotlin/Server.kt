@@ -41,9 +41,7 @@ fun Application.mainModule() {
         }
         tutorials.mdFiles.forEach { docFile ->
             get(docFile.url) {
-                call.respondHtml {
-                    generateDocumentationPage(docFile)
-                }
+                call.respondMdContent(docFile)
             }
         }
 
@@ -55,31 +53,69 @@ fun Application.mainModule() {
     }
 }
 
-private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
+private suspend fun ApplicationCall.respondMdContent(docFile: MdFileDescriptor) = respondHtml {
     head {
         unsafe {
             //language=HTML
-            +"""
-			    <meta charset="UTF-8">
-				<meta name="viewport"
-				content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-				<meta http-equiv="X-UA-Compatible" content="ie=edge">
-				<title>play:documentation</title>
-  				<script src="https://unpkg.com/@data2viz/kotlin-playground@1"></script>
-                <script>
-                    var playground = false;
-                </script>
-				<link rel="stylesheet" href="/main.css">
-                <link rel="icon" type="image/png" href="/favicon.png" />""".trimIndent()
+            +"""<script src="/playground.min.js" data-server="https://compile.data2viz.io"></script>"""
         }
+        defaultHeaderTags()
     }
     body {
         div {
-            header {
-                id = "d2v-header"
-                unsafe {
-                    //language=HTML
-                    +"""
+            pageHeader()
+            leftMenu(docFile)
+            section {
+                id = "d2v-content"
+                main {
+                    id = "d2v-main"
+                    div {
+                        classes += "site-text"
+
+                        a(classes = "page-link-to-github") {
+                            title = "Edit this page on GitHub"
+                            target = "_blank"
+                            href = "https://github.com/data2viz/play.data2viz.io/edit/master/content/tutorials/${docFile.name}"
+
+                            i (classes = "github-icon")
+                            span (classes = "text") {
+                                +"Edit Page"
+                            }
+                        }
+
+                        unsafe {
+                            +docFile.htmlContent
+                        }
+                    }
+                }
+            }
+        }
+        playgroundEditorScript()
+        pageFooter()
+
+    }
+}
+
+private fun HEAD.defaultHeaderTags(title: String = "play:data2viz") {
+    unsafe {
+        //language=HTML
+        +"""
+			    <meta charset="UTF-8">
+				<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+				<meta http-equiv="X-UA-Compatible" content="ie=edge">
+				<title>$title</title>
+				<link rel="stylesheet" href="/main.css">
+                <link rel="icon" type="image/png" href="/favicon.png" />
+            """.trimIndent()
+    }
+}
+
+private fun DIV.pageHeader() {
+    header {
+        id = "d2v-header"
+        unsafe {
+            //language=HTML
+            +"""
 							<div class="wrap">
                                 <div id="current-section-name"></div>
                                 <div class="left">
@@ -149,24 +185,25 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                 </div>
                             </div>
                     """
-                }
-            }
-            div {
-                id = "d2v-menu"
-                div("wrap") {
-                    ul("menu d2v-menu-vertical") {
-                        id = "site-navigation"
-                        tutorials.mdFiles.forEach { page ->
-                            val currentPage = (docFile.title == page.title)
-                            li("page ${if (currentPage) "active" else "unactive"}") {
-                                a("/${page.url}") { +page.title }
-                                if (page.chapters.isNotEmpty() && currentPage) {
-                                    ul("chapters") {
-                                        page.chapters.forEach { chapter ->
-                                            li("chapter") {
-                                                a(href = "#${chapter.anchor}") { +chapter.title }
-                                            }
-                                        }
+        }
+    }
+}
+
+private fun DIV.leftMenu(docFile: MdFileDescriptor) {
+    div {
+        id = "d2v-menu"
+        div("wrap") {
+            ul("menu d2v-menu-vertical") {
+                id = "site-navigation"
+                tutorials.mdFiles.forEach { page ->
+                    val currentPage = (docFile.title == page.title)
+                    li("page ${if (currentPage) "active" else "unactive"}") {
+                        a("/${page.url}") { +page.title }
+                        if (page.chapters.isNotEmpty() && currentPage) {
+                            ul("chapters") {
+                                page.chapters.forEach { chapter ->
+                                    li("chapter") {
+                                        a(href = "#${chapter.anchor}") { +chapter.title }
                                     }
                                 }
                             }
@@ -174,37 +211,26 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                     }
                 }
             }
-            section {
-                id = "d2v-content"
-                main {
-                    id = "d2v-main"
-                    div {
-                        classes += "site-text"
-
-                        a(classes = "page-link-to-github") {
-                            title = "Edit this page on GitHub"
-                            target = "_blank"
-                            href = "https://github.com/data2viz/play.data2viz.io/edit/master/content/tutorials/${docFile.name}"
-
-                            i (classes = "github-icon")
-                            span (classes = "text") {
-                                +"Edit Page"
-                            }
-                        }
-
-                        unsafe {
-                            +docFile.htmlContent
-                        }
-                    }
-                }
-            }
         }
-        script("text/javascript", "/main.js"){}
-        footer {
-            id = "d2v-footer"
-            //language=HTML
-            unsafe {
-                + """
+    }
+}
+
+/**
+ * Add editor wrapper.
+ */
+private fun BODY.playgroundEditorScript(fullEditor: Boolean = false) {
+    script {
+        + "var playground = $fullEditor;"
+    }
+    script("text/javascript", "/main.js") {}
+}
+
+private fun BODY.pageFooter() {
+    footer {
+        id = "d2v-footer"
+        //language=HTML
+        unsafe {
+            +"""
                     <div class="wrap">
                         <ul class="d2v-menu-vertical">
                             <li>
@@ -219,11 +245,10 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                         </ul>
                     </div>
                 """.trimIndent()
-            }
         }
-
     }
 }
+
 
 private val MdChapterDescriptor.anchor: String
     get() = title.slug
