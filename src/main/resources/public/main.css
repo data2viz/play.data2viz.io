@@ -315,7 +315,7 @@ ol .d2v-menu-vertical {
   box-shadow: 0 10px 10px -10px rgba(128, 128, 128, 0.1), 0 5px 5px 0 rgba(128, 128, 128, 0.1); }
 
 .executable-fragment-wrapper {
-  margin-top: 50px; }
+  margin-bottom: 50px; }
 
 .js-code-output-executor {
   border: none !important; }
@@ -381,7 +381,8 @@ ol .d2v-menu-vertical {
     width: 100%;
     border: none;
     flex-wrap: wrap;
-    display: flex; }
+    display: flex;
+    box-shadow: none; }
   .playground-editor .code-area {
     width: 50%;
     padding-right: 6px;
