@@ -47,10 +47,6 @@ fun Application.mainModule() {
             }
         }
 
-        get("/sketch/")   {
-            call.respond(call.resolveResource("public/sketch.html")!!)
-        }
-
         get("/") { call.respondRedirect(tutorials.mdFiles.first().url)}
 
         static("/") {
@@ -173,11 +169,6 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                                         }
                                     }
                                 }
-                            }
-                        }
-                        li(classes = "d2v-playground-link") {
-                            a (href = "/sketch/"){
-                                +"Sketch your Viz!"
                             }
                         }
                     }
