@@ -17,7 +17,7 @@ plugins {
 
 group 'io.data2viz'
 
-mainClassName = 'io.data2viz.play.MainKt'
+mainClassName="io.data2viz.play.ServerKt"
 
 sourceCompatibility = 1.8
 
@@ -45,10 +45,6 @@ compileKotlin {
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
 }
-
-apply plugin: 'application'
-
-mainClassName="io.data2viz.play.ServerKt"
 
 if (distJar.toBoolean()) {
 

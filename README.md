@@ -14,7 +14,7 @@ two digits + `-`. The title of the page is retrieved from the first title of lev
 
 ## How to launch it
 
-Build the project from gradle `gradlew build` and then start Main.kt.
+Build the project from gradle `gradlew run`.
 
 ## Contributions
 
