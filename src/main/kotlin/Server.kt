@@ -180,6 +180,18 @@ private fun HTML.generateDocumentationPage(docFile: MdFileDescriptor) {
                     id = "d2v-main"
                     div {
                         classes += "site-text"
+
+                        a(classes = "page-link-to-github") {
+                            title = "Edit this page on GitHub"
+                            target = "_blank"
+                            href = "https://github.com/data2viz/play.data2viz.io/edit/master/content/tutorials/${docFile.name}"
+
+                            i (classes = "github-icon")
+                            span (classes = "text") {
+                                +"Edit Page"
+                            }
+                        }
+
                         unsafe {
                             +docFile.htmlContent
                         }
