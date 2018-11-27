@@ -179,7 +179,7 @@ fun main() {
             text {                      // indicate the perceived lightness of the color
                 x = position.x
                 y = position.y
-                fill = if (color.luminance() > 30.pct) black else white
+                textColor = if (color.luminance() > 50.pct) black else white
                 textContent = "${(color.luminance().value*100).toInt()}%"
                 textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
             }
@@ -187,14 +187,12 @@ fun main() {
         text {
             x = 250.0
             y = 125.0
-            fill = Colors.Web.black
             textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
             textContent = "LUMINANCE"
         }
         text {
             x = 520.0
             y = 125.0
-            fill = Colors.Web.black
             textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
             textContent = "DESATURATED COLORS"
         }
