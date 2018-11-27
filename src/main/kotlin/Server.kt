@@ -55,10 +55,7 @@ fun Application.mainModule() {
 
 private suspend fun ApplicationCall.respondMdContent(docFile: MdFileDescriptor) = respondHtml {
     head {
-        unsafe {
-            //language=HTML
-            +"""<script src="/playground.min.js" data-server="https://compile.data2viz.io"></script>"""
-        }
+        kotlinPlayground()
         defaultHeaderTags()
     }
     body {
@@ -93,6 +90,13 @@ private suspend fun ApplicationCall.respondMdContent(docFile: MdFileDescriptor) 
         playgroundEditorScript()
         pageFooter()
 
+    }
+}
+
+private fun HEAD.kotlinPlayground() {
+    script {
+        src = "https://unpkg.com/kotlin-playground@1"
+        attributes["data-server"] = "https://compile.data2viz.io"
     }
 }
 
