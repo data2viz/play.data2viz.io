@@ -84,18 +84,6 @@ fun main() {
                 }
             }
         }
-        text {
-          x = 520.0
-          y = 13.0
-          textContent = "<-- RGB interpolation bias"
-        }
-        text {
-          x = 520.0
-          y = 43.0
-          textContent = "<-- better interpolation with HCL"
-        }
-
-
     }.bindRendererOnNewCanvas() //sampleEnd
 }
 ```
