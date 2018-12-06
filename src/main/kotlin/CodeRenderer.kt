@@ -1,5 +1,6 @@
 package io.data2viz.play
 
+
 import org.commonmark.ext.heading.anchor.HeadingAnchorExtension
 import org.commonmark.ext.gfm.tables.TablesExtension
 import org.commonmark.node.*
@@ -10,7 +11,7 @@ import org.commonmark.renderer.html.HtmlRenderer
 import org.commonmark.renderer.html.HtmlWriter
 
 
-const val data2vizVersion = "0.7.1-RC6"
+const val data2vizVersion = "0.7.2-RC1"
 
 val extensions = listOf(HeadingAnchorExtension.create(), TablesExtension.create())
 
