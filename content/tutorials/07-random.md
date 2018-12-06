@@ -1,21 +1,26 @@
 # Random numbers
 
-Data2viz offers several random numbers distributions, you can access using the `RandomDistribution.*` 
+Data2viz offers several random numbers generators, you can access using the `RandomDistribution.*` 
 factories.  
 To use these random numbers distribution, import the `io.data2viz.random` dependency and use the 
 `io.data2viz.random.*` import.
 
 | Factory<br/>RandomDistribution.* |  Distribution of random numbers|
 |---|---|
-| [uniform(min, max)](#uniform) | Continuous uniform distribution in [min, max[ |
-| [normal](#normal) | Normal (Gaussian) distribution |
+| [uniform(min, max)](#standard-uniform) | Continuous uniform distribution |
+| [normal(mu, sigma)](#normal) | Normal (gaussian) distribution |
 | [logNormal(mu, sigma)](#log-normal) | Log-normal distribution |
-| [exponential](#exponential) | Exponential distribution |
-| [irwinHall](#irwin-hall) | Irwin–Hall distribution |
-| [bates(n)](#bates) | Bates distribution with n independent variables |
+| [exponential(lambda)](#exponential) | Exponential distribution |
+| [irwinHall(n)](#irwin-hall) | Irwin–Hall distribution |
+| [bates(n)](#bates) | Bates distribution |
+
+<div class="note">
+
+`RandomDistribution.uniform` is the "standard" number generator.
+</div>
 
 
-## Uniform
+## Standard (uniform)
 
 The `RandomDistribution.uniform(min, max)` generates random numbers using an [uniform distribution](https://en.wikipedia.org/wiki/Uniform_distribution_(continuous)).  
 
@@ -42,8 +47,8 @@ fun main() {
             }
         }
         //sampleStart
-        val distrib = RandomDistribution.uniform(max = 600.0)
-        val groupCount = (0..30000).map { distrib().toInt() }.groupingBy { it }.eachCount()
+        val generator = RandomDistribution.uniform(max = 600.0)
+        val groupCount = (0..30000).map { generator().toInt() }.groupingBy { it }.eachCount()
         groupCount.forEach { valueCount ->
             rect {
                 y = 85.0 - valueCount.value
@@ -56,9 +61,9 @@ fun main() {
 }
 ```
 
+## Other distributions
 
-
-## Normal
+### Normal
 
 The `RandomDistribution.normal(mu, sigma)` generates random numbers using a [normal (Gaussian) distribution](https://en.wikipedia.org/wiki/Normal_distribution).
 
@@ -85,8 +90,8 @@ fun main() {
             }
         }
         //sampleStart
-        val distrib = RandomDistribution.normal(300.0, 50.0)
-        val groupCount = (0..10000).map { distrib().toInt() }.groupingBy { it }.eachCount()
+        val generator = RandomDistribution.normal(300.0, 50.0)
+        val groupCount = (0..10000).map { generator().toInt() }.groupingBy { it }.eachCount()
         size = size(620, 100) 
         groupCount.forEach { valueCount ->
                 rect {
@@ -100,7 +105,7 @@ fun main() {
 }
 ```
 
-## Log-Normal
+### Log-Normal
 
 The `RandomDistribution.logNormal(mu, sigma)` generates random numbers using a [log-normal distribution](https://en.wikipedia.org/wiki/Log-normal_distribution).
 
@@ -127,8 +132,8 @@ fun main() {
             }
         }
         //sampleStart
-        val distrib = RandomDistribution.logNormal(sigma = 0.25)
-        val groupCount = (0..8000).map { distrib() }.groupingBy { (it * 300).toInt() }.eachCount()
+        val generator = RandomDistribution.logNormal(sigma = 0.25)
+        val groupCount = (0..8000).map { generator() }.groupingBy { (it * 300).toInt() }.eachCount()
         size = size(620, 100) 
         groupCount.forEach { valueCount ->
                 rect {
@@ -142,7 +147,7 @@ fun main() {
 }
 ```
 
-## Exponential
+### Exponential
 
 The `RandomDistribution.exponential(lambda)` generates random numbers using an [exponential distribution](https://en.wikipedia.org/wiki/Exponential_distribution).
 
@@ -169,8 +174,8 @@ fun main() {
             }
         }
         //sampleStart
-        val distrib = RandomDistribution.exponential()
-        val groupCount = (0..4000).map { distrib() }.groupingBy { (it * 60).toInt() }.eachCount()
+        val generator = RandomDistribution.exponential()
+        val groupCount = (0..4000).map { generator() }.groupingBy { (it * 60).toInt() }.eachCount()
         size = size(620, 100) 
         groupCount.forEach { valueCount ->
                 rect {
@@ -184,7 +189,7 @@ fun main() {
 }
 ```
 
-## Irwin-Hall
+### Irwin-Hall
 
 The `RandomDistribution.irwinHall(n)` generates random numbers using an [Irwin-Hall distribution](https://en.wikipedia.org/wiki/Irwin%E2%80%93Hall_distribution) 
 with `n` independent variables.
@@ -209,8 +214,8 @@ fun main() {
             }
         }
         //sampleStart
-        val distrib = RandomDistribution.irwinHall(8.0)
-        val groupCount = (0..8000).map { distrib() }.groupingBy { (it * 60).toInt() }.eachCount()
+        val generator = RandomDistribution.irwinHall(8.0)
+        val groupCount = (0..8000).map { generator() }.groupingBy { (it * 60).toInt() }.eachCount()
         size = size(620, 100) 
         groupCount.forEach { valueCount ->
                 rect {
@@ -224,7 +229,7 @@ fun main() {
 }
 ```
 
-## Bates
+### Bates
 
 The `RandomDistribution.bates(n)` generates random numbers using a [Bates distribution](https://en.wikipedia.org/wiki/Bates_distribution)
 with `n` independent variables (1.0 by default).
@@ -249,8 +254,8 @@ fun main() {
             }
         }
         //sampleStart
-        val distrib = RandomDistribution.bates(10.0)
-        val groupCount = (0..8000).map { distrib() }.groupingBy { (it * 600).toInt() }.eachCount()
+        val generator = RandomDistribution.bates(10.0)
+        val groupCount = (0..8000).map { generator() }.groupingBy { (it * 600).toInt() }.eachCount()
         groupCount.forEach { valueCount ->
                 rect {
                     y = 85.0 - valueCount.value
