@@ -79,22 +79,22 @@ fun main() {
     val items = (0..2000).map { LayeredPoint(point(randPos(), randPos()), it%12 ) }
 
     val simulation = forceSimulation<LayeredPoint> {
+        initForceNode = {
+            position = domain.position
+        }
+    
         forceRadial {
             centerGet = { viewCenter }
             radiusGet = { domain.layer * 17.0 }
         }
         domainObjects = items
 
-        intensity = 40.pct
-        intensityDecay = 0.2.pct
-
-        initForceNode = {
-            position = domain.position
-        }
+        intensityDecay = 2.pct
+        intensityMin = 30.pct
     }
 
     val particles = mutableListOf<CircleNode>()
-    viz {
+    val viz = viz {
         size = size(vizSize, vizSize)
         simulation.nodes.forEach { forceNode ->
             particles += circle {
@@ -110,7 +110,9 @@ fun main() {
                 }
             }
         }
-    }.bindRendererOnNewCanvas()
+    }
+    simulation.on(SimulationEvent.END, "End of simulation", { viz.stopAnimations() })
+    viz.bindRendererOnNewCanvas()
 } //sampleEnd
 ```
 
@@ -156,7 +158,7 @@ fun main() {
         }
     }
 
-    viz {
+    val viz = viz {
         size = size(vizSize, vizSize)
         animation {
             val itemCount = items.size
@@ -176,10 +178,10 @@ fun main() {
                 radius = 10.0
             }
 
-            // updating simulation then placing particles on screen
+            // maintaining simulation active and adding objects
             simulation.apply {
+                intensity = 1.pct
                 domainObjects = items
-                intensity = 10.pct
             }
             simulation.nodes.forEach { forceNode ->
                 particles[forceNode.index].apply {
@@ -188,7 +190,9 @@ fun main() {
                 }
             }
         }
-    }.bindRendererOnNewCanvas()
+    }
+    simulation.on(SimulationEvent.END, "End of simulation", { viz.stopAnimations() })
+    viz.bindRendererOnNewCanvas()
 } //sampleEnd
 ```
 
@@ -235,11 +239,11 @@ fun main() {
             position = domain.position
         }
         domainObjects = items
-        intensity = 40.pct
-        intensityDecay = 0.2.pct
+        intensityDecay = 1.pct
+        intensityMin = 20.pct
     }
 
-    viz {
+    val viz = viz {
         size = size(vizWidth, vizHeight)
         simulation.nodes.forEach { forceNode ->
             particles += circle {
@@ -255,7 +259,9 @@ fun main() {
                 }
             }
         }
-    }.bindRendererOnNewCanvas()
+    }
+    simulation.on(SimulationEvent.END, "End of simulation", { viz.stopAnimations() })
+    viz.bindRendererOnNewCanvas()
 } //sampleEnd
 ```
 
@@ -288,7 +294,7 @@ val vizSize = 600.0
 val randPos = RandomDistribution.uniform(100.0, vizSize - 100.0)
 
 fun main() {
-    val items = (0..200).map { Charge(point(randPos(), randPos()), (it % 2) == 0) }
+    val items = (0..300).map { Charge(point(randPos(), randPos()), (it % 2) == 0) }
     val particles = mutableListOf<CircleNode>()
 
     val simulation = forceSimulation<Charge> {
@@ -304,9 +310,10 @@ fun main() {
         }
         domainObjects = items
         intensityDecay = 1.pct
+        intensityMin = 5.pct
     }
 
-    return viz {
+    val viz = viz {
         size = size(vizSize, vizSize)
         simulation.nodes.forEach { forceNode ->
             particles += circle {
@@ -322,7 +329,9 @@ fun main() {
                 }
             }
         }
-    }.bindRendererOnNewCanvas()
+    }
+    simulation.on(SimulationEvent.END, "End of simulation", { viz.stopAnimations() })
+    viz.bindRendererOnNewCanvas()
 } //sampleEnd
 ```
 
@@ -371,9 +380,6 @@ fun main() {
    particles[0].radius = nodeRadius
 
    val simulation = forceSimulation<Particle> {
-       forcePoint {
-           pointGet = { viewCenter }
-       }
        forceCollision {
            radiusGet = { domain.radius }
            iterations = 3
@@ -382,11 +388,9 @@ fun main() {
            position = domain.initialPosition
        }
        domainObjects = particles
-       intensity = 6.pct
-       intensityDecay = 0.pct
    }
 
-   return viz {
+   val viz = viz {
        size = size(vizSize, vizSize)
        simulation.nodes.forEach { forceNode ->
            particleVisuals += circle {
@@ -407,7 +411,9 @@ fun main() {
                }
            }
        }
-   }.bindRendererOnNewCanvas()
+   }
+   simulation.on(SimulationEvent.END, "End of simulation", { viz.stopAnimations() })
+   viz.bindRendererOnNewCanvas()
 } //sampleEnd
 ```
 
@@ -447,7 +453,7 @@ data class Stitch(var row:Int, var column:Int)
 val vizSize = 600.0
 val viewCenter = point(vizSize / 2, vizSize / 2)
 
-val networkSize = 17
+val networkSize = 20
 val totalNodes = networkSize * networkSize
 val linksDistance = 5.0
 
@@ -475,20 +481,21 @@ fun main() {
                 if (domain.column < networkSize - 1) links.add(Link(this, nodes[index + networkSize], linksDistance))
                 links
             }
-            iterations = 1
+            iterations = 9
         }
         domainObjects = particles
-        intensityDecay = 0.pct
+        intensityDecay = 0.5.pct
+        intensityMin = 40.pct
     }
 
-    viz {
+    val viz = viz {
         size = size(vizSize, vizSize)
-        constraintForce.links.forEach { link ->
+        constraintForce.links.forEach {
             linkVisuals += line {
                 stroke = Colors.Web.lightslategrey
             }
         }
-        simulation.nodes.forEach { forceNode ->
+        simulation.nodes.forEach {
             particleVisuals += circle {
                 radius = 3.0
                 fill = Colors.Web.crimson
@@ -511,6 +518,8 @@ fun main() {
                 }
             }
         }
-    }.bindRendererOnNewCanvas()
+    }
+    simulation.on(SimulationEvent.END, "End of simulation", { viz.stopAnimations() })
+    viz.bindRendererOnNewCanvas()
 } //sampleEnd
 ```
