@@ -56,9 +56,23 @@ in the simulation will apply movements according to the current simulation's `in
 
 <div class="note">
 
-Adjusting these values allows you to control speed and final state of your simulation.  
 All these properties only accepts positive values to avoid divergence.
 </div>
+
+### Managing simulation status
+
+As you will generally use animations to display your forces, you need to control the animation status 
+alongside the progress of the simulation.  
+Simulation launches 2 events:
+- `SimulationEvent.TICK` is triggered at each step of the simulation
+- `SimulationEvent.END` is triggered at the end of a simulation, whether the intensity is minimal or 
+the user has called a `simulation.stop()`.
+
+<div class="warning">
+
+To avoid refreshing a stable view, if you don't have any more updating elements on screen, it is recommended 
+to call `stopAnimations()` on your viz object when your simulation stops (check example below).
+</div> 
 
 ```height=400
 import io.data2viz.color.*
