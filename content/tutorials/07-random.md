@@ -48,7 +48,9 @@ fun main() {
         }
         //sampleStart
         val generator = RandomDistribution.uniform(max = 600.0)
-        val groupCount = (0..30000).map { generator().toInt() }.groupingBy { it }.eachCount()
+        val groupCount = (0..30000).map { generator().toInt() }
+                                   .groupingBy { it }
+                                   .eachCount()
         groupCount.forEach { valueCount ->
             rect {
                 y = 85.0 - valueCount.value
@@ -91,7 +93,9 @@ fun main() {
         }
         //sampleStart
         val generator = RandomDistribution.normal(300.0, 50.0)
-        val groupCount = (0..10000).map { generator().toInt() }.groupingBy { it }.eachCount()
+        val groupCount = (0..10000).map { generator().toInt() }
+                                   .groupingBy { it }
+                                   .eachCount()
         size = size(620, 100) 
         groupCount.forEach { valueCount ->
                 rect {
@@ -133,7 +137,9 @@ fun main() {
         }
         //sampleStart
         val generator = RandomDistribution.logNormal(sigma = 0.25)
-        val groupCount = (0..8000).map { generator() }.groupingBy { (it * 300).toInt() }.eachCount()
+        val groupCount = (0..8000).map { generator() }
+                                  .groupingBy { (it * 300).toInt() }
+                                  .eachCount()
         size = size(620, 100) 
         groupCount.forEach { valueCount ->
                 rect {
@@ -175,7 +181,9 @@ fun main() {
         }
         //sampleStart
         val generator = RandomDistribution.exponential()
-        val groupCount = (0..4000).map { generator() }.groupingBy { (it * 60).toInt() }.eachCount()
+        val groupCount = (0..4000).map { generator() }
+                                  .groupingBy { (it * 60).toInt() }
+                                  .eachCount()
         size = size(620, 100) 
         groupCount.forEach { valueCount ->
                 rect {
@@ -215,7 +223,9 @@ fun main() {
         }
         //sampleStart
         val generator = RandomDistribution.irwinHall(8.0)
-        val groupCount = (0..8000).map { generator() }.groupingBy { (it * 60).toInt() }.eachCount()
+        val groupCount = (0..8000).map { generator() }
+                                  .groupingBy { (it * 60).toInt() }
+                                  .eachCount()
         size = size(620, 100) 
         groupCount.forEach { valueCount ->
                 rect {
@@ -255,7 +265,9 @@ fun main() {
         }
         //sampleStart
         val generator = RandomDistribution.bates(10.0)
-        val groupCount = (0..8000).map { generator() }.groupingBy { (it * 600).toInt() }.eachCount()
+        val groupCount = (0..8000).map { generator() }
+                                  .groupingBy { (it * 600).toInt() }
+                                  .eachCount()
         groupCount.forEach { valueCount ->
                 rect {
                     y = 85.0 - valueCount.value
