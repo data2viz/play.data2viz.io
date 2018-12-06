@@ -60,7 +60,7 @@ Adjusting these values allows you to control speed and final state of your simul
 All these properties only accepts positive values to avoid divergence.
 </div>
 
-```height=50
+```height=400
 import io.data2viz.color.*
 import io.data2viz.geom.*
 import io.data2viz.math.*
