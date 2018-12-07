@@ -142,7 +142,7 @@ fun main() {
 }
 ```
 
-## The Forces
+## Available Forces
 
 ### Center of mass force
 
@@ -506,27 +506,27 @@ fun main() {
     val vizSize = 600.0
     val viewCenter = point(vizSize / 2, vizSize / 2)
     
-    val networkSize = 20
+    val networkSize = 27
     val totalNodes = networkSize * networkSize
-    val linksDistance = 5.0
+    val linksDistance = 7.0
     lateinit var viz:Viz
-
+    
     val particles = (0 until totalNodes).map { Stitch(it % networkSize, it / networkSize) }
-
-    // Keep a reference on this force, to further access the links
+    
+    // Keep a reference on this force, for later access to the links
     lateinit var constraintForce:ForceLink<Stitch>
-
-    val simulation = forceSimulation<Stitch> {
+    
+    forceSimulation<Stitch> {
         // Keep particles centered
         forceCenter {
             center = viewCenter
         }
-        
+
         // Each ForceNode will repel each other ForceNode
         forceNBody {
             strengthGet = { -15.0 }
         }
-        
+
         // Link ForceNode to other ForceNodes on the next row & column (if available)
         constraintForce = forceLink {
             // Links initialisation lambda (ForceNode<D>.()-> List<Link<D>>?)
@@ -536,39 +536,30 @@ fun main() {
                 if (domain.column < networkSize - 1) links.add(Link(this, nodes[index + networkSize], linksDistance))
                 links
             }
-            iterations = 9
+            
+            // lots of iterations allow for "faster unfolding"
+            iterations = 15
         }
-        
+
+        intensityDecay = 0.2.pct
+        intensityMin = 50.pct
+
         domainObjects = particles
-        intensityDecay = 0.5.pct
-        intensityMin = 40.pct
         on(SimulationEvent.END, "End of simulation", { viz.stopAnimations() })
     } //sampleEnd
 
-    val particleVisuals = mutableListOf<CircleNode>()
     val linkVisuals = mutableListOf<LineNode>()
     
     viz = viz {
         size = size(vizSize, vizSize)
         constraintForce.links.forEach {
             linkVisuals += line {
-                stroke = Colors.Web.lightslategrey
-            }
-        }
-        simulation.nodes.forEach {
-            particleVisuals += circle {
-                radius = 3.0
-                fill = Colors.Web.crimson
+                stroke = Colors.Web.black
+                strokeWidth = 4.0
             }
         }
 
         animation {
-            simulation.nodes.forEach { forceNode ->
-                particleVisuals[forceNode.index].apply {
-                    x = forceNode.x
-                    y = forceNode.y
-                }
-            }
             constraintForce.links.forEachIndexed { index, link ->
                 linkVisuals[index].apply {
                     x1 = link.source.x
