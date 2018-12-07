@@ -136,7 +136,7 @@ This creates a new `Timer` that execute your inner code block on each frame.
 
 <div class="warning">
 
-You can stop a `Timer` by using the stop() function, this will not stop the rendering of each frame.  
+You can stop a `Timer` by using the `stop()` function, this will not stop the rendering of each frame.  
 If animations are no more needed call `stopAnimations()` on your `viz` element.
 </div>
 
@@ -160,19 +160,13 @@ fun main() {
             Colors.Web.crimson
         )
         
-        // creation moiré patterns
-        val moires = (0 .. 2).map {
+        // creating 3 moiré patterns
+        val moires = (0 .. 2).map { index ->
             group {
                 strokeWidth = 5.0
-                stroke = colors[it]
-                transform {
-                    translate(150.0, 150.0)
-                }
-                (0..15).forEach { r ->
-                    circle {
-                        radius = r * 8.0
-                    }
-                }
+                stroke = colors[index]
+                transform { translate(150.0, 150.0) }
+                (0..15).forEach { circle { radius = it * 8.0 } }
             }
         }
         
@@ -184,11 +178,13 @@ fun main() {
             if (counter < -20) stopAnimations()
             
             // moving moiré patterns 1 & 2
+            val pos1 = 150.0 + counter * cos(counter)
+            val pos2 = 150.0 + counter * sin(counter)
             moires[1].transform {
-                translate(150.0 + counter * cos(counter), 150.0 + counter * sin(counter))
+                translate(pos1, pos2)
             }
             moires[2].transform {
-                translate(150.0 + counter * sin(counter), 150.0 + counter * cos(counter))
+                translate(pos2, pos1)
             }
         }
     }.bindRendererOnNewCanvas()
