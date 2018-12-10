@@ -1,8 +1,8 @@
 # Random numbers
 
-Data2viz offers several random numbers generators, you can access using the `RandomDistribution.*` 
+Data2viz offers several random numbers generators you can access using the `RandomDistribution.*` 
 factories.  
-To use these random numbers distribution, import the `io.data2viz.random` dependency and use the 
+To use these random numbers distributions, import the `io.data2viz.random` dependency and use the 
 `io.data2viz.random.*` import.
 
 | Factory<br/>RandomDistribution.* |  Distribution of random numbers|
