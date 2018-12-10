@@ -11,8 +11,6 @@ import org.commonmark.renderer.html.HtmlRenderer
 import org.commonmark.renderer.html.HtmlWriter
 
 
-const val data2vizVersion = "0.7.2-RC1"
-
 val extensions = listOf(HeadingAnchorExtension.create(), TablesExtension.create())
 
 val parser = Parser.builder()
@@ -71,7 +69,7 @@ fun parseTo(info: String):Int? = toRegex.find(info)?.groupValues?.get(1)?.toInt(
 val d2vModules = listOf("random", "core", "color", "timer", "quadtree", "force", "viz",
     "interpolate", "time", "scale",
     "format", "timeFormat", "axis", "shape")
-    .map { "https://unpkg.com/@data2viz/data2viz@$data2vizVersion/d2v-$it-js.js" }
+    .map { "https://cdn.jsdelivr.net/npm/@data2viz/data2viz@latest//d2v-$it-js.js" }
     .joinToString()
 
 val d2vAttributes = mapOf(
