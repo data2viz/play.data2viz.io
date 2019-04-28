@@ -321,7 +321,7 @@ private fun drawTable(viz:Viz) {
         // ROW HEADERS
         formats.mapIndexed { formatIndex, format ->
             text {
-                x = 100.0
+                x = 90.0
                 y = startYOffset + (formatIndex * cellHeight)
                 textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
                 textContent = "${format.name}"
