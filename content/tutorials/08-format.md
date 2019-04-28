@@ -132,7 +132,7 @@ The formatter can be created using several parameters:
 For example, to create an integer, comma-separated, currency formatting you can use  
 ``formatter(   
     type = Type.DECIMAL_ROUNDED,   
-    groupSeparation = true,   
+    group = true,   
     symbol = Symbol.CURRENCY 
 )``
 
