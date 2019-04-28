@@ -9,7 +9,7 @@ Data2viz provides several functions to format numbers and dates:
 
 You can format numbers by using `io.data2viz.format.formatter`, these are some sample formatting:
 
-```
+```height=300
 //sampleStart //sampleEnd
 import io.data2viz.color.*
 import io.data2viz.scale.*
@@ -24,7 +24,7 @@ val formats = listOf(
         Formatting("Decimal rounded to integer", FormatSpec(type = Type.DECIMAL_ROUNDED, precision = 2, groupSeparation = true)),
         Formatting("Decimal with SI prefix", FormatSpec(type = Type.DECIMAL_WITH_SI, precision = 2)),
         Formatting("Exponent notation", FormatSpec(type = Type.EXPONENT, precision = 2, align = Align.LEFT, width = 8)),
-        Formatting("Decimal or exponent smart-format", FormatSpec(type = Type.DECIMAL_OR_EXPONENT, precision = 2, align = Align.CENTER, width = 8)),
+        Formatting("Use exponent when needed", FormatSpec(type = Type.DECIMAL_OR_EXPONENT, precision = 2, align = Align.CENTER, width = 8)),
         Formatting("Fixed point", FormatSpec(type = Type.FIXED_POINT, precision = 2)),
         Formatting("Percent, 2 significant digits", FormatSpec(type = Type.PERCENT_ROUNDED, precision = 2)),
         Formatting("Binary", FormatSpec(type = Type.BINARY, precision = 2)),
@@ -117,18 +117,24 @@ private fun drawTable(viz:Viz) {
 }
 ```
 
-Just create an instance of your formatter `val myFormat = formatter(type = Type.EXPONENT)` then format numbers 
-using `myFormat(myDoubleValue)`.
+Just create an instance of your formatter  
+`val myFormat = formatter(type = Type.EXPONENT)`  
+then format numbers using `myFormat(myDoubleValue)`.
 
 The formatter can be created using several parameters: 
 
 - `type`: the type of the formatter `EXPONENT`, `PERCENT`, `BINARY`, `DECIMAL`...
 - `symbol`: the symbol used for currency
+- `group`: use thousand-separators true/false
 - `align`, `width` and `fill` are used to pad numbers and align them consistently
 - ...
 
 For example, to create an integer, comma-separated, currency formatting you can use  
-`formatter(type = Type.DECIMAL_ROUNDED, groupSeparation = true, symbol = Symbol.CURRENCY)`
+``formatter(   
+    type = Type.DECIMAL_ROUNDED,   
+    groupSeparation = true,   
+    symbol = Symbol.CURRENCY 
+)``
 
 <div class="note">
 
@@ -136,7 +142,7 @@ You can use pre-specified formats or describe it using [Python 3’s format spec
 ([reference PEP 3101](https://www.python.org/dev/peps/pep-3101/)).
 </div>
 
-```
+```height=60
 import io.data2viz.color.*
 import io.data2viz.scale.*
 import io.data2viz.math.*
@@ -147,7 +153,7 @@ import io.data2viz.axis.*
 
 fun main() {
     val vizWidth = 600.0
-    val vizHeight = 100.0
+    val vizHeight = 60.0
     val margin = 40.0
 
     val startNumber = 0
@@ -220,7 +226,7 @@ The format reference is the same as in [the standard C library](http://pubs.open
 
 These are some sample formats with their specifier:
 
-```
+```height=240
 //sampleStart //sampleEnd
 import io.data2viz.color.*
 import io.data2viz.geom.*
@@ -236,7 +242,7 @@ val formats = listOf(
     Formatting("Hour:Minute:Second", "%H:%M:%S"),
     Formatting("Day.Month.Year", "%d.%m.%Y"),
     Formatting("Locale date, locale time", "%x, %X"),
-    Formatting("Month/Day/Year (no \"0\" padding)", "%-m/%-d/%Y"),
+    Formatting("Month/Day/Year", "%-m/%-d/%Y"),
     Formatting("AM / PM indicator", "%-I:%M:%S %p"),
     Formatting("Abbreviated weekday name", "%a"),
     Formatting("Full month name", "%B")
@@ -246,7 +252,7 @@ val startDates = listOf(Date(), Date(), Date())
 val steps = listOf(timeSecond, timeHour, timeDay)
 var secondsCounter = 0
 
-val cellWidths = listOf(200.0, 140.0, 140.0, 140.0, 140.0)
+val cellWidths = listOf(180.0, 140.0, 140.0, 140.0, 140.0)
 val cellHeight = 30.0
 
 val scale = ScalesChromatic.Discrete.category10<Date> { domain = startDates }
@@ -322,7 +328,7 @@ private fun drawTable(viz:Viz) {
                 fontWeight = FontWeight.BOLD
             }
             text {
-                x = 270.0
+                x = 250.0
                 y = startYOffset + (formatIndex * cellHeight)
                 textAlign = textAlign(TextHAlign.MIDDLE, TextVAlign.MIDDLE)
                 textContent = "${format.spec}"
@@ -334,7 +340,7 @@ private fun drawTable(viz:Viz) {
 
 Below is a simple example with 2 formatters, one used for the axis and one for the cursor value.
 
-```
+```height=60
 import io.data2viz.color.*
 import io.data2viz.scale.*
 import io.data2viz.math.*
@@ -346,7 +352,7 @@ import io.data2viz.axis.*
 
 fun main() {
     val vizWidth = 600.0
-    val vizHeight = 100.0
+    val vizHeight = 60.0
     val margin = 40.0
 
     val startDate = date(2004, 1, 1)
