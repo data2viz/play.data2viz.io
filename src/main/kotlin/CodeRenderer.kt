@@ -66,7 +66,7 @@ private val toRegex = "to=(\\d+)".toRegex()
 fun parseTo(info: String):Int? = toRegex.find(info)?.groupValues?.get(1)?.toInt()
 
 
-val d2vModules = listOf("random", "core", "color", "timer", "quadtree", "force", "viz",
+val d2vModules = listOf("random", "core", "color", "timer", "contour", "quadtree", "force", "viz",
     "interpolate", "time", "scale",
     "format", "timeFormat", "axis", "shape")
     .map { "https://cdn.jsdelivr.net/npm/@data2viz/data2viz@latest//d2v-$it-js.js" }

@@ -332,7 +332,7 @@ private fun drawTable(viz:Viz) {
 }
 ```
 
-Below and example with 2 formatters, on used for the axis, and one for the cursor value.
+Below is a simple example with 2 formatters, one used for the axis and one for the cursor value.
 
 ```
 import io.data2viz.color.*
