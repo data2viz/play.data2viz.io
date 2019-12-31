@@ -21,7 +21,7 @@ that can be applied in your `ForceSimulation`:
 ## Force simulation
 
 The first thing to use forces, is to create a `ForceSimulation` that will manage the different forces (`Force`) 
-and apply them to you nodes (`ForceNode`).  
+and apply them to your nodes (`ForceNode`).  
 A force simulation is typed with your domain object `<D>`, it takes a `List<D>` of your objects and creates 
 a `List<ForceNode<D>>` of nodes that you can manipulate.
 
@@ -46,7 +46,7 @@ Each node has the following properties:
 
 ### Controlling simulation progress
 
-A simulation progress and inertia is controlled with its inner `intensity` variable, most of the forces 
+A simulation's progress and inertia is controlled with its inner `intensity` variable, most of the forces 
 in the simulation will apply movements according to the current simulation's `intensity`:
 
 - `intensity`: current intensity (starts by default at 100%)
@@ -56,7 +56,7 @@ in the simulation will apply movements according to the current simulation's `in
 
 <div class="note">
 
-All these properties only accepts positive values to avoid divergence.
+All of these properties accept only positive values to avoid divergence.
 </div>
 
 ### Managing simulation status
@@ -146,8 +146,8 @@ fun main() {
 
 ### Center of mass force
 
-The `ForceCenter` uniformly change the position of nodes around a given `Point`, like a center of mass 
-considering each nodes have equal weight.  
+The `ForceCenter` uniformly changes the position of nodes around a given `Point`, like a center of mass 
+considering all nodes have equal weight.  
 
 As some forces tend to move points around, the `ForceCenter` is very useful to position nodes in the center 
 of the view. 
@@ -229,10 +229,10 @@ fun main() {
 
 ### Positioning forces
 
-There are 4 positioning forces, each one attract nodes:
+There are 4 positioning forces, each one attracts nodes:
 
 - `ForcePoint`: towards a given point defined by the `pointGet` lambda
-- `ForceX`: towards a x-position defined by the `xGet` lambda
+- `ForceX`: towards an x-position defined by the `xGet` lambda
 - `ForceY`: towards a y-position defined by the `yGet` lambda
 - `ForceRadial`: towards a circle defined by the `centerGet` & `radiusGet` lambdas
 
