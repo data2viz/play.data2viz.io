@@ -17,7 +17,7 @@ There are several types of scales, depending you work with discrete or continuou
 
 <div class="note">
 
-Scales are managed in there own module. You have to import the dependency inside your project 
+Scales are managed in their own module. You have to import the dependency inside your project 
 (`io.data2viz.scale`) and in the import directive in your code.
 </div>
 
